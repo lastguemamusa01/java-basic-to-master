@@ -1,5 +1,11 @@
 # java-basic-to-master
 
+have resume of :
+
+head First JAVA, 2nd edition.pdf
+java - the complete reference - 11 edition.pdf
+
+
 ## what is computation
 
 * problem solving
@@ -578,4 +584,1089 @@ multiline comments
 /** An especially short bit of Javadoc. */
 
 ```
+
+
+Object − Objects have states and behaviors. Example: A dog has states - color, name, breed as well as behavior such as wagging their tail, barking, eating. An object is an instance of a class.
+
+Class − A class can be defined as a template/blueprint that describes the behavior/state that the object of its type supports.
+
+Methods − A method is basically a behavior. A class can contain many methods. It is in methods where the logics are written, data is manipulated and all the actions are executed.
+
+Instance Variables − Each object has its unique set of instance variables. An object's state is created by the values assigned to these instance variables.
+
+Case Sensitivity − Java is case sensitive, which means identifier Hello and hello would have different meaning in Java.
+
+Class Names − For all class names the first letter should be in Upper Case. If several words are used to form a name of the class, each inner word's first letter should be in Upper Case.
+
+Example: class MyFirstJavaClass
+
+Method Names − All method names should start with a Lower Case letter. If several words are used to form the name of the method, then each inner word's first letter should be in Upper Case.
+
+Example: public void myMethodName()
+
+
+Java Modifiers
+
+Access Modifiers − default, public , protected, private
+
+Non-access Modifiers − final, abstract, strictfp
+
+
+java variables
+
+Local Variables
+
+Class Variables (Static Variables)
+
+Instance Variables (Non-static Variables)
+
+Enums were introduced in Java 5.0. Enums restrict a variable to have one of only a few predefined values. The values in this enumerated list are called enums.
+
+enums can be declared as their own or inside a class. Methods, variables, constructors can be defined inside enums as well.
+
+
+In Java language, an interface can be defined as a contract between objects on how to communicate with each other. 
+
+
+
+f you don't want others (or yourself) to overwrite existing values, use the final keyword (this will declare the variable as "final" or "constant", which means unchangeable and read-only):
+
+java multiple variables : 
+
+int x = 5, y = 6, z = 50;
+
+Java Identifiers
+All Java variables must be identified with unique names.
+
+These unique names are called identifiers.
+
+```java
+// Good
+int minutesPerHour = 60;
+```
+
+Primitive data types - includes byte, short, int, long, float, double, boolean and char
+
+Non-primitive data types - such as String, Arrays and Classes (you will learn more about these in a later chapter)
+
+
+java numbers 
+
+Integer types stores whole numbers, positive or negative (such as 123 or -456), without decimals. Valid types are byte, short, int and long. Which type you should use, depends on the numeric value.
+
+Floating point types represents numbers with a fractional part, containing one or more decimals. There are two types: float and double.
+
+
+ASCII values as char
+char myVar1 = 65, myVar2 = 66, myVar3 = 67;
+
+The main difference between primitive and non-primitive data types are:
+
+Primitive types are predefined (already defined) in Java. Non-primitive types are created by the programmer and is not defined by Java (except for String).
+
+Non-primitive types can be used to call methods to perform certain operations, while primitive types cannot.
+
+A primitive type has always a value, while non-primitive types can be null.
+
+A primitive type starts with a lowercase letter, while non-primitive types starts with an uppercase letter.
+
+The size of a primitive type depends on the data type, while non-primitive types have all the same size.
+
+Examples of non-primitive types are Strings, Arrays, Classes, Interface, etc.
+
+### Java Type Casting
+
+
+Type casting is when you assign a value of one primitive data type to another type.
+
+In Java, there are two types of casting:
+
+Widening Casting (automatically) - converting a smaller type to a larger type size
+byte -> short -> char -> int -> long -> float -> double
+
+Narrowing Casting (manually) - converting a larger type to a smaller size type
+double -> float -> long -> int -> char -> short -> byte
+
+Widening Casting
+
+```java
+
+int myInt = 9;
+double myDouble = myInt;
+
+```
+
+Narrowing Casting
+
+```java
+
+double myDouble = 9.78d;
+int myInt = (int) myDouble; // manual casting: double to int
+
+```
+
+
+java is an object oriented language that supports : 
+
+Polymorphism
+
+Inheritance
+
+Encapsulation
+
+Abstraction
+
+Classes
+
+Objects
+
+Instance
+
+Method
+
+Message Passing
+
+Object − Objects have states and behaviors. Example: A dog has states - color, name, breed as well as behaviors – wagging the tail, barking, eating. An object is an instance of a class.
+
+Class − A class can be defined as a template/blueprint that describes the behavior/state that the object of its type support.
+
+
+
+A class can contain any of the following variable types.
+
+Local variables − Variables defined inside methods, constructors or blocks are called local variables. The variable will be declared and initialized within the method and the variable will be destroyed when the method has completed.
+
+Instance variables − Instance variables are variables within a class but outside any method. These variables are initialized when the class is instantiated. Instance variables can be accessed from inside any method, constructor or blocks of that particular class.
+
+Class variables − Class variables are variables declared within a class, outside any method, with the static keyword.
+
+Constructors
+
+very class has a constructor. If we do not explicitly write a constructor for a class, the Java compiler builds a default constructor for that class.
+
+```java
+
+public class Puppy {
+    public Puppy() {
+
+    }
+
+    public Puppy(String name) {
+
+    }
+}
+```
+
+Java also supports Singleton Classes where you would be able to create only one instance of a class.
+
+
+Creating an Object
+
+There are three steps when creating an object from a class −
+
+Declaration − A variable declaration with a variable name with an object type.
+
+Instantiation − The 'new' keyword is used to create the object.
+
+Initialization − The 'new' keyword is followed by a call to a constructor. This call initializes the new object.
+
+
+Java Package - In simple words, it is a way of categorizing the classes and interfaces.
+
+Decision Making statements
+
+
+* if statements
+* switch statement
+
+
+Loop statements
+
+* do while loop
+* while loop
+* for loop
+* for-each loop
+
+Jump statements
+
+* break statement
+* continue statement
+
+
+if statement
+
+* Simple if statement
+* if-else statement
+* if-else-if ladder
+* Nested if-statement
+
+
+In Java, Switch statements are similar to if-else-if statements. The switch statement contains multiple blocks of code called cases and a single case is executed based on the variable which is being switched.
+
+* The case variables can be int, short, byte, char, or enumeration. String type is also supported since version 7 of Java
+* Cases cannot be duplicate
+* Default statement is executed when any of the case doesn't match the value of expression. It is optional.
+* Break statement terminates the switch block when the condition is satisfied.
+It is optional, if not used, next case is executed.
+* While using switch statements, we must notice that the case expression will be of the same type as the variable. However, it will also be a constant value.
+
+```java
+
+int num = 2;
+
+switch(num) {
+    case 0: System.out.println("number is 0"); break;
+    case 1: System.out.println("number is 1"); break;
+    default: System.out.println(num); 
+}
+
+```
+
+
+for statement
+
+We use the for loop only when we exactly know the number of times, we want to execute the block of code.
+
+ForExample.java
+
+```java
+
+int sum =0;
+
+for(int i = 1; i <=10; i++>) {
+    sum=sum+i;
+}
+
+
+```
+
+Java for-each loop
+
+Java provides an enhanced for loop to traverse the data structures like array or collection. In the for-each loop, we don't need to update the loop variable. The syntax to use the for-each loop in java is given below.
+
+```java
+String[] names = {"Java","C","C++","Python","JavaScript"}
+
+for(String name: names) System.out.println(name);
+```
+
+Java while loop
+
+The while loop is also used to iterate over the number of statements multiple times. However, if we don't know the number of iterations in advance, it is recommended to use a while loop. Unlike for loop, the initialization and increment/decrement doesn't take place inside the loop statement in while loop.
+
+
+```java
+
+int i = 0;
+
+while(i<=10>) {
+    Sysmte.out.println(i);
+}
+
+```
+
+Java do-while loop
+
+The do-while loop checks the condition at the end of the loop after executing the loop statements. When the number of iteration is not known and we have to execute the loop at least once, we can use do-while loop.
+
+
+```java
+
+int i = 0;
+
+do {
+    System.out.println(i);
+}while(i <=10)
+
+```
+
+Jump Statements
+
+Jump statements are used to transfer the control of the program to the specific statements. In other words, jump statements transfer the execution control to the other part of the program. 
+
+
+java break statement
+
+
+As the name suggests, the break statement is used to break the current flow of the program and transfer the control to the next statement outside a loop or switch statement. However, it breaks only the inner loop in the case of the nested loop.
+
+
+The break statement cannot be used independently in the Java program, i.e., it can only be written inside the loop or switch statement.
+
+
+
+```java
+
+for(int i = 0; i <= 10; i++) {
+    System.out.println(i);
+    if(i == 6) break;    
+}
+
+```
+
+0
+1
+2
+3
+4
+5
+6
+
+Java continue statement
+
+Unlike break statement, the continue statement doesn't break the loop, whereas, it skips the specific part of the loop and jumps to the next iteration of the loop immediately.
+
+```java
+
+
+for(int i = 0; i <= 10; i++) {
+    if(i == 6) continue;    
+    System.out.println(i);
+}
+
+```
+
+0
+1
+2
+3
+4
+5
+7
+8
+9
+10
+
+ContinueExample.java
+
+
+nested swtich example
+
+```java
+
+char branch = 'C';                 
+int collegeYear = 4;  
+switch( collegeYear )  
+{  
+    case 1:  
+        System.out.println("English, Maths, Science");  
+        break;  
+    case 2:  
+        switch( branch )   
+        {  
+            case 'C':  
+                System.out.println("Operating System, Java, Data Structure");  
+                break;  
+            case 'E':  
+                System.out.println("Micro processors, Logic switching theory");  
+                break;  
+            case 'M':  
+                System.out.println("Drawing, Manufacturing Machines");  
+                break;  
+        }  
+        break;  
+    case 3:  
+        switch( branch )   
+        {  
+            case 'C':  
+                System.out.println("Computer Organization, MultiMedia");  
+                break;  
+            case 'E':  
+                System.out.println("Fundamentals of Logic Design, Microelectronics");  
+                break;  
+            case 'M':  
+                System.out.println("Internal Combustion Engines, Mechanical Vibration");  
+                break;  
+        }  
+        break;  
+    case 4:  
+        switch( branch )   
+        {  
+            case 'C':  
+                System.out.println("Data Communication and Networks, MultiMedia");  
+                break;  
+            case 'E':  
+                System.out.println("Embedded System, Image Processing");  
+                break;  
+            case 'M':  
+                System.out.println("Production Technology, Thermal Engineering");  
+                break;  
+        }  
+        break;  
+}  
+
+```
+
+Java Wrapper in Switch Statement
+
+Java allows us to use four wrapper classes: Byte, Short, Integer and Long in switch statement.
+
+```java
+Integer age = 18;        
+switch (age)  
+{  
+    case (16):            
+        System.out.println("You are under 18.");  
+        break;  
+    case (18):                
+        System.out.println("You are eligible for vote.");  
+        break;  
+    case (65):                
+        System.out.println("You are senior citizen.");  
+        break;  
+    default:  
+        System.out.println("Please give the valid age.");  
+        break;  
+}             
+```
+
+Java Enum in Switch Statement
+
+Java allows us to use enum in switch statement. Java enum is a class that represent the group of constants. (immutable such as final variables). We use the keyword enum and put the constants in curly braces separated by comma.
+
+EnumSwitchExample.java
+
+java keywords
+
+https://www.w3schools.com/java/java_ref_keywords.asp
+
+math library
+
+https://www.w3schools.com/java/java_ref_math.asp
+
+
+java docs
+
+https://www.tutorialspoint.com/java/java_documentation.htm
+
+java email library to send email
+
+https://www.tutorialspoint.com/java/java_sending_email.htm
+
+
+Java divides the operators into the following groups:
+
+* Arithmetic operators
+* Assignment operators
+* Comparison operators
+* Logical operators
+* Bitwise operators
+
+
+Java Special Characters
+
+\'	'	Single quote
+
+\"	"	Double quote
+
+\\	\	Backslash
+
+\n	New Line	
+
+\r	Carriage Return	
+
+\t	Tab	
+
+\b	Backspace	
+
+\f	Form Feed
+
+
+The solution to avoid this problem, is to use the backslash escape character.
+
+```java
+String txt = "We are the so-called \"Vikings\" from the north.";
+String txt = "It\'s alright.";
+```
+
+The Java Math class has many methods that allows you to perform mathematical tasks on numbers.
+
+The Math.max(x,y) method can be used to find the highest value of x and y:
+
+The Math.sqrt(x) method returns the square root of x:
+
+The Math.abs(x) method returns the absolute (positive) value of x:
+
+```java
+Math.max(5, 10);
+Math.min(5, 10);
+Math.sqrt(64);
+Math.abs(-4.7);
+Math.random();
+```
+
+ternary operator
+
+There is also a short-hand if else, which is known as the ternary operator because it consists of three operands.
+
+```java
+variable = (condition) ? expressionTrue :  expressionFalse;
+```
+
+```java
+int time = 20;
+Stringr result = (time < 20) ? "soon":"late";
+```
+
+switch
+
+```java
+switch(expression) {
+  case x:
+    // code block
+    break;
+  case y:
+    // code block
+    break;
+  default:
+    // code block
+}
+```
+
+java for
+
+```java
+for (statement 1; statement 2; statement 3) {
+  // code block to be executed
+}
+```
+
+Statement 1 is executed (one time) before the execution of the code block.
+
+Statement 2 defines the condition for executing the code block.
+
+Statement 3 is executed (every time) after the code block has been executed.
+
+
+for each
+
+used to loop thorugh elements in java collection
+
+
+```java
+for (type variableName : arrayName) {
+  // code block to be executed
+}
+```
+
+Java Arrays
+
+Arrays are used to store multiple values in a single variable, instead of declaring separate variables for each value.
+
+```java
+String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
+int[] myNum = {10, 20, 30, 40};
+cars[0] = "Opel";
+System.out.println(cars[0]);
+
+//array length
+System.out.println(cars.length);
+
+// traditional for loop on collection
+for (int i = 0; i < cars.length; i++) {
+  System.out.println(cars[i]);
+}
+
+```
+
+Multidimensional Arrays
+
+A multidimensional array is an array of arrays.
+
+To create a two-dimensional array, add each array within its own set of curly braces:
+
+```java
+int[][] myNumbers = { {1, 2, 3, 4}, {5, 6, 7} };
+int x = myNumbers[1][2];  // 7 
+
+```
+
+
+Java Literals
+
+A literal is a source code representation of a fixed value. They are represented directly in the code without any computation.
+
+byte, int, long, and short can be expressed in decimal(base 10), hexadecimal(base 16) or octal(base 8) number systems as well.
+
+
+```java
+byte a = 68;
+char a = 'A';
+
+int decimal = 100;
+int octal = 0144;
+int hexa =  0x64;
+
+```
+
+String and char types of literals can contain any Unicode characters.
+
+```java
+char a = '\u0001';
+String a = "\u0001";
+```
+
+
+\n	Newline (0x0a)
+
+\r	Carriage return (0x0d)
+
+\f	Formfeed (0x0c)
+
+\b	Backspace (0x08)
+
+\s	Space (0x20)
+
+\t	tab
+
+\"	Double quote
+
+\'	Single quote
+
+\\	backslash
+
+\ddd	Octal character (ddd)
+
+\uxxxx	Hexadecimal UNICODE character (xxxx)
+
+
+
+static variable example : 
+
+```java
+public class Employee {
+
+   // salary  variable is a private static variable
+   private static double salary;
+
+   // DEPARTMENT is a constant
+   public static final String DEPARTMENT = "Development ";
+
+   public static void main(String args[]) {
+      salary = 1000;
+      System.out.println(DEPARTMENT + "average salary:" + salary);
+   }
+}
+```
+
+Modifiers are keywords that you add to those definitions to change their meanings. Java language has a wide variety of modifiers, including the following −
+
+Java Access Modifiers
+
+Non Access Modifiers
+
+To use a modifier, you include its keyword in the definition of a class, method, or variable.
+
+Access Control Modifiers
+
+Java provides a number of access modifiers to set access levels for classes, variables, methods and constructors. 
+
+Visible to the package, the default. No modifiers are needed.
+
+Visible to the class only (private).
+
+Visible to the world (public).
+
+Visible to the package and all subclasses (protected).
+
+Non-Access Modifiers
+
+Java provides a number of non-access modifiers to achieve many other functionality.
+
+The static modifier for creating class methods and variables.
+
+The final modifier for finalizing the implementations of classes, methods, and variables.
+
+The abstract modifier for creating abstract classes and methods.
+
+The synchronized and volatile modifiers, which are used for threads.
+
+The bitwise operators
+
+Java defines several bitwise operators, which can be applied to the integer types, long, int, short, char, and byte.
+
+Bitwise operator works on bits and performs bit-by-bit operation. Assume if a = 60 and b = 13; now in binary format they will be as follows −
+
+a = 0011 1100
+
+b = 0000 1101
+
+-----------------
+
+a&b = 0000 1100
+
+a|b = 0011 1101
+
+a^b = 0011 0001
+
+~a  = 1100 0011
+
+
+* << (left shift)	Binary Left Shift Operator. The left operands value is moved left by the number of bits specified by the right operand.	A << 2 will give 240 which is 1111 0000
+
+C <<= 2 is same as C = C << 2
+
+*  (right shift) >>	Binary Right Shift Operator. The left operands value is moved right by the number of bits specified by the right operand.	A >> 2 will give 15 which is 1111
+
+* (zero fill right shift) >>>	Shift right zero fill operator. The left operands value is moved right by the number of bits specified by the right operand and shifted values are filled up with zeros.	A >>>2 will give 15 which is 0000 1111
+
+
+instanceof Operator
+
+This operator is used only for object reference variables. The operator checks whether the object is of a particular type (class type or interface type)
+
+```java
+( Object reference variable ) instanceof  (class/interface type)
+```
+
+```java
+String name = "James"
+Vehicle a = new Car();
+
+// following will return true since name is type of String
+boolean result = name instanceof String;
+// This operator will still return true, if the object being compared is the assignment compatible with the type on the right.
+boolean result =  a instanceof Car;  // true
+
+```
+
+Precedence of Java Operators
+
+For example, x = 7 + 3 * 2; here x is assigned 13, not 20 because operator * has higher precedence than +, so it first gets multiplied with 3 * 2 and then adds into 7.
+
+Here, operators with the highest precedence appear at the top of the table, those with the lowest appear at the bottom. Within an expression, higher precedence operators will be evaluated first.
+
+
+Postfix	expression++ expression--	Left to right
+
+Unary	++expression –-expression +expression –expression ~ !	Right to left
+
+Multiplicative	* / %	Left to right
+
+Additive	+ -	Left to right
+
+Shift	<< >> >>>	Left to right
+
+Relational	< > <= >= instanceof	Left to right
+
+Equality	== !=	Left to right
+
+Bitwise AND	&	Left to right
+
+Bitwise XOR	^	Left to right
+
+Bitwise OR	|	Left to right
+
+Logical AND	&&	Left to right
+
+Logical OR	||	Left to right
+
+Conditional	?:	Right to left
+
+Assignment	= += -= *= /= %= ^= |= <<= >>= >>>=	Right to left
+
+
+A method is a block of code which only runs when it is called.
+
+You can pass data, known as parameters, into a method.
+
+Methods are used to perform certain actions, and they are also known as functions.
+
+Why use methods? To reuse code: define the code once, and use it many times.
+
+```java
+public class Main {
+    static void myMethod() {
+        // code to be executed
+    }
+}
+```
+
+static means that the method belongs to the Main class and not an object of the Main class.
+
+Parameters and Arguments
+
+Information can be passed to methods as parameter. Parameters act as variables inside the method.
+
+With method overloading, multiple methods can have the same name with different parameters:
+
+```java
+int myMethod(int x)
+float myMethod(float x)
+double myMethod(double x, double y)
+
+static int plusMethod(int x, int y) {
+  return x + y;
+}
+
+static double plusMethod(double x, double y) {
+  return x + y;
+}
+
+```
+
+Java Scope
+
+In Java, variables are only accessible inside the region they are created. This is called scope.
+
+Method Scope
+
+Variables declared directly inside a method are available anywhere in the method
+
+```java
+public static void main(String[] args) {
+
+    // Code here CANNOT use x
+
+    int x = 100;
+
+    // Code here can use x
+    System.out.println(x);
+}
+```
+
+Block Scope
+
+A block of code refers to all of the code between curly braces {}.
+
+Variables declared inside blocks of code are only accessible by the code between the curly braces
+
+```java
+
+public static void main(String[] args) {
+
+    // Code here CANNOT use x
+
+    { // This is a block
+
+        // Code here CANNOT use x
+
+        int x = 100;
+
+        // Code here CAN use x
+        System.out.println(x);
+
+    } // The block ends here
+
+    // Code here CANNOT use x           
+
+}
+```
+
+Java Recursion
+
+Recursion is the technique of making a function call itself. This technique provides a way to break complicated problems down into simple problems which are easier to solve.
+
+```java
+public static int sum(int k) {
+    if (k > 0) {
+        return k + sum(k - 1);
+    } else {
+        return 0;
+    }
+}
+```
+
+10 + sum(9)
+10 + ( 9 + sum(8) )
+10 + ( 9 + ( 8 + sum(7) ) )
+...
+10 + 9 + 8 + 7 + 6 + 5 + 4 + 3 + 2 + 1 + sum(0)
+10 + 9 + 8 + 7 + 6 + 5 + 4 + 3 + 2 + 1 + 0
+
+Halting Condition
+
+Just as loops can run into the problem of infinite looping, recursive functions can run into the problem of infinite recursion. Infinite recursion is when the function never stops calling itself. Every recursive function should have a halting condition, which is the condition where the function stops calling itself. In the previous example, the halting condition is when the parameter k becomes 0.
+
+```java
+public static int sum(int start, int end) {
+    if (end > start) {
+      return end + sum(start, end - 1);
+    } else {
+      return end;
+    }
+}
+```
+
+Normally, when we work with Numbers, we use primitive data types such as byte, int, long, double, etc.
+
+However, in development, we come across situations where we need to use objects instead of primitive data types. In order to achieve this, Java provides wrapper classes.
+
+All the wrapper classes (Integer, Long, Byte, Double, Float, Short) are subclasses of the abstract class Number.
+
+The object of the wrapper class contains or wraps its respective primitive data type. Converting primitive data types into object is called boxing, and this is taken care by the compiler. Therefore, while using a wrapper class you just need to pass the value of the primitive data type to the constructor of the Wrapper class.
+
+And the Wrapper object will be converted back to a primitive data type, and this process is called unboxing. The Number class is part of the java.lang package.
+
+
+```java
+    Integer x = 5; // boxes int to an Integer object
+    x =  x + 10;   // unboxes the Integer to a int
+    System.out.println(x); 
+```
+
+Nested for Loop
+
+If we have a for loop inside the another loop, it is known as nested for loop. 
+
+
+Java Labeled For Loop
+We can have a name of each Java for loop. To do so, we use label before the for loop. It is useful while using the nested for loop as we can break/continue specific for loop.
+
+```java
+//Using Label for outer and for loop  
+aa:  
+    for(int i=1;i<=3;i++){  
+        bb:  
+            for(int j=1;j<=3;j++){  
+                if(i==2&&j==2){  
+                    break aa;  
+                }  
+                System.out.println(i+" "+j);  
+            }  
+
+```
+If you use break bb;, it will break inner loop only which is the default behaviour of any loop.
+
+Java Infinitive for Loop
+
+If you use two semicolons ;; in the for loop, it will be infinitive for loop.
+
+```java
+for(;;){  
+//code to be executed  
+}  
+```
+
+it became obvious that Java would also be useful on the server side. The result was the servlet. A servlet is a small program that executes on the server.
+
+Because servlets (like all Java programs) are compiled into bytecode and executed by the JVM, they are highly portable. Thus, the same servlet can be used in a variety of different server environments. The only requirements are that the server support the JVM and a servlet container
+
+To better understand how Java is robust, consider two of the main reasons for program failure: memory management mistakes and mishandled exceptional conditions (that is, run-time errors). 
+
+In computer science, robustness is the ability of a computer system to cope with errors during execution and cope with erroneous input. 
+
+
+Java was designed to meet the real-world requirement of creating interactive, networked programs. To accomplish this, Java supports multithreaded programming
+
+Java is designed for the distributed environment of the Internet because it handles TCP/IP protocols. In fact, accessing a resource using a URL is not much different from accessing a file. Java also supports Remote Method Invocation (RMI). This feature enables a program to invoke methods across a network.
+
+Dynamic
+
+Java programs carry with them substantial amounts of run-time type information that is used to verify and resolve accesses to objects at run time.
+
+Java 1 -> 1.1
+
+Java 2 -> 1.2 added support for a number of new features, such as Swing and the Collections Framework, and it enhanced the Java Virtual Machine and various programming tools. 
+
+
+Java 1.3 ->  first major upgrade to the original Java 2 release. For the most part, it added to existing functionality and “tightened up” the development environment. 
+
+j2se 1.4 - >  it added the new keyword assert, chained exceptions, and a channel-based I/O subsystem. It also made changes to the Collections Framework and the networking classes.
+
+J2SE 5 -> expanded the scope, power, and range of the language.
+
+* Generics
+* Annotations
+* Autoboxing and auto-unboxing
+* Enumerations
+* Enhanced, for-each style for loop
+* Variable-length arguments (varargs) 
+* Static import
+* Formatted I/O
+* Concurrency utilities
+
+
+
+Java SE 6 - but it did enhance the API libraries, added several new packages, and offered improvements to the run time.
+
+Java SE 7 -> jdk 7 -> first major release of Java since Sun Microsystems was acquired by Oracle. new features, including significant additions to the language and the API libraries. Upgrades to the Java run-time system that support non- Java languages were also included. The purpose of Project Coin was to identify a number of small changes to the Java language that would be incorporated into JDK 7.
+
+* A String can now control a switch statement.
+*  Binary integer literals.
+*  Underscores in numeric literals.
+*  An expanded try statement, called try-with-resources, that supports
+automatic resource management. (For example, streams can be closed
+automatically when they are no longer needed.)
+*  Type inference (via the diamond operator) when constructing a generic
+instance.
+*  Enhanced exception handling in which two or more exceptions can be
+caught by a single catch (multi-catch) and better type checking for
+exceptions that are rethrown.
+*  Although not a syntax change, the compiler warnings associated with
+some types of varargs methods were improved, and you have more control over the warnings.
+
+ Two of the most important were the enhancements to the NIO Framework and the addition of the Fork/Join Framework.
+
+ The Fork/Join Framework provides important support for parallel programming.
+
+Parallel programming is the name commonly given to the techniques that make effective use of computers that contain more than one processor, including multicore systems.
+
+The Fork/Join Framework addressed parallel programming by:
+
+* Simplifying the creation and use of tasks that can execute concurrently 
+* Automatically making use of multiple processors
+
+Java SE 8 -> 1.8. JDK 8 -> 
+
+
+the lambda expression -> lambda expressions add functional programming features to Java
+
+The addition of lambda expressions also caused a new operator (the –>) and a new syntax element to be added to the language.
+
+One of the most important was the new stream API, which is packaged in java.util.stream. The stream API supports pipeline operations on data and is optimized for lambda expressions. Another new package was ava.util.function. It defines a number of functional interfaces, which provide additional support for lambda expressions.
+
+Another lambda-inspired feature affects interface. is now possible to define a default implementation for a method specified by an interface. If no implementation for a default method is created, then the default defined by the interface is used. This feature enables interfaces to be gracefully evolved over time because a new method can be added to an interface without breaking existing code
+
+ther new features in JDK 8 include a new time and date API, type annotations, and the ability to use parallel processing when sorting an array, among others.
+
+Java SE 9. -> 
+
+The primary new JDK 9 feature was modules, which enable you to specify the relationship and dependencies of the code that comprises an application. Modules also add another dimension to Java’s access control features. The inclusion of modules caused a new syntax element and several keywords to be added to Java. Furthermore, a tool called jlink was added to the JDK, which enables a programmer to create a run-time image of an application that contains only the necessary modules
+
+ JShell, which is a tool that supports interactive program experimentation and learning.
+
+Support for private interface methods.
+JDK 9 added a search feature to the javadoc tool and a new tag called @index to support it.
+
+JDK 9 deprecated the entire applet API.
+
+ Java SE 10 - 
+
+Support for local variable type inference.
+
+With local variable type inference, it is now possible to let the type of a local variable be inferred from the type of its initializer, rather than being explicitly specified.
+
+To support this new capability, the context-sensitive identifier var was added to Java as a reserved type name.
+
+Type inference can streamline code by eliminating the need to redundantly specify a variable’s type when it can be inferred from its initializer. It can also simplify declarations in cases in which the type is difficult to discern or cannot be explicitly specified.
+
+Local variable type inference has become a common part of the contemporary programming
+
+ JDK 10 also redefined the Java version string, changing the meaning of the version numbers so that they better align with the new time-based release schedule.
+
+https://www.javatpoint.com/java-versions
+
+Java SE 11 -  
+
+he primary new language feature in JDK 11 is support for the use of var in a lambda expression
+
+new networking API, which will be of interest to a wide range of developers. Called the HTTP Client API, it is packaged in java.net.http, and it provides enhanced, updated, and improved networking support for HTTP clients.
+
+Also, another execution mode was added to the Java launcher that enables it to directly execute simple single-file programs. JDK 11 also removes some features
+
+Support for another deployment-related technology called Java Web Start has also been removed from JDK 11. As the execution environment has continued to evolve, both applets and Java Web Start were rapidly losing relevance. Another key change in JDK 11 is that JavaFX is no longer included in the JDK.
+
+
+
+* java 12
+* java 13
+* java 14
+* java 15
+* java 16
+* java 17
+* java 18(march 2022)
+
+https://en.wikipedia.org/wiki/Java_version_history#Java_11
+
 
