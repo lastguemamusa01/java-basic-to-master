@@ -1657,8 +1657,6 @@ Also, another execution mode was added to the Java launcher that enables it to d
 
 Support for another deployment-related technology called Java Web Start has also been removed from JDK 11. As the execution environment has continued to evolve, both applets and Java Web Start were rapidly losing relevance. Another key change in JDK 11 is that JavaFX is no longer included in the JDK.
 
-
-
 * java 12
 * java 13
 * java 14
@@ -1668,5 +1666,246 @@ Support for another deployment-related technology called Java Web Start has also
 * java 18(march 2022)
 
 https://en.wikipedia.org/wiki/Java_version_history#Java_11
+
+
+
+
+Object-oriented programming (OOP) is at the core of Java.
+
+All computer programs consist of two elements: code and data. Furthermore, a program can be conceptually organized around its code or around its data.
+
+
+An essential element of object-oriented programming is abstraction. Humans manage complexity through abstraction. For example, people do not think of a car as a set of tens of thousands of individual parts. They think of it as a well- defined object with its own unique behavior. This abstraction allows people to use a car to drive to the grocery store without being overwhelmed by the complexity of the individual parts. They can ignore the details of how the engine, transmission, and braking systems work. Instead, they are free to utilize the object as a whole.
+
+The Three OOP Principles
+
+All object-oriented programming languages provide mechanisms that help you implement the object-oriented model. They are encapsulation, inheritance, and polymorphism.
+
+Encapsulation is the mechanism that binds together code and the data it manipulates, and keeps both safe from outside interference and misuse. One way to think about encapsulation is as a protective wrapper that prevents the code and data from being arbitrarily accessed by other code defined outside the wrapper.
+
+
+Inheritance is the process by which one object acquires the properties of another object. This is important because it supports the concept of hierarchical classification. As mentioned earlier, most knowledge is made manageable by hierarchical (that is, top-down) classifications. For example, a Golden Retriever is part of the classification dog, which in turn is part of the mammal class, which is under the larger class animal. 
+
+Inheritance interacts with encapsulation as well. If a given class encapsulates some attributes, then any subclass will have the same attributes plus any that it adds as part of its specialization
+
+Polymorphism (from Greek, meaning “many forms”) is a feature that allows one interface to be used for a general class of actions.
+
+More generally, the concept of polymorphism is often expressed by the phrase “one interface, multiple methods.”
+
+More generally, the concept of polymorphism is often expressed by the phrase “one interface, multiple methods.” This means that it is possible to design a generic interface to a group of related activities
+
+When properly applied, polymorphism, encapsulation, and inheritance combine to produce a programming environment that supports the development of far more robust and scaleable programs than does the process-oriented model
+
+java basic compile
+
+```
+javac Example.java
+java Example
+```
+
+In, Java is case-sensitive, so VALUE is a different identifier than Value.
+
+Literals
+
+A constant value in Java is created by using a literal representation of it. 
+
+In Java, there are a few characters that are used as separators. The most commonly used separator in Java is the semicolon. As you have seen, it is often used to terminate statements. The separators are shown in the following table:
+
+![](2022-04-02-18-05-00.png)
+
+
+Java Is a Strongly Typed Language
+
+ First, every variable has a type, every expression has a type, and every type is strictly defined. Second, all assignments, whether explicit or via parameter passing in method calls, are checked for type compatibility.
+
+
+The Primitive Types
+
+Java defines eight primitive types of data: byte, short, int, long, char, float, double, and boolean
+
+* Integers This group includes byte, short, int, and long, which are for whole-valued signed numbers.
+* Floating-point numbers This group includes float and double, which represent numbers with fractional precision.
+* Characters This group includes char, which represents symbols in a character set, like letters and numbers.
+* Boolean This group includes boolean, which is a special type for representing true/false values.
+
+Java defines four integer types: byte, short, int, and long. All of these are signed, positive and negative values
+
+The smallest integer type is byte. This is a signed 8-bit type that has a range from –128 to 127. Variables of type byte are especially useful when you’re working with a stream of data from a network or file. They are also useful when you’re working with raw binary data that may not be directly compatible with Java’s other built-in types.
+
+The type float specifies a single-precision value that uses 32 bits of storage. Single precision is faster on some processors and takes half as much space as double precision, but will become imprecise when the values are either very large or very small.
+
+Double precision, as denoted by the double keyword, uses 64 bits to store a value. Double precision is actually faster than single precision on some modern processors that have been optimized for high-speed mathematical calculations.
+
+Notice that ch1 is assigned the value 88, which is the ASCII (and Unicode) value that corresponds to the letter X
+
+You can embed one or more underscores in an integer literal. Doing so makes it easier to read large integer literals. When the literal is compiled, the underscores are discarded. For example, given
+
+int x = 123_456_789;
+
+the value given to x will be 123,456,789.The underscores will be ignored.
+
+double num = 9_423_497_862.0;
+the value given to num will be 9,423,497,862.0. The underscores will be ignored. 
+
+declare variable
+int a, b, c;
+
+initializaing variable
+b = 2;
+
+dynamic initialization - > allows variables to be initialized dynamically, using any expression valid at the time the variable is declared.
+
+```java
+double a = 3.0, b= 4.0;
+
+double c = Math.sqrt(a*a+b*b);
+```
+
+Type Conversion and Casting
+
+If the two types are compatible, then Java will perform the conversion automatically. For example, it is always possible to assign an int value to a long variable. However, not all types are compatible, and thus, not all type conversions are implicitly allowed. For instance, there is no automatic conversion defined from double to byte. Fortunately, it is still possible to obtain a conversion between incompatible types. To do so, you must use a cast,
+
+```java
+int a;
+byte b;
+b = (byte) a;
+```
+
+Automatic Type Promotion in Expressions
+
+```java
+byte a = 40;
+byte b = 50;
+byte c = 100;
+int d = a * b / c;
+```
+
+The Type Promotion Rules
+
+First, all byte, short, and char values are promoted to int, as just described. Then, if one operand is a long, the whole expression is promoted to long. If one operand is a float, the entire expression is promoted to float. If any of the operands are double, the result is double.
+
+
+An array is a group of like-typed variables that are referred to by a common name. Arrays of any type can be created and may have one or more dimensions.  convenient means of grouping related information.
+
+A one-dimensional array is, essentially, a list of like-typed variables
+
+```java
+int month_days[] = new int[12];
+month_days[0] = 31;
+int algo[] = {31,24,24};
+```
+In Java, multidimensional arrays are implemented as arrays of arrays. 
+
+```java
+int twoD[][] = new int[4][5];
+
+int al[] = new int[3]; 
+int[] a2 = new int[3];
+
+int[] nums, nums2, nums3;
+int nums[], nums2[], nums3[];
+
+```
+
+Introducing Type Inference with Local Variables
+
+Recently, an exciting new feature called local variable type inference was added to the Java language. To begin, let’s review two important aspects of variables. First, all variables in Java must be declared prior to their use. Second, a variable can be initialized with a value when it is declared.
+
+```java
+
+double avg = 10.0;
+var avg2 = 10.0;
+
+```
+
+
+In both cases, avg will be of type double. In the first case, its type is explicitly specified. In the second, its type is inferred as double because the initializer 10.0 is of type double.
+
+There are a few places in which the use of var is illegal. It cannot be used as the name of a class, for example.
+
+The preceding example uses var to declare only simple variables, but you can also use var to declare an array. For example:
+
+Notice that neither var nor myArray has brackets. Instead, the type of myArray is inferred to be int[ ]. Furthermore, you cannot use brackets on the left side of a var declaration. Thus, both of these declarations are invalid:
+
+It is important to emphasize that var can be used to declare a variable only when that variable is initialized.
+
+```java
+var myArray = new int[10]; // This is valid.
+var[] myArray = new int[10]; // Wrong
+
+var counter; // Wrong! Initializer required.
+```
+Also, remember that var can be used only to declare local variables. It cannot be used when declaring instance variables, parameters, or return types, for example.
+
+In addition to those mentioned in the preceding discussion, several other restrictions apply to the use of var. Only one variable can be declared at a time; a variable cannot use null as an initializer; and the variable being declared cannot be used by the initializer expression. Although you can declare an array type using var, you cannot use var with an array initializer. For example, this is valid:
+
+```java
+
+var myArray = new int[10]; // This is valid.
+var myArray = { 1, 2, 3 }; // Wrong
+
+```
+
+As mentioned earlier, var cannot be used as the name of a class. It also cannot be used as the name of other reference types, including an interface, enumeration, or annotation, or as the name of a generic type parameter
+
+
+```java
+x = 42; 
+y = ++x;
+```
+
+In this case, y is set to 43 as you would expect, because the increment occurs before x is assigned to y. Thus, the line y = ++x; is the equivalent of these two statements:
+
+```java
+x = x + 1; 
+y = x;
+```
+
+However, when written like this,
+
+```java
+x = 42; 
+y = x++;
+```
+
+the value of x is obtained before the increment operator is executed, so the value of y is 42. Of course, in both cases x is set to 43. Here, the line y = x++; is the equivalent of these two statements:
+
+```java
+y = x;
+x = x + 1;
+```
+
+Java defines several bitwise operators that can be applied to the integer types: long, int, short, char, and byte
+
+![](2022-04-02-18-33-30.png)
+
+The logical Boolean operators, &, |, and ^, operate on boolean values in the same way that they operate on the bits of an integer. The logical ! operator inverts the Boolean state: !true == false and !false == true.
+
+As you can see from the preceding table, the OR operator results in true when A is true, no matter what B is. Similarly, the AND operator results in false when A is false, no matter what B is.
+
+If you use the || and && forms, rather than the | and & forms of these operators, Java will not bother to evaluate the right-hand operand when the outcome of the expression can be determined by the left operand alone.
+
+This is very useful when the right-hand operand depends on the value of the left one in order to function properly.
+
+```java
+if (denom != 0 && num / denom > 10)
+```
+
+It is standard practice to use the short-circuit forms of AND and OR in cases involving Boolean logic, leaving the single-character versions exclusively for bitwise operations. 
+
+Parentheses raise the precedence of the operations that are inside them. This is often necessary to obtain the result you desire.
+
+```java
+(a >> b) + 3
+```
+
+
+
+
+
+
+
+
+
 
 
