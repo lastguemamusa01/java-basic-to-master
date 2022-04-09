@@ -47,14 +47,6 @@ expressions ->  variable(object) + operation
 syntax error -> wrong word
 semantic error -> the order of the words
 
-
-
-
-
- 
-
-
-
 ## java tutorial
 
 Java is an object-oriented, class-based, concurrent, secured and general-purpose computer-programming language.
@@ -3233,4 +3225,271 @@ public class Main {
 
 ```
 
+A Java method is a collection of statements that are grouped together to perform an operation.
+
+
+When a class has two or more methods by the same name but different parameters, it is known as method overloading. It is different from overriding. In overriding, a method has the same method name, type, number of parameters, etc.
+
+```java
+
+public static void main(String[] args) {
+  int a = 11;
+  int b = 6;
+  double c = 7.3;
+  double d = 9.4;
+  int result1 = minFunction(a, b);
+  
+  // same function name with different parameters
+  double result2 = minFunction(c, d);
+  System.out.println("Minimum Value = " + result1);
+  System.out.println("Minimum Value = " + result2);
+}
+
+// for integer
+public static int minFunction(int n1, int n2) {
+  int min;
+  if (n1 > n2)
+      min = n2;
+  else
+      min = n1;
+
+  return min; 
+}
+
+// for double
+public static double minFunction(double n1, double n2) {
+  double min;
+  if (n1 > n2)
+      min = n2;
+  else
+      min = n1;
+
+  return min; 
+}
+
+```
+
+this is a keyword in Java which is used as a reference to the object of the current class, with in an instance method or a constructor. Using this you can refer the members of a class such as constructors, variables and methods.
+
+Variable Arguments(var-args)
+
+JDK 1.5 enables you to pass a variable number of arguments of the same type to a method. The parameter in the method is declared as follows −
+
+```java
+typeName... parameterName
+```
+
+In the method declaration, you specify the type followed by an ellipsis (...). Only one variable-length parameter may be specified in a method, and this parameter must be the last parameter. Any regular parameters must precede it.
+
+
+```java
+public static void main(String args[]) {
+  // Call method with variable args  
+  printMax(34, 3, 3, 2, 56.5);
+  printMax(new double[]{1, 2, 3});
+}
+
+public static void printMax( double... numbers) {
+  if (numbers.length == 0) {
+      System.out.println("No argument passed");
+      return;
+  }
+
+  double result = numbers[0];
+
+  for (int i = 1; i <  numbers.length; i++)
+  if (numbers[i] >  result)
+  result = numbers[i];
+  System.out.println("The max value is " + result);
+}
+
+```
+
+
+The finalize( ) Method
+
+It is possible to define a method that will be called just before an object's final destruction by the garbage collector. This method is called finalize( ), and it can be used to ensure that an object terminates cleanly.
+
+For example, you might use finalize( ) to make sure that an open file owned by that object is closed.
+
+To add a finalizer to a class, you simply define the finalize( ) method. The Java runtime calls that method whenever it is about to recycle an object of that class.
+
+Inside the finalize( ) method, you will specify those actions that must be performed before an object is destroyed.
+
+```java
+protected void finalize( ) {
+   // finalization code here
+}
+```
+
+The java.io package contains nearly every class you might ever need to perform input and output (I/O) in Java. All these streams represent an input source and an output destination.
+
+InPutStream − The InputStream is used to read data from a source.
+
+OutPutStream − The OutputStream is used for writing data to a destination.
+
+Byte Streams
+
+Java byte streams are used to perform input and output of 8-bit bytes. Though there are many classes related to byte streams but the most frequently used classes are, FileInputStream and FileOutputStream. 
+
+
+Following is an example which makes use of these two classes to copy an input file into an output file −
+
+```java
+import java.io.*;
+public class CopyFile {
+
+  public static void main(String args[]) throws IOException {  
+    FileInputStream in = null;
+    FileOutputStream out = null;
+
+    try {
+        in = new FileInputStream("input.txt");
+        out = new FileOutputStream("output.txt");
+        
+        int c;
+        while ((c = in.read()) != -1) {
+          out.write(c);
+        }
+    }finally {
+        if (in != null) {
+          in.close();
+        }
+        if (out != null) {
+          out.close();
+        }
+    }
+  }
+}
+
+```
+
+Character Streams
+
+Java Byte streams are used to perform input and output of 8-bit bytes, whereas Java Character streams are used to perform input and output for 16-bit unicode. Though there are many classes related to character streams but the most frequently used classes are, FileReader and FileWriter. 
+
+```java
+FileReader in = null;
+FileWriter out = null;
+```
+
+
+Standard Streams
+
+All the programming languages provide support for standard I/O where the user's program can take input from a keyboard and then produce an output on the computer screen. If you are aware of C or C++ programming languages, then you must be aware of three standard devices STDIN, STDOUT and STDERR. Similarly, Java provides the following three standard streams −
+
+* Standard Input − This is used to feed the data to user's program and usually a keyboard is used as standard input stream and represented as System.in.
+
+* Standard Output − This is used to output the data produced by the user's program and usually a computer screen is used for standard output stream and represented as System.out.
+
+* Standard Error − This is used to output the error data produced by the user's program and usually a computer screen is used for standard error stream and represented as System.err.
+
+
+Following is a simple program, which creates InputStreamReader to read standard input stream until the user types a "q" −
+
+```java
+import java.io.*;
+public class ReadConsole {
+
+   public static void main(String args[]) throws IOException {
+      InputStreamReader cin = null;
+
+      try {
+         cin = new InputStreamReader(System.in);
+         System.out.println("Enter characters, 'q' to quit.");
+         char c;
+         do {
+            c = (char) cin.read();
+            System.out.print(c);
+         } while(c != 'q');
+      }finally {
+         if (cin != null) {
+            cin.close();
+         }
+      }
+   }
+}
+```
+
+![](2022-04-09-15-30-17.png)
+
+```java
+
+InputStream f = new FileInputStream("C:/java/hello");
+
+File f = new File("C:/java/hello");
+InputStream f = new FileInputStream(f);
+
+OutputStream f = new FileOutputStream("C:/java/hello") 
+
+File f = new File("C:/java/hello");
+OutputStream f = new FileOutputStream(f);
+
+```
+
+InputStream methods
+
+![](2022-04-09-15-33-06.png)
+
+OutputStream methods
+
+![](2022-04-09-15-35-05.png)
+
+File Navigation and I/O
+
+There are several other classes that we would be going through to get to know the basics of File Navigation and I/O.
+
+Directories in Java
+
+A directory is a File which can contain a list of other files and directories. You use File object to create directories, to list down files available in a directory. For complete detail, check a list of all the methods which you can call on File object and what are related to directories.
+
+Creating Directories
+
+There are two useful File utility methods, which can be used to create directories −
+
+* The mkdir( ) method creates a directory, returning true on success and false on failure. Failure indicates that the path specified in the File object already exists, or that the directory cannot be created because the entire path does not exist yet.
+
+* The mkdirs() method creates both a directory and all the parents of the directory.
+
+Following example creates "/tmp/user/java/bin" directory −
+
+```java
+
+public static void main(String args[]) {
+  String dirname = "/tmp/user/java/bin";
+  File d = new File(dirname);
+  
+  // Create directory now.
+  d.mkdirs();
+}
+```
+
+Listing Directories
+
+You can use list( ) method provided by File object to list down all the files and directories available in a directory as follows −
+
+```java
+
+public static void main(String[] args) {
+  File file = null;
+  String[] paths;
+
+  try {      
+      // create new file object
+      file = new File("/tmp");
+
+      // array of files and directory
+      paths = file.list();
+
+      // for each name in the path array
+      for(String path:paths) {
+        // prints filename and directory name
+        System.out.println(path);
+      }
+  } catch (Exception e) {
+      // if any error occurs
+      e.printStackTrace();
+  }
+}
+  ```
 
