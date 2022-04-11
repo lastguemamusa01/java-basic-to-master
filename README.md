@@ -3493,3 +3493,1773 @@ public static void main(String[] args) {
 }
   ```
 
+An exception (or exceptional event) is a problem that arises during the execution of a program.
+
+An exception can occur for many different reasons. Following are some scenarios where an exception occurs.
+
+A user has entered an invalid data.
+
+A file that needs to be opened cannot be found.
+
+A network connection has been lost in the middle of communications or the JVM has run out of memory.
+
+Some of these exceptions are caused by user error, others by programmer error, and others by physical resources that have failed in some manner.
+
+* Checked exceptions − A checked exception is an exception that is checked (notified) by the compiler at compilation-time, these are also called as compile time exceptions. These exceptions cannot simply be ignored, the programmer should take care of (handle) these exceptions.
+
+For example, if you use FileReader class in your program to read data from a file, if the file specified in its constructor doesn't exist, then a FileNotFoundException occurs, and the compiler prompts the programmer to handle the exception.
+
+```java
+File file = new File("E://file.txt");
+FileReader fr = new FileReader(file); 
+```
+
+FilenotFound_Demo.java:8: error: unreported exception FileNotFoundException; must be caught or declared to be thrown
+      FileReader fr = new FileReader(file);
+
+Unchecked exceptions − An unchecked exception is an exception that occurs at the time of execution. These are also called as Runtime Exceptions. These include programming bugs, such as logic errors or improper use of an API. Runtime exceptions are ignored at the time of compilation.
+
+For example, if you have declared an array of size 5 in your program, and trying to call the 6th element of the array then an ArrayIndexOutOfBoundsExceptionexception occurs.
+
+```java
+int num[] = {1, 2, 3, 4};
+System.out.println(num[5]);
+```
+
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: 5
+	at Exceptions.Unchecked_Demo.main(Unchecked_Demo.java:8)
+
+Errors − These are not exceptions at all, but problems that arise beyond the control of the user or the programmer. Errors are typically ignored in your code because you can rarely do anything about an error. For example, if a stack overflow occurs, an error will arise. They are also ignored at the time of compilation.
+
+Exception Hierarchy
+
+All exception classes are subtypes of the java.lang.Exception class. The exception class is a subclass of the Throwable class. Other than the exception class there is another subclass called Error which is derived from the Throwable class.
+
+![](2022-04-10-13-21-20.png)
+
+![](2022-04-10-13-24-47.png)
+
+Catching Exceptions
+
+A method catches an exception using a combination of the try and catch keywords. 
+
+```java
+try {
+   // Protected code
+} catch (ExceptionName e1) {
+   // Catch block
+}
+```
+
+The code which is prone to exceptions is placed in the try block. When an exception occurs, that exception occurred is handled by catch block associated with it. 
+
+```java
+try {
+    int a[] = new int[2];
+    System.out.println("Access element three :" + a[3]);
+} catch (ArrayIndexOutOfBoundsException e) {
+    System.out.println("Exception thrown  :" + e);
+}
+System.out.println("Out of the block");
+```
+
+Exception thrown  :java.lang.ArrayIndexOutOfBoundsException: 3
+
+Out of the block
+
+Multiple Catch Blocks
+
+```java
+try {
+   // Protected code
+} catch (ExceptionType1 e1) {
+   // Catch block
+} catch (ExceptionType2 e2) {
+   // Catch block
+} catch (ExceptionType3 e3) {
+   // Catch block
+}
+```
+
+```java
+try {
+   file = new FileInputStream(fileName);
+   x = (byte) file.read();
+} catch (IOException i) {
+   i.printStackTrace();
+   return -1;
+} catch (FileNotFoundException f) // Not valid! {
+   f.printStackTrace();
+   return -1;
+}
+```
+
+Catching Multiple Type of Exceptions
+
+
+Since Java 7, you can handle more than one exception using a single catch block, this feature simplifies the code. Here is how you would do it −
+
+```java
+catch (IOException|FileNotFoundException ex) {
+   logger.log(ex);
+   throw ex;
+}
+```
+
+The Throws/Throw Keywords
+
+If a method does not handle a checked exception, the method must declare it using the throws keyword. The throws keyword appears at the end of a method's signature.
+
+You can throw an exception, either a newly instantiated one or an exception that you just caught, by using the throw keyword.
+
+Try to understand the difference between throws and throw keywords, throws is used to postpone the handling of a checked exception and throw is used to invoke an exception explicitly
+
+```java
+public void deposit(double amount) throws RemoteException {
+  // Method implementation
+  throw new RemoteException();
+}
+```
+
+A method can declare that it throws more than one exception, in which case the exceptions are declared in a list separated by commas. For example, the following method declares that it throws a RemoteException and an InsufficientFundsException 
+
+```java
+public void withdraw(double amount) throws RemoteException, 
+  InsufficientFundsException {
+  // Method implementation
+}
+```
+
+The Finally Block
+The finally block follows a try block or a catch block. A finally block of code always executes, irrespective of occurrence of an Exception.
+
+Using a finally block allows you to run any cleanup-type statements that you want to execute, no matter what happens in the protected code.
+
+```java
+int a[] = new int[2];
+try {
+    System.out.println("Access element three :" + a[3]);
+} catch (ArrayIndexOutOfBoundsException e) {
+    System.out.println("Exception thrown  :" + e);
+}finally {
+    a[0] = 6;
+    System.out.println("First element value: " + a[0]);
+    System.out.println("The finally statement is executed");
+}
+```
+
+The try-with-resources
+
+Generally, when we use any resources like streams, connections, etc. we have to close them explicitly using finally block. In the following program, we are reading data from a file using FileReader and we are closing it using finally block.
+
+```java
+FileReader fr = null;		
+try {
+    File file = new File("file.txt");
+    fr = new FileReader(file); char [] a = new char[50];
+    fr.read(a);   // reads the content to the array
+    for(char c : a)
+    System.out.print(c);   // prints the characters one by one
+} catch (IOException e) {
+    e.printStackTrace();
+}finally {
+    try {
+      fr.close();
+    } catch (IOException ex) {		
+      ex.printStackTrace();
+    }
+}
+```
+
+
+try-with-resources, also referred as automatic resource management, is a new exception handling mechanism that was introduced in Java 7, which automatically closes the resources used within the try catch block.
+
+To use this statement, you simply need to declare the required resources within the parenthesis, and the created resource will be closed automatically at the end of the block. Following is the syntax of try-with-resources statement.
+
+```java
+try(FileReader fr = new FileReader("E://file.txt")) {
+    char [] a = new char[50];
+    fr.read(a);   // reads the contentto the array
+    for(char c : a)
+    System.out.print(c);   // prints the characters one by one
+} catch (IOException e) {
+    e.printStackTrace();
+}
+```
+
+* To use a class with try-with-resources statement it should implement AutoCloseable interface and the close() method of it gets invoked automatically at runtime.
+
+* You can declare more than one class in try-with-resources statement.
+
+* While you declare multiple classes in the try block of try-with-resources statement these classes are closed in reverse order.
+
+* Except the declaration of resources within the parenthesis everything is the same as normal try/catch block of a try block.
+
+* The resource declared in try gets instantiated just before the start of the try-block.
+
+* The resource declared at the try block is implicitly declared as final.
+
+User-defined Exceptions
+
+You can create your own exceptions in Java. Keep the following points in mind when writing your own exception classes −
+
+* All exceptions must be a child of Throwable.
+
+* If you want to write a checked exception that is automatically enforced by the Handle or Declare Rule, you need to extend the Exception class.
+
+* If you want to write a runtime exception, you need to extend the RuntimeException class.
+
+
+You just need to extend the predefined Exception class to create your own Exception. These are considered to be checked exceptions. The following InsufficientFundsException class is a user-defined exception that extends the Exception class, making it a checked exception. An exception class is like any other class, containing useful fields and methods.
+
+```java
+// File Name InsufficientFundsException.java
+import java.io.*;
+
+public class InsufficientFundsException extends Exception {
+   private double amount;
+   
+   public InsufficientFundsException(double amount) {
+      this.amount = amount;
+   }
+   
+   public double getAmount() {
+      return amount;
+   }
+}
+```
+
+To demonstrate using our user-defined exception, the following CheckingAccount class contains a withdraw() method that throws an InsufficientFundsException.
+
+```java
+// File Name CheckingAccount.java
+import java.io.*;
+
+public class CheckingAccount {
+  private double balance;
+  private int number;
+  
+  public CheckingAccount(int number) {
+    this.number = number;
+  }
+  
+  public void deposit(double amount) {
+    balance += amount;
+  }
+  
+  public void withdraw(double amount) throws InsufficientFundsException {
+    if(amount <= balance) {
+        balance -= amount;
+    }else {
+        double needs = amount - balance;
+        throw new InsufficientFundsException(needs);
+    }
+  }
+  
+  public double getBalance() {
+    return balance;
+  }
+  
+  public int getNumber() {
+    return number;
+  }
+}
+```
+
+```java
+// File Name BankDemo.java
+public class BankDemo {
+
+  public static void main(String [] args) {
+    CheckingAccount c = new CheckingAccount(101);
+    System.out.println("Depositing $500...");
+    c.deposit(500.00);
+    
+    try {
+        System.out.println("\nWithdrawing $100...");
+        c.withdraw(100.00);
+        System.out.println("\nWithdrawing $600...");
+        c.withdraw(600.00);
+    } catch (InsufficientFundsException e) {
+        System.out.println("Sorry, but you are short $" + e.getAmount());
+        e.printStackTrace();
+    }
+  }
+}
+```
+
+Common Exceptions
+
+In Java, it is possible to define two catergories of Exceptions and Errors.
+
+JVM Exceptions − These are exceptions/errors that are exclusively or logically thrown by the JVM. Examples: NullPointerException, ArrayIndexOutOfBoundsException, ClassCastException.
+
+Programmatic Exceptions − These exceptions are thrown explicitly by the application or the API programmers. Examples: IllegalArgumentException, IllegalStateException.
+
+Nested Classes
+
+In Java, just like methods, variables of a class too can have another class as its member. Writing a class within another is allowed in Java. The class written within is called the nested class, and the class that holds the inner class is called the outer class.
+
+```java
+class Outer_Demo {
+   class Inner_Demo {
+   }
+}
+```
+
+Nested classes are divided into two types −
+
+* Non-static nested classes − These are the non-static members of a class.
+
+* Static nested classes − These are the static members of a class.
+
+![](2022-04-10-13-42-50.png)
+
+Inner classes are a security mechanism in Java. We know a class cannot be associated with the access modifier private, but if we have the class as a member of other class, then the inner class can be made private. And this is also used to access the private members of a class.
+
+Inner classes are of three types depending on how and where you define them. They are −
+
+* Inner Class
+* Method-local Inner Class
+* Anonymous Inner Class
+
+Inner Class
+
+Creating an inner class is quite simple. You just need to write a class within a class. Unlike a class, an inner class can be private and once you declare an inner class private, it cannot be accessed from an object outside the class.
+
+Following is the program to create an inner class and access it. In the given example, we make the inner class private and access the class through a method.
+
+```java
+class Outer_Demo {
+   int num;
+   
+   // inner class
+   private class Inner_Demo {
+      public void print() {
+         System.out.println("This is an inner class");
+      }
+   }
+   
+   // Accessing he inner class from the method within
+   void display_Inner() {
+      Inner_Demo inner = new Inner_Demo();
+      inner.print();
+   }
+}
+   
+public class My_class {
+
+   public static void main(String args[]) {
+      // Instantiating the outer class 
+      Outer_Demo outer = new Outer_Demo();
+      
+      // Accessing the display_Inner() method.
+      outer.display_Inner();
+   }
+}
+```
+
+This is an inner class.
+
+Here you can observe that Outer_Demo is the outer class, Inner_Demo is the inner class, display_Inner() is the method inside which we are instantiating the inner class, and this method is invoked from the main method.
+
+Accessing the Private Members
+
+```java
+Outer_Demo outer = new Outer_Demo();
+Outer_Demo.Inner_Demo inner = outer.new Inner_Demo();
+```
+
+```java
+class Outer_Demo {
+   // private variable of the outer class
+   private int num = 175;  
+   
+   // inner class
+   public class Inner_Demo {
+      public int getNum() {
+         System.out.println("This is the getnum method of the inner class");
+         return num;
+      }
+   }
+}
+
+public class My_class2 {
+
+   public static void main(String args[]) {
+      // Instantiating the outer class
+      Outer_Demo outer = new Outer_Demo();
+      
+      // Instantiating the inner class
+      Outer_Demo.Inner_Demo inner = outer.new Inner_Demo();
+      System.out.println(inner.getNum());
+   }
+}
+```
+
+This is the getnum method of the inner class: 175
+
+Method-local Inner Class
+In Java, we can write a class within a method and this will be a local type. Like local variables, the scope of the inner class is restricted within the method.
+
+A method-local inner class can be instantiated only within the method where the inner class is defined. The following program shows how to use a method-local inner class.
+
+```java
+public class Outerclass {
+   // instance method of the outer class 
+   void my_Method() {
+      int num = 23;
+
+      // method-local inner class
+      class MethodInner_Demo {
+         public void print() {
+            System.out.println("This is method inner class "+num);	   
+         }   
+      } // end of inner class
+	   
+      // Accessing the inner class
+      MethodInner_Demo inner = new MethodInner_Demo();
+      inner.print();
+   }
+   
+   public static void main(String args[]) {
+      Outerclass outer = new Outerclass();
+      outer.my_Method();	   	   
+   }
+}
+```
+
+This is method inner class 23
+
+Anonymous Inner Class
+
+
+An inner class declared without a class name is known as an anonymous inner class. In case of anonymous inner classes, we declare and instantiate them at the same time. Generally, they are used whenever you need to override the method of a class or an interface. The syntax of an anonymous inner class is as follows −
+
+```java
+AnonymousInner an_inner = new AnonymousInner() {
+   public void my_method() {
+      ........
+      ........
+   }   
+};
+```
+
+The following program shows how to override the method of a class using anonymous inner class.
+
+```java
+abstract class AnonymousInner {
+   public abstract void mymethod();
+}
+
+public class Outer_class {
+
+   public static void main(String args[]) {
+      AnonymousInner inner = new AnonymousInner() {
+         public void mymethod() {
+            System.out.println("This is an example of anonymous inner class");
+         }
+      };
+      inner.mymethod();	
+   }
+}
+```
+
+This is an example of anonymous inner class
+
+
+Anonymous Inner Class as Argument
+
+Generally, if a method accepts an object of an interface, an abstract class, or a concrete class, then we can implement the interface, extend the abstract class, and pass the object to the method. If it is a class, then we can directly pass it to the method.
+
+But in all the three cases, you can pass an anonymous inner class to the method. Here is the syntax of passing an anonymous inner class as a method argument −
+
+The following program shows how to pass an anonymous inner class as a method argument.
+
+```java
+// interface
+interface Message {
+   String greet();
+}
+
+public class My_class {
+   // method which accepts the object of interface Message
+   public void displayMessage(Message m) {
+      System.out.println(m.greet() +
+         ", This is an example of anonymous inner class as an argument");  
+   }
+
+   public static void main(String args[]) {
+      // Instantiating the class
+      My_class obj = new My_class();
+
+      // Passing an anonymous inner class as an argument
+      obj.displayMessage(new Message() {
+         public String greet() {
+            return "Hello";
+         }
+      });
+   }
+}
+```
+
+Hello, This is an example of anonymous inner class as an argument
+
+Static Nested Class
+
+A static inner class is a nested class which is a static member of the outer class. It can be accessed without instantiating the outer class, using other static members. Just like static members, a static nested class does not have access to the instance variables and methods of the outer class. The syntax of static nested class is as follows −
+
+
+```java
+class MyOuter {
+   static class Nested_Demo {
+   }
+}
+
+```
+
+Instantiating a static nested class is a bit different from instantiating an inner class. The following program shows how to use a static nested class.
+
+```java
+public class Outer {
+   static class Nested_Demo {
+      public void my_method() {
+         System.out.println("This is my nested class");
+      }
+   }
+   
+   public static void main(String args[]) {
+      Outer.Nested_Demo nested = new Outer.Nested_Demo();	 
+      nested.my_method();
+   }
+}
+```
+
+This is my nested class
+
+he super keyword is similar to this keyword. Following are the scenarios where the super keyword is used.
+
+* It is used to differentiate the members of superclass from the members of subclass, if they have same names.
+
+* It is used to invoke the superclass constructor from subclass.
+
+```java
+
+class Super_class {
+   int num = 20;
+
+   // display method of superclass
+   public void display() {
+      System.out.println("This is the display method of superclass");
+   }
+}
+
+public class Sub_class extends Super_class {
+   int num = 10;
+
+   // display method of sub class
+   public void display() {
+      System.out.println("This is the display method of subclass");
+   }
+
+   public void my_method() {
+      // Instantiating subclass
+      Sub_class sub = new Sub_class();
+
+      // Invoking the display() method of sub class
+      sub.display();
+
+      // Invoking the display() method of superclass
+      super.display();
+
+      // printing the value of variable num of subclass
+      System.out.println("value of the variable named num in sub class:"+ sub.num);
+
+      // printing the value of variable num of superclass
+      System.out.println("value of the variable named num in super class:"+ super.num);
+   }
+
+   public static void main(String args[]) {
+      Sub_class obj = new Sub_class();
+      obj.my_method();
+   }
+}
+
+```
+```java
+
+class Superclass {
+   int age;
+
+   Superclass(int age) {
+      this.age = age; 		 
+   }
+
+   public void getAge() {
+      System.out.println("The value of the variable named age in super class is: " +age);
+   }
+}
+
+public class Subclass extends Superclass {
+   Subclass(int age) {
+      super(age);
+   }
+
+   public static void main(String args[]) {
+      Subclass s = new Subclass(24);
+      s.getAge();
+   }
+}
+
+```
+
+
+IS-A Relationship
+
+IS-A is a way of saying: This object is a type of that object. Let us see how the extends keyword is used to achieve inheritance.
+
+
+```java
+
+public class Animal {
+}
+
+public class Mammal extends Animal {
+}
+
+public class Reptile extends Animal {
+}
+
+public class Dog extends Mammal {
+}
+```
+
+Now, based on the above example, in Object-Oriented terms, the following are true −
+
+* Animal is the superclass of Mammal class.
+* Animal is the superclass of Reptile class.
+* Mammal and Reptile are subclasses of Animal class.
+* Dog is the subclass of both Mammal and Animal classes.
+
+Now, if we consider the IS-A relationship, we can say −
+
+* Mammal IS-A Animal
+* Reptile IS-A Animal
+* Dog IS-A Mammal
+* Hence: Dog IS-A Animal as well
+
+```java
+class Animal {
+}
+
+class Mammal extends Animal {
+}
+
+class Reptile extends Animal {
+}
+
+public class Dog extends Mammal {
+
+   public static void main(String args[]) {
+      Animal a = new Animal();
+      Mammal m = new Mammal();
+      Dog d = new Dog();
+
+      System.out.println(m instanceof Animal);
+      System.out.println(d instanceof Mammal);
+      System.out.println(d instanceof Animal);
+   }
+}
+
+// true
+// true
+// true
+
+```
+
+
+Generally, the implements keyword is used with classes to inherit the properties of an interface. Interfaces can never be extended by a class.
+
+```java
+public interface Animal {
+}
+
+public class Mammal implements Animal {
+}
+
+public class Dog extends Mammal {
+}
+```
+
+```java
+interface Animal{}
+class Mammal implements Animal{}
+
+public class Dog extends Mammal {
+
+   public static void main(String args[]) {
+      Mammal m = new Mammal();
+      Dog d = new Dog();
+
+      System.out.println(m instanceof Animal);
+      System.out.println(d instanceof Mammal);
+      System.out.println(d instanceof Animal);
+   }
+}
+
+// true
+// true
+// true
+
+```
+
+HAS-A relationship
+
+These relationships are mainly based on the usage. This determines whether a certain class HAS-A certain thing. This relationship helps to reduce duplication of code as well as bugs.
+
+```java
+public class Vehicle{}
+public class Speed{}
+
+public class Van extends Vehicle {
+   private Speed sp;
+} 
+```
+
+This shows that class Van HAS-A Speed. By having a separate class for Speed, we do not have to put the entire code that belongs to speed inside the Van class, which makes it possible to reuse the Speed class in multiple applications.
+
+In Object-Oriented feature, the users do not need to bother about which object is doing the real work. To achieve this, the Van class hides the implementation details from the users of the Van class. So, basically what happens is the users would ask the Van class to do a certain action and the Van class will either do the work by itself or ask another class to perform the action.
+
+Types of Inheritance
+
+![](2022-04-10-19-12-47.png)
+
+
+However, a class can implement one or more interfaces, which has helped Java get rid of the impossibility of multiple inheritance.
+
+
+In the previous chapter, we talked about superclasses and subclasses. If a class inherits a method from its superclass, then there is a chance to override the method provided that it is not marked final.
+
+The benefit of overriding is: ability to define a behavior that's specific to the subclass type, which means a subclass can implement a parent class method based on its requirement.
+
+In object-oriented terms, overriding means to override the functionality of an existing method.
+
+```java
+class Animal {
+   public void move() {
+      System.out.println("Animals can move");
+   }
+}
+
+class Dog extends Animal {
+   public void move() {
+      System.out.println("Dogs can walk and run");
+   }
+}
+
+public class TestDog {
+
+   public static void main(String args[]) {
+      Animal a = new Animal();   // Animal reference and object
+      Animal b = new Dog();   // Animal reference but Dog object
+
+      a.move();   // runs the method in Animal class
+      b.move();   // runs the method in Dog class
+   }
+}
+```
+
+```java
+
+class Animal {
+   public void move() {
+      System.out.println("Animals can move");
+   }
+}
+
+class Dog extends Animal {
+   public void move() {
+      super.move();   // invokes the super class method
+      System.out.println("Dogs can walk and run");
+   }
+}
+
+public class TestDog {
+
+   public static void main(String args[]) {
+      Animal b = new Dog();   // Animal reference but Dog object
+      b.move();   // runs the method in Dog class
+   }
+}
+
+// Animals can move
+// Dogs can walk and run
+```
+
+Polymorphism is the ability of an object to take on many forms. The most common use of polymorphism in OOP occurs when a parent class reference is used to refer to a child class object.
+
+Any Java object that can pass more than one IS-A test is considered to be polymorphic. In Java, all Java objects are polymorphic since any object will pass the IS-A test for their own type and for the class Object.
+
+It is important to know that the only possible way to access an object is through a reference variable. A reference variable can be of only one type. Once declared, the type of a reference variable cannot be changed.
+
+The reference variable can be reassigned to other objects provided that it is not declared final. The type of the reference variable would determine the methods that it can invoke on the object.
+
+A reference variable can refer to any object of its declared type or any subtype of its declared type. A reference variable can be declared as a class or interface type.
+
+```java
+public interface Vegetarian{}
+public class Animal{}
+public class Deer extends Animal implements Vegetarian{}
+```
+Now, the Deer class is considered to be polymorphic since this has multiple inheritance. Following are true for the above examples −
+
+* A Deer IS-A Animal
+* A Deer IS-A Vegetarian
+* A Deer IS-A Deer
+* A Deer IS-A Object
+
+```java
+Deer d = new Deer();
+Animal a = d;
+Vegetarian v = d;
+Object o = d;
+```
+
+All the reference variables d, a, v, o refer to the same Deer object in the heap.
+
+Virtual Methods
+
+In this section, I will show you how the behavior of overridden methods in Java allows you to take advantage of polymorphism when designing your classes.
+
+We already have discussed method overriding, where a child class can override a method in its parent. An overridden method is essentially hidden in the parent class, and is not invoked unless the child class uses the super keyword within the overriding method.
+
+```java
+/* File name : Employee.java */
+public class Employee {
+   private String name;
+   private String address;
+   private int number;
+
+   public Employee(String name, String address, int number) {
+      System.out.println("Constructing an Employee");
+      this.name = name;
+      this.address = address;
+      this.number = number;
+   }
+
+   public void mailCheck() {
+      System.out.println("Mailing a check to " + this.name + " " + this.address);
+   }
+
+   public String toString() {
+      return name + " " + address + " " + number;
+   }
+
+   public String getName() {
+      return name;
+   }
+
+   public String getAddress() {
+      return address;
+   }
+
+   public void setAddress(String newAddress) {
+      address = newAddress;
+   }
+
+   public int getNumber() {
+      return number;
+   }
+}
+```
+
+Now suppose we extend Employee class as follows −
+
+```java
+/* File name : Salary.java */
+public class Salary extends Employee {
+   private double salary; // Annual salary
+   
+   public Salary(String name, String address, int number, double salary) {
+      super(name, address, number);
+      setSalary(salary);
+   }
+   
+   public void mailCheck() {
+      System.out.println("Within mailCheck of Salary class ");
+      System.out.println("Mailing check to " + getName()
+      + " with salary " + salary);
+   }
+   
+   public double getSalary() {
+      return salary;
+   }
+   
+   public void setSalary(double newSalary) {
+      if(newSalary >= 0.0) {
+         salary = newSalary;
+      }
+   }
+   
+   public double computePay() {
+      System.out.println("Computing salary pay for " + getName());
+      return salary/52;
+   }
+}
+```
+
+```java
+/* File name : VirtualDemo.java */
+public class VirtualDemo {
+
+   public static void main(String [] args) {
+      Salary s = new Salary("Mohd Mohtashim", "Ambehta, UP", 3, 3600.00);
+      Employee e = new Salary("John Adams", "Boston, MA", 2, 2400.00);
+      System.out.println("Call mailCheck using Salary reference --");   
+      s.mailCheck();
+      System.out.println("\n Call mailCheck using Employee reference--");
+      e.mailCheck();
+   }
+}
+/*
+Constructing an Employee
+Constructing an Employee
+
+Call mailCheck using Salary reference --
+Within mailCheck of Salary class
+Mailing check to Mohd Mohtashim with salary 3600.0
+
+Call mailCheck using Employee reference--
+Within mailCheck of Salary class
+Mailing check to John Adams with salary 2400.0
+*/
+```
+
+Here, we instantiate two Salary objects. One using a Salary reference s, and the other using an Employee reference e.
+
+While invoking s.mailCheck(), the compiler sees mailCheck() in the Salary class at compile time, and the JVM invokes mailCheck() in the Salary class at run time.
+
+mailCheck() on e is quite different because e is an Employee reference. When the compiler sees e.mailCheck(), the compiler sees the mailCheck() method in the Employee class.
+
+Here, at compile time, the compiler used mailCheck() in Employee to validate this statement. At run time, however, the JVM invokes mailCheck() in the Salary class.
+
+This behavior is referred to as virtual method invocation, and these methods are referred to as virtual methods. An overridden method is invoked at run time, no matter what data type the reference is that was used in the source code at compile time.
+
+
+### abstraction 
+
+As per dictionary, abstraction is the quality of dealing with ideas rather than events. For example, when you consider the case of e-mail, complex details such as what happens as soon as you send an e-mail, the protocol your e-mail server uses are hidden from the user. Therefore, to send an e-mail you just need to type the content, mention the address of the receiver, and click send.
+
+Likewise in Object-oriented programming, abstraction is a process of hiding the implementation details from the user, only the functionality will be provided to the user. In other words, the user will have the information on what the object does instead of how it does it.
+
+In Java, abstraction is achieved using Abstract classes and interfaces.
+
+Abstract Class
+
+A class which contains the abstract keyword in its declaration is known as abstract class.
+
+* Abstract classes may or may not contain abstract methods, i.e., methods without body ( public void get(); )
+
+* But, if a class has at least one abstract method, then the class must be declared abstract.
+
+* If a class is declared abstract, it cannot be instantiated.
+
+* To use an abstract class, you have to inherit it from another class, provide implementations to the abstract methods in it.
+
+* If you inherit an abstract class, you have to provide implementations to all the abstract methods in it.
+
+```java
+/* File name : Employee.java */
+public abstract class Employee {
+   private String name;
+   private String address;
+   private int number;
+
+   public Employee(String name, String address, int number) {
+      System.out.println("Constructing an Employee");
+      this.name = name;
+      this.address = address;
+      this.number = number;
+   }
+   
+   public double computePay() {
+     System.out.println("Inside Employee computePay");
+     return 0.0;
+   }
+   
+   public void mailCheck() {
+      System.out.println("Mailing a check to " + this.name + " " + this.address);
+   }
+
+   public String toString() {
+      return name + " " + address + " " + number;
+   }
+
+   public String getName() {
+      return name;
+   }
+ 
+   public String getAddress() {
+      return address;
+   }
+   
+   public void setAddress(String newAddress) {
+      address = newAddress;
+   }
+ 
+   public int getNumber() {
+      return number;
+   }
+}
+
+```
+```java
+/* File name : Salary.java */
+public class Salary extends Employee {
+   private double salary;   // Annual salary
+   
+   public Salary(String name, String address, int number, double salary) {
+      super(name, address, number);
+      setSalary(salary);
+   }
+   
+   public void mailCheck() {
+      System.out.println("Within mailCheck of Salary class ");
+      System.out.println("Mailing check to " + getName() + " with salary " + salary);
+   }
+ 
+   public double getSalary() {
+      return salary;
+   }
+   
+   public void setSalary(double newSalary) {
+      if(newSalary >= 0.0) {
+         salary = newSalary;
+      }
+   }
+   
+   public double computePay() {
+      System.out.println("Computing salary pay for " + getName());
+      return salary/52;
+   }
+}
+```
+```java
+/* File name : AbstractDemo.java */
+public class AbstractDemo {
+
+   public static void main(String [] args) {
+      Salary s = new Salary("Mohd Mohtashim", "Ambehta, UP", 3, 3600.00);
+      Employee e = new Salary("John Adams", "Boston, MA", 2, 2400.00);
+      System.out.println("Call mailCheck using Salary reference --");
+      s.mailCheck();
+      System.out.println("\n Call mailCheck using Employee reference--");
+      e.mailCheck();
+   }
+}
+```
+
+
+Abstract Methods
+If you want a class to contain a particular method but you want the actual implementation of that method to be determined by child classes, you can declare the method in the parent class as an abstract.
+
+* abstract keyword is used to declare the method as abstract.
+
+* You have to place the abstract keyword before the method name in the method declaration.
+
+* An abstract method contains a method signature, but no method body.
+
+* Instead of curly braces, an abstract method will have a semoi colon (;) at the end.
+
+```java
+public abstract class Employee {
+   private String name;
+   private String address;
+   private int number;
+   
+   public abstract double computePay();
+   // Remainder of class definition
+}
+
+/* File name : Salary.java */
+public class Salary extends Employee {
+   private double salary;   // Annual salary
+  
+   public double computePay() {
+      System.out.println("Computing salary pay for " + getName());
+      return salary/52;
+   }
+   // Remainder of class definition
+}
+```
+
+Encapsulation is one of the four fundamental OOP concepts. The other three are inheritance, polymorphism, and abstraction.
+
+Encapsulation in Java is a mechanism of wrapping the data (variables) and code acting on the data (methods) together as a single unit.
+
+In encapsulation, the variables of a class will be hidden from other classes, and can be accessed only through the methods of their current class. Therefore, it is also known as data hiding.
+
+To achieve encapsulation in Java −
+
+* Declare the variables of a class as private.
+
+* Provide public setter and getter methods to modify and view the variables values.
+
+getters and setters
+
+```java
+/* File name : EncapTest.java */
+public class EncapTest {
+   private String name;
+   private String idNum;
+   private int age;
+
+   public int getAge() {
+      return age;
+   }
+
+   public String getName() {
+      return name;
+   }
+
+   public String getIdNum() {
+      return idNum;
+   }
+
+   public void setAge( int newAge) {
+      age = newAge;
+   }
+
+   public void setName(String newName) {
+      name = newName;
+   }
+
+   public void setIdNum( String newId) {
+      idNum = newId;
+   }
+}
+```
+```java
+/* File name : RunEncap.java */
+public class RunEncap {
+
+   public static void main(String args[]) {
+      EncapTest encap = new EncapTest();
+      encap.setName("James");
+      encap.setAge(20);
+      encap.setIdNum("12343ms");
+
+      System.out.print("Name : " + encap.getName() + " Age : " + encap.getAge());
+   }
+}
+
+```
+
+Benefits of Encapsulation
+
+* The fields of a class can be made read-only or write-only.
+
+* A class can have total control over what is stored in its fields.
+
+An interface is a reference type in Java. It is similar to class. It is a collection of abstract methods. A class implements an interface, thereby inheriting the abstract methods of the interface.
+
+Writing an interface is similar to writing a class. But a class describes the attributes and behaviors of an object. And an interface contains behaviors that a class implements.
+
+The interface keyword is used to declare an interface. Here is a simple example to declare an interface −
+
+* An interface is implicitly abstract. You do not need to use the abstract keyword while declaring an interface.
+
+* Each method in an interface is also implicitly abstract, so the abstract keyword is not needed.
+
+* Methods in an interface are implicitly public.
+
+```java
+/* File name : NameOfInterface.java */
+import java.lang.*;
+// Any number of import statements
+
+public interface NameOfInterface {
+   // Any number of final, static fields
+   // Any number of abstract method declarations\
+}
+
+
+/* File name : Animal.java */
+interface Animal {
+   public void eat();
+   public void travel();
+}
+```
+
+When a class implements an interface, you can think of the class as signing a contract, agreeing to perform the specific behaviors of the interface. If a class does not perform all the behaviors of the interface, the class must declare itself as abstract.
+
+
+A class uses the implements keyword to implement an interface. The implements keyword appears in the class declaration following the extends portion of the declaration.
+
+```java
+
+/* File name : MammalInt.java */
+public class MammalInt implements Animal {
+
+   public void eat() {
+      System.out.println("Mammal eats");
+   }
+
+   public void travel() {
+      System.out.println("Mammal travels");
+   } 
+
+   public int noOfLegs() {
+      return 0;
+   }
+
+   public static void main(String args[]) {
+      MammalInt m = new MammalInt();
+      m.eat();
+      m.travel();
+   }
+} 
+
+// Mammal eats
+// Mammal travels
+
+```
+
+* A class can extend only one class, but implement many interfaces.
+
+* An interface can extend another interface, in a similar way as a class can extend another class.
+
+```java
+// Filename: Sports.java
+public interface Sports {
+   public void setHomeTeam(String name);
+   public void setVisitingTeam(String name);
+}
+
+// Filename: Football.java
+public interface Football extends Sports {
+   public void homeTeamScored(int points);
+   public void visitingTeamScored(int points);
+   public void endOfQuarter(int quarter);
+}
+
+// Filename: Hockey.java
+public interface Hockey extends Sports {
+   public void homeGoalScored();
+   public void visitingGoalScored();
+   public void endOfPeriod(int period);
+   public void overtimePeriod(int ot);
+}
+```
+
+The Hockey interface has four methods, but it inherits two from Sports; thus, a class that implements Hockey needs to implement all six methods. Similarly, a class that implements Football needs to define the three methods from Football and the two methods from Sport
+
+Extending Multiple Interfaces
+
+A Java class can only extend one parent class. Multiple inheritance is not allowed. Interfaces are not classes, however, and an interface can extend more than one parent interface.
+
+The extends keyword is used once, and the parent interfaces are declared in a comma-separated list.
+
+For example, if the Hockey interface extended both Sports and Event, it would be declared as −
+
+
+```java
+public interface Hockey extends Sports, Event
+```
+
+Tagging Interfaces
+The most common use of extending interfaces occurs when the parent interface does not contain any methods. For example, the MouseListener interface in the java.awt.event package extended java.util.EventListener, which is defined as −
+
+```java
+package java.util;
+public interface EventListener
+{}
+```
+
+An interface with no methods in it is referred to as a tagging interface. There are two basic design purposes of tagging interfaces −
+
+* Creates a common parent − As with the EventListener interface, which is extended by dozens of other interfaces in the Java API, you can use a tagging interface to create a common parent among a group of interfaces. For example, when an interface extends EventListener, the JVM knows that this particular interface is going to be used in an event delegation scenario.
+
+* Adds a data type to a class − This situation is where the term, tagging comes from. A class that implements a tagging interface does not need to define any methods (since the interface does not have any), but the class becomes an interface type through polymorphism.
+
+Packages are used in Java in order to prevent naming conflicts, to control access, to make searching/locating and usage of classes, interfaces, enumerations and annotations easier, etc.
+
+
+A Package can be defined as a grouping of related types (classes, interfaces, enumerations and annotations ) providing access protection and namespace management.
+
+Some of the existing packages in Java are −
+
+* java.lang − bundles the fundamental classes
+
+* java.io − classes for input , output functions are bundled in this package
+
+Programmers can define their own packages to bundle group of classes/interfaces, etc. It is a good practice to group related classes implemented by you so that a programmer can easily determine that the classes, interfaces, enumerations, and annotations are related.
+
+Since the package creates a new namespace there won't be any name conflicts with names in other packages. Using packages, it is easier to provide access control and it is also easier to locate the related classes.
+
+```terminal
+javac -d Destination_folder file_name.java
+```
+
+Let us look at an example that creates a package called animals. It is a good practice to use names of packages with lower case letters to avoid any conflicts with the names of classes and interfaces.
+
+Following package example contains interface named animals −
+
+```java
+
+/* File name : Animal.java */
+package animals;
+
+interface Animal {
+   public void eat();
+   public void travel();
+}
+```
+
+```java
+package animals;
+/* File name : MammalInt.java */
+
+public class MammalInt implements Animal {
+
+   public void eat() {
+      System.out.println("Mammal eats");
+   }
+
+   public void travel() {
+      System.out.println("Mammal travels");
+   } 
+
+   public int noOfLegs() {
+      return 0;
+   }
+
+   public static void main(String args[]) {
+      MammalInt m = new MammalInt();
+      m.eat();
+      m.travel();
+   }
+} 
+```
+
+```terminal
+javac -d . Animal.java 
+$ javac -d . MammalInt.java
+```
+
+Now a package/folder with the name animals will be created in the current directory and these class files will be placed in it as shown below.
+
+same directory or folder will have Animal.class and MammalInt.class
+
+```terminal
+Mammal eats
+Mammal travels
+```
+
+The import Keyword
+
+If a class wants to use another class in the same package, the package name need not be used. Classes in the same package find each other without any special syntax.
+
+Here, a class named Boss is added to the payroll package that already contains Employee. The Boss can then refer to the Employee class without using the payroll prefix, as demonstrated by the following Boss class.
+
+```java
+package payroll;
+public class Boss {
+   public void payEmployee(Employee e) {
+      e.mailCheck();
+   }
+}
+```
+
+What happens if the Employee class is not in the payroll package? The Boss class must then use one of the following techniques for referring to a class in a different package.
+
+The fully qualified name of the class can be used. For example −
+```java
+payroll.Employee
+```
+
+The package can be imported using the import keyword and the wild card (*). For example −
+```java
+import payroll.*;
+```
+
+The class itself can be imported using the import keyword. For example −
+
+```java
+import payroll.Employee;
+```
+
+For example −
+
+```java
+// File Name :  Car.java
+package vehicle;
+
+public class Car {
+   // Class implementation.   
+}
+```
+
+Now, put the source file in a directory whose name reflects the name of the package to which the class belongs −
+
+....\vehicle\Car.java
+Now, the qualified class name and pathname would be as follows −
+
+Class name → vehicle.Car
+
+Path name → vehicle\Car.java (in windows)
+
+
+....\com\apple\computers\Dell.java
+
+```java
+// File Name: Dell.java
+package com.apple.computers;
+
+public class Dell {
+}
+
+class Ups {
+}
+```
+
+```java
+import com.apple.computers.*;
+```
+
+Set CLASSPATH System Variable
+
+
+
+To display the current CLASSPATH variable, use the following commands in Windows and UNIX (Bourne shell) −
+
+In Windows → C:\> set CLASSPATH
+
+In UNIX → % echo $CLASSPATH
+
+
+
+
+To delete the current contents of the CLASSPATH variable, use −
+
+In Windows → C:\> set CLASSPATH =
+
+In UNIX → % unset CLASSPATH; export CLASSPATH
+
+
+
+To set the CLASSPATH variable −
+
+In Windows → set CLASSPATH = C:\users\jack\java\classes
+
+In UNIX → % CLASSPATH = /home/jack/java/classes; export CLASSPATH
+
+
+
+The data structures provided by the Java utility package are very powerful and perform a wide range of functions. These data structures consist of the following interface and classes −
+
+* Enumeration
+* BitSet
+* Vector
+* Stack
+* Dictionary
+* Hashtable
+* Properties
+
+All these classes are now legacy and Java-2 has introduced a new framework called Collections Framework
+
+
+The Enumeration interface isn't itself a data structure, but it is very important within the context of other data structures. The Enumeration interface defines a means to retrieve successive elements from a data structure.
+
+The BitSet class implements a group of bits or flags that can be set and cleared individually.
+
+This class is very useful in cases where you need to keep up with a set of Boolean values; you just assign a bit to each value and set or clear it as appropriate.
+
+The Vector class is similar to a traditional Java array, except that it can grow as necessary to accommodate new elements.
+
+The nice thing about using the Vector class is that you don't have to worry about setting it to a specific size upon creation; it shrinks and grows automatically when necessary.
+
+The Stack class implements a last-in-first-out (LIFO) stack of elements.
+
+You can think of a stack literally as a vertical stack of objects; when you add a new element, it gets stacked on top of the others.
+
+The Dictionary class is an abstract class that defines a data structure for mapping keys to values.
+
+This is useful in cases where you want to be able to access data via a particular key rather than an integer index.
+
+Since the Dictionary class is abstract, it provides only the framework for a key-mapped data structure rather than a specific implementation.
+
+The Hashtable
+
+The Hashtable class provides a means of organizing data based on some user-defined key structure.
+
+For example, in an address list hash table you could store and sort data based on a key such as ZIP code rather than on a person's name.
+
+The specific meaning of keys with regard to hash tables is totally dependent on the usage of the hash table and the data it contains.
+
+The Properties
+
+Properties is a subclass of Hashtable. It is used to maintain lists of values in which the key is a String and the value is also a String.
+
+The Properties class is used by many other Java classes. For example, it is the type of object returned by System.getProperties( ) when obtaining environmental values.
+
+It would be nice if we could write a single sort method that could sort the elements in an Integer array, a String array, or an array of any type that supports ordering.
+
+Java Generic methods and generic classes enable programmers to specify, with a single method declaration, a set of related methods, or with a single class declaration, a set of related types, respectively.
+
+Generics also provide compile-time type safety that allows programmers to catch invalid types at compile time.
+
+Using Java Generic concept, we might write a generic method for sorting an array of objects, then invoke the generic method with Integer arrays, Double arrays, String arrays and so on, to sort the array elements.
+
+You can write a single generic method declaration that can be called with arguments of different types. Based on the types of the arguments passed to the generic method, the compiler handles each method call appropriately.
+
+Following example illustrates how we can print an array of different type using a single Generic method −
+
+```java
+public class GenericMethodTest {
+   // generic method printArray
+   public static < E > void printArray( E[] inputArray ) {
+      // Display array elements
+      for(E element : inputArray) {
+         System.out.printf("%s ", element);
+      }
+      System.out.println();
+   }
+
+   public static void main(String args[]) {
+      // Create arrays of Integer, Double and Character
+      Integer[] intArray = { 1, 2, 3, 4, 5 };
+      Double[] doubleArray = { 1.1, 2.2, 3.3, 4.4 };
+      Character[] charArray = { 'H', 'E', 'L', 'L', 'O' };
+
+      System.out.println("Array integerArray contains:");
+      printArray(intArray);   // pass an Integer array
+
+      System.out.println("\nArray doubleArray contains:");
+      printArray(doubleArray);   // pass a Double array
+
+      System.out.println("\nArray characterArray contains:");
+      printArray(charArray);   // pass a Character array
+   }
+}
+
+/*
+Array integerArray contains:
+1 2 3 4 5 
+
+Array doubleArray contains:
+1.1 2.2 3.3 4.4 
+
+Array characterArray contains:
+H E L L O
+*/
+```
+
+Bounded Type Parameters
+
+There may be times when you'll want to restrict the kinds of types that are allowed to be passed to a type parameter. For example, a method that operates on numbers might only want to accept instances of Number or its subclasses. This is what bounded type parameters are for.
+
+To declare a bounded type parameter, list the type parameter's name, followed by the extends keyword, followed by its upper bound.
+
+Following example illustrates how extends is used in a general sense to mean either "extends" (as in classes) or "implements" (as in interfaces). This example is Generic method to return the largest of three Comparable objects −
+
+```java
+public class MaximumTest {
+   // determines the largest of three Comparable objects
+   
+   public static <T extends Comparable<T>> T maximum(T x, T y, T z) {
+      T max = x;   // assume x is initially the largest
+      
+      if(y.compareTo(max) > 0) {
+         max = y;   // y is the largest so far
+      }
+      
+      if(z.compareTo(max) > 0) {
+         max = z;   // z is the largest now                 
+      }
+      return max;   // returns the largest object   
+   }
+   
+   public static void main(String args[]) {
+      System.out.printf("Max of %d, %d and %d is %d\n\n", 
+         3, 4, 5, maximum( 3, 4, 5 ));
+
+      System.out.printf("Max of %.1f,%.1f and %.1f is %.1f\n\n",
+         6.6, 8.8, 7.7, maximum( 6.6, 8.8, 7.7 ));
+
+      System.out.printf("Max of %s, %s and %s is %s\n","pear",
+         "apple", "orange", maximum("pear", "apple", "orange"));
+   }
+}
+
+/*
+Max of 3, 4 and 5 is 5
+
+Max of 6.6,8.8 and 7.7 is 8.8
+
+Max of pear, apple and orange is pear
+*/
+
+```
+
+Generic Classes
+A generic class declaration looks like a non-generic class declaration, except that the class name is followed by a type parameter section.
+
+As with generic methods, the type parameter section of a generic class can have one or more type parameters separated by commas. These classes are known as parameterized classes or parameterized types because they accept one or more parameters.
+
+```java
+public class Box<T> {
+   private T t;
+
+   public void add(T t) {
+      this.t = t;
+   }
+
+   public T get() {
+      return t;
+   }
+
+   public static void main(String[] args) {
+      Box<Integer> integerBox = new Box<Integer>();
+      Box<String> stringBox = new Box<String>();
+    
+      integerBox.add(new Integer(10));
+      stringBox.add(new String("Hello World"));
+
+      System.out.printf("Integer Value :%d\n\n", integerBox.get());
+      System.out.printf("String Value :%s\n", stringBox.get());
+   }
+}
+
+// Integer Value :10
+// String Value :Hello World
+
+```
+
+Java provides a mechanism, called object serialization where an object can be represented as a sequence of bytes that includes the object's data as well as information about the object's type and the types of data stored in the object.
+
+After a serialized object has been written into a file, it can be read from the file and deserialized that is, the type information and bytes that represent the object and its data can be used to recreate the object in memory.
+
+Most impressive is that the entire process is JVM independent, meaning an object can be serialized on one platform and deserialized on an entirely different platform.
+
+Classes ObjectInputStream and ObjectOutputStream are high-level streams that contain the methods for serializing and deserializing an object.
+
+To demonstrate how serialization works in Java, I am going to use the Employee class that we discussed early on in the book. Suppose that we have the following Employee class, which implements the Serializable interface −
+
+```java
+public class Employee implements java.io.Serializable {
+   public String name;
+   public String address;
+   public transient int SSN;
+   public int number;
+   
+   public void mailCheck() {
+      System.out.println("Mailing a check to " + name + " " + address);
+   }
+}
+```
+
+Notice that for a class to be serialized successfully, two conditions must be met −
+
+The class must implement the java.io.Serializable interface.
+
+All of the fields in the class must be serializable. If a field is not serializable, it must be marked transient.
+
+Serializing an Object
+
+The ObjectOutputStream class is used to serialize an Object. The following SerializeDemo program instantiates an Employee object and serializes it to a file.
+
+When the program is done executing, a file named employee.ser is created. The program does not generate any output, but study the code and try to determine what the program is doing.
+
+```java
+import java.io.*;
+public class SerializeDemo {
+
+   public static void main(String [] args) {
+      Employee e = new Employee();
+      e.name = "Reyan Ali";
+      e.address = "Phokka Kuan, Ambehta Peer";
+      e.SSN = 11122333;
+      e.number = 101;
+      
+      try {
+         FileOutputStream fileOut =
+         new FileOutputStream("/tmp/employee.ser");
+         ObjectOutputStream out = new ObjectOutputStream(fileOut);
+         out.writeObject(e);
+         out.close();
+         fileOut.close();
+         System.out.printf("Serialized data is saved in /tmp/employee.ser");
+      } catch (IOException i) {
+         i.printStackTrace();
+      }
+   }
+}
+```
+
+Deserializing an Object
+
+The following DeserializeDemo program deserializes the Employee object created in the SerializeDemo program. Study the program and try to determine its output −
+
+```java
+import java.io.*;
+public class DeserializeDemo {
+
+   public static void main(String [] args) {
+      Employee e = null;
+      try {
+         FileInputStream fileIn = new FileInputStream("/tmp/employee.ser");
+         ObjectInputStream in = new ObjectInputStream(fileIn);
+         e = (Employee) in.readObject();
+         in.close();
+         fileIn.close();
+      } catch (IOException i) {
+         i.printStackTrace();
+         return;
+      } catch (ClassNotFoundException c) {
+         System.out.println("Employee class not found");
+         c.printStackTrace();
+         return;
+      }
+      
+      System.out.println("Deserialized Employee...");
+      System.out.println("Name: " + e.name);
+      System.out.println("Address: " + e.address);
+      System.out.println("SSN: " + e.SSN);
+      System.out.println("Number: " + e.number);
+   }
+}
+
+/*
+Deserialized Employee...
+Name: Reyan Ali
+Address:Phokka Kuan, Ambehta Peer
+SSN: 0
+Number:101
+*/
+
+```
+
+The value of the SSN field was 11122333 when the object was serialized, but because the field is transient, this value was not sent to the output stream. The SSN field of the deserialized Employee object is 0.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
