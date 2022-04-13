@@ -5242,24 +5242,893 @@ Number:101
 
 The value of the SSN field was 11122333 when the object was serialized, but because the field is transient, this value was not sent to the output stream. The SSN field of the deserialized Employee object is 0.
 
+Java Collection
+
+Prior to Java 2, Java provided ad hoc classes such as Dictionary, Vector, Stack, and Properties to store and manipulate groups of objects. Although these classes were quite useful, they lacked a central, unifying theme. Thus, the way that you used Vector was different from the way that you used Properties.
+
+The collections framework was designed to meet several goals, such as −
+
+* The framework had to be high-performance. The implementations for the fundamental collections (dynamic arrays, linked lists, trees, and hashtables) were to be highly efficient.
+
+* The framework had to allow different types of collections to work in a similar manner and with a high degree of interoperability.
+
+* The framework had to extend and/or adapt a collection easily.
+
+A collections framework is a unified architecture for representing and manipulating collections. All collections frameworks contain the following −
+
+* Interfaces − These are abstract data types that represent collections. Interfaces allow collections to be manipulated independently of the details of their representation. In object-oriented languages, interfaces generally form a hierarchy.
+
+* Implementations, i.e., Classes − These are the concrete implementations of the collection interfaces. In essence, they are reusable data structures.
+
+* Algorithms − These are the methods that perform useful computations, such as searching and sorting, on objects that implement collection interfaces. The algorithms are said to be polymorphic: that is, the same method can be used on many different implementations of the appropriate collection interface.
+
+![](2022-04-11-18-42-25.png)
+
+Java provides a set of standard collection classes that implement Collection interfaces. Some of the classes provide full implementations that can be used as-is and others are abstract class, providing skeletal implementations that are used as starting points for creating concrete collections.
+
+
+
+
+* AbstractCollection - Implements most of the Collection interface.
+
+* AbstractList -Extends AbstractCollection and implements most of the List interface.
+
+* AbstractSequentialList - Extends AbstractList for use by a collection that uses sequential rather than random access of its elements.
+
+* LinkedList - Implements a linked list by extending AbstractSequentialList.
+
+*	ArrayList - Implements a dynamic array by extending AbstractList.
+
+* AbstractSet - Extends AbstractCollection and implements most of the Set interface.
+
+* HashSet -Extends AbstractSet for use with a hash table.
+
+* LinkedHashSet - Extends HashSet to allow insertion-order iterations.
+
+* TreeSet - Implements a set stored in a tree. Extends AbstractSet.
+
+* AbstractMap -Implements most of the Map interface.
+
+* HashMap - Extends AbstractMap to use a hash table.
+
+* TreeMap - Extends AbstractMap to use a tree.
+
+* WeakHashMap - Extends AbstractMap to use a hash table with weak keys.
+
+* LinkedHashMap - Extends HashMap to allow insertion-order iterations.
+
+* IdentityHashMap -Extends AbstractMap and uses reference equality when comparing documents.
+
+The AbstractCollection, AbstractSet, AbstractList, AbstractSequentialList and AbstractMap classes provide skeletal implementations of the core collection interfaces, to minimize the effort required to implement them.
+
+The following legacy classes defined by java.util have been discussed in the previous chapter −
+
+Vector, Stack, Dictionary, Hashtable, Properties, BitSet
+
+
+The Collection Algorithms
+
+The collections framework defines several algorithms that can be applied to collections and maps. These algorithms are defined as static methods within the Collections class.
+
+Several of the methods can throw a ClassCastException, which occurs when an attempt is made to compare incompatible types, or an UnsupportedOperationException, which occurs when an attempt is made to modify an unmodifiable collection.
+
+
+The Collection Algorithms
+
+Here is a list of all the algorithm implementation.
+
+
+* static int binarySearch(List list, Object value, Comparator c)
+
+Searches for value in the list ordered according to c. Returns the position of value in list, or -1 if value is not found.
+
+* static void copy(List list1, List list2)
+
+Copies the elements of list2 to list1.
+
+* static Enumeration enumeration(Collection c)
+
+Returns an enumeration over c.
+
+* static ArrayList list(Enumeration enum)
+
+Returns an ArrayList that contains the elements of enum.
+
+* static Object max(Collection c, Comparator comp)
+
+Returns the maximum element in c as determined by comp.
+
+* static void reverse(List list)
+
+Reverses the sequence in list.
+
+* static void rotate(List list, int n)
+
+Rotates list by n places to the right. To rotate left, use a negative value for n.
+
+* static void sort(List list, Comparator comp)
+
+Sorts the elements of list as determined by comp.
+
+* static List synchronizedList(List list)
+
+Returns a thread-safe list backed by list.
+
+https://www.tutorialspoint.com/java/java_collection_algorithms.htm
 
 
 
 
 
+How to Use an Iterator ?
+
+Often, you will want to cycle through the elements in a collection. For example, you might want to display each element.
+
+The easiest way to do this is to employ an iterator, which is an object that implements either the Iterator or the ListIterator interface.
+
+Iterator enables you to cycle through a collection, obtaining or removing elements. ListIterator extends Iterator to allow bidirectional traversal of a list and the modification of elements.
+
+Using Java Iterator
+
+https://www.tutorialspoint.com/java/java_using_iterator.htm
+
+Iterator enables you to cycle through a collection, obtaining or removing elements. ListIterator extends Iterator to allow bidirectional traversal of a list, and the modification of elements.
+
+```java
+import java.util.*;
+public class IteratorDemo {
+
+   public static void main(String args[]) {
+      // Create an array list
+      ArrayList al = new ArrayList();
+      
+      // add elements to the array list
+      al.add("C");
+      al.add("A");
+      al.add("E");
+      al.add("B");
+      al.add("D");
+      al.add("F");
+
+      // Use iterator to display contents of al
+      System.out.print("Original contents of al: ");
+      Iterator itr = al.iterator();
+      
+      while(itr.hasNext()) {
+         Object element = itr.next();
+         System.out.print(element + " ");
+      }
+      System.out.println();
+      
+      // Modify objects being iterated
+      ListIterator litr = al.listIterator();
+      
+      while(litr.hasNext()) {
+         Object element = litr.next();
+         litr.set(element + "+");
+      }
+      System.out.print("Modified contents of al: ");
+      itr = al.iterator();
+      
+      while(itr.hasNext()) {
+         Object element = itr.next();
+         System.out.print(element + " ");
+      }
+      System.out.println();
+
+      // Now, display the list backwards
+      System.out.print("Modified list backwards: ");
+      
+      while(litr.hasPrevious()) {
+         Object element = litr.previous();
+         System.out.print(element + " ");
+      }
+      System.out.println();
+   }
+}
+
+// Original contents of al: C A E B D F
+// Modified contents of al: C+ A+ E+ B+ D+ F+
+// Modified list backwards: F+ D+ B+ E+ A+ C+
+
+```
 
 
 
+How to Use a Comparator ?
+
+Both TreeSet and TreeMap store elements in a sorted order. However, it is the comparator that defines precisely what sorted order means.
+
+This interface lets us sort a given collection any number of different ways. Also this interface can be used to sort any instances of any class (even classes we cannot modify).
+
+
+Using Java Comparator
+
+The Java collections framework gives the programmer access to prepackaged data structures as well as to algorithms for manipulating them.
+
+https://www.tutorialspoint.com/java/java_using_comparator.htm
 
 
 
+Both TreeSet and TreeMap store elements in sorted order. However, it is the comparator that defines precisely what sorted order means.
+
+The Comparator interface defines two methods: compare( ) and equals( ). The compare( ) method, shown here, compares two elements for order −
+
+obj1 and obj2 are the objects to be compared. This method returns zero if the objects are equal. It returns a positive value if obj1 is greater than obj2. Otherwise, a negative value is returned.
+
+```java
+import java.util.*;
+
+class Dog implements Comparator<Dog>, Comparable<Dog> {
+   private String name;
+   private int age;
+   Dog() {
+   }
+
+   Dog(String n, int a) {
+      name = n;
+      age = a;
+   }
+
+   public String getDogName() {
+      return name;
+   }
+
+   public int getDogAge() {
+      return age;
+   }
+
+   // Overriding the compareTo method
+   public int compareTo(Dog d) {
+      return (this.name).compareTo(d.name);
+   }
+
+   // Overriding the compare method to sort the age 
+   public int compare(Dog d, Dog d1) {
+      return d.age - d1.age;
+   }
+}
+
+public class Example {
+
+   public static void main(String args[]) {
+      // Takes a list o Dog objects
+      List<Dog> list = new ArrayList<Dog>();
+
+      list.add(new Dog("Shaggy", 3));
+      list.add(new Dog("Lacy", 2));
+      list.add(new Dog("Roger", 10));
+      list.add(new Dog("Tommy", 4));
+      list.add(new Dog("Tammy", 1));
+      Collections.sort(list);   // Sorts the array list
+
+      for(Dog a: list)   // printing the sorted list of names
+         System.out.print(a.getDogName() + ", ");
+
+      // Sorts the array list using comparator
+      Collections.sort(list, new Dog());
+      System.out.println(" ");
+      
+      for(Dog a: list)   // printing the sorted list of ages
+         System.out.print(a.getDogName() +"  : "+ a.getDogAge() + ", ");
+   }
+}
+
+// Lacy, Roger, Shaggy, Tammy, Tommy,
+// Tammy  : 1, Lacy  : 2, Shaggy  : 3, Tommy  : 4, Roger  : 10,
+
+```
 
 
+Java Future (concurrent)
 
 
+An interface that's been around since Java 1.5, it can be quite useful when working with asynchronous calls and concurrent processing.
+
+Future class represents a future result of an asynchronous computation. This result will eventually appear in the Future after the processing is complete.
+
+Long running methods are good candidates for asynchronous processing and the Future interface because we can execute other processes while we're waiting for the task encapsulated in the Future to complete.
 
 
+* computational intensive processes (mathematical and scientific calculations)
+* manipulating large data structures (big data)
+* remote method calls (downloading files, HTML scrapping, web services)
 
+```java
+public class SquareCalculator {    
+    
+    private ExecutorService executor 
+      = Executors.newSingleThreadExecutor();
+    
+    public Future<Integer> calculate(Integer input) {        
+        return executor.submit(() -> {
+            Thread.sleep(1000);
+            return input * input;
+        });
+    }
+}
+```
+
+Future.isDone() tells us if the executor has finished processing the task. If the task is complete, it will return true; otherwise, it returns false.
+
+The method that returns the actual result from the calculation is Future.get(). We can see that this method blocks the execution until the task is complete. However, this won't be an issue in our example because we'll check if the task is complete by calling isDone().
+
+```java
+Future<Integer> future = new SquareCalculator().calculate(10);
+
+while(!future.isDone()) {
+    System.out.println("Calculating...");
+    Thread.sleep(300);
+}
+
+Integer result = future.get();
+```
+
+It's worth mentioning that get() has an overloaded version that takes a timeout and a TimeUnit as arguments:
+
+```java
+Integer result = future.get(500, TimeUnit.MILLISECONDS);
+```
+
+The difference between get(long, TimeUnit) and get() is that the former will throw a TimeoutException if the task doesn't return before the specified timeout period.
+
+
+Suppose we triggered a task, but for some reason, we don't care about the result anymore. We can use Future.cancel(boolean) to tell the executor to stop the operation and interrupt its underlying thread:
+
+```java
+Future<Integer> future = new SquareCalculator().calculate(4);
+
+boolean canceled = future.cancel(true);
+```
+
+Java Future tutorial shows how to do asynchronous programming in Java using Future.
+
+Future and FutureTask in Java allows you to write asynchronous code. The Future is a general concurrency abstraction, also known as a promise, which promises to return a result in the future. In asynchronous programming, the main thread doesn't wait for any task to be finished, rather it hands over the task to workers and moves on. One way of asynchronous processing is by using callback methods. The Future class in Java is another way to write asynchronous code.
+
+A Future interface provides methods to check if the computation is complete, to wait for its completion and to retrieve the results of the computation. The result is retrieved using Future’s get() method when the computation has completed, and it blocks until it is completed. 
+
+![](2022-04-13-13-27-21.png)
+
+Simula is considered the first object-oriented programming language. The programming paradigm where everything is represented as an object is known as a truly object-oriented programming language.
+
+Smalltalk is considered the first truly object-oriented programming language.
+
+Object means a real-world entity such as a pen, chair, table, computer, watch, etc. Object-Oriented Programming is a methodology or paradigm to design a program using classes and objects.
+
+Any entity that has state and behavior is known as an object. For example, a chair, pen, table, keyboard, bike, etc. It can be physical or logical.
+
+Collection of objects is called class. It is a logical entity.
+
+A class can also be defined as a blueprint from which you can create an individual object.
+
+When one object acquires all the properties and behaviors of a parent object, it is known as inheritance. It provides code reusability. It is used to achieve runtime polymorphism.
+
+If one task is performed in different ways, it is known as polymorphism. For example: to convince the customer differently, to draw something, for example, shape, triangle, rectangle, etc.
+
+In Java, we use method overloading and method overriding to achieve polymorphism.
+
+Hiding internal details and showing functionality is known as abstraction
+
+Binding (or wrapping) code and data together into a single unit are known as encapsulation.
+
+A java class is the example of encapsulation. Java bean is the fully encapsulated class because all the data members are private here.
+
+Coupling refers to the knowledge or information or dependency of another class. It arises when classes are aware of each other. If a class has the details information of another class, there is strong coupling. In Java, we use private, protected, and public modifiers to display the visibility level of a class, method, and field. You can use interfaces for the weaker coupling because there is no concrete implementation.
+
+Cohesion refers to the level of a component which performs a single well-defined task. A single well-defined task is done by a highly cohesive method. The weakly cohesive method will split the task into separate parts. The java.io package is a highly cohesive package because it has I/O related classes and interface. However, the java.util package is a weakly cohesive package because it has unrelated classes and interfaces.
+
+Association represents the relationship between the objects. Here, one object can be associated with one object or many objects. There can be four types of association between the objects:
+
+* One to One
+* One to Many
+* Many to One, and
+* Many to Many
+
+Aggregation
+
+Aggregation is a way to achieve Association. Aggregation represents the relationship where one object contains other objects as a part of its state. It represents the weak relationship between objects. It is also termed as a has-a relationship in Java. Like, inheritance represents the is-a relationship. It is another way to reuse objects.
+
+Composition
+
+The composition is also a way to achieve Association. The composition represents the relationship where one object contains other objects as a part of its state. There is a strong relationship between the containing object and the dependent object. It is the state where containing objects do not have an independent existence. If you delete the parent object, all the child objects will be deleted automatically.
+
+What is the difference between an object-oriented programming language and object-based programming language?
+
+Object-based programming language follows all the features of OOPs except Inheritance. JavaScript and VBScript are examples of object-based programming languages.
+
+
+Java naming convention is a rule to follow as you decide what to name your identifiers such as class, package, variable, constant, method, etc.
+
+But, it is not forced to follow. So, it is known as convention not rule. 
+
+By using standard Java naming conventions, you make your code easier to read for yourself and other programmers. Readability of Java program is very important. It indicates that less time is spent to figure out what the code does.
+
+Class,Interface,Method,variable, package and constant -> how need to declare with what convention
+
+CamelCase in Java naming conventions
+
+Java follows camel-case syntax for naming the class, interface, method, and variable.
+
+If the name is combined with two words, the second word will start with uppercase letter always such as actionPerformed(), firstName, ActionEvent, ActionListener, etc.
+
+
+An object has three characteristics:
+
+* State: represents the data (value) of an object.
+* Behavior: represents the behavior (functionality) of an object such as deposit, withdraw, etc.
+* Identity: An object identity is typically implemented via a unique ID. The value of the ID is not visible to the external user. However, it is used internally by the JVM to identify each object uniquely.
+
+A class is a group of objects which have common properties. It is a template or blueprint from which objects are created. It is a logical entity. It can't be physical.
+
+A variable which is created inside the class but outside the method is known as an instance variable. Instance variable doesn't get memory at compile time. It gets memory at runtime when an object or instance is created. That is why it is known as an instance variable.
+
+
+In Java, a method is like a function which is used to expose the behavior of an object.
+
+Advantage of Method
+
+* Code Reusability
+* Code Optimization
+
+The new keyword is used to allocate memory at runtime. All objects get memory in Heap memory area.
+
+```java
+//Java Program to demonstrate having the main method in   
+//another class  
+//Creating Student class.  
+class Student{  
+ int id;  
+ String name;  
+}  
+//Creating another class TestStudent1 which contains the main method  
+class TestStudent1{  
+ public static void main(String args[]){  
+  Student s1=new Student();  
+  System.out.println(s1.id);  
+  System.out.println(s1.name);  
+ }  
+}  
+```
+
+There are 3 ways to initialize object in Java.
+
+* By reference variable
+
+```java
+class Student{  
+ int id;  
+ String name;  
+}  
+class TestStudent2{  
+ public static void main(String args[]){  
+  Student s1=new Student();  
+  s1.id=101;  
+  s1.name="Sonoo";  
+  System.out.println(s1.id+" "+s1.name);//printing members with a white space  
+ }  
+}  
+```
+
+* By method
+
+```java
+class Student{  
+ int id;  
+ String name;  
+}  
+class TestStudent2{  
+ public static void main(String args[]){  
+  Student s1=new Student();  
+  s1.id=101;  
+  s1.name="Sonoo";  
+  System.out.println(s1.id+" "+s1.name);//printing members with a white space  
+ }  
+}  
+```
+
+* By constructor (Best) 
+
+There are many ways to create an object in java. They are:
+
+* By new keyword
+* By newInstance() method
+* By clone() method
+* By deserialization
+* By factory method etc.
+
+Anonymous object
+
+Anonymous simply means nameless. An object which has no reference is known as an anonymous object. It can be used at the time of object creation only.
+
+If you have to use an object only once, an anonymous object is a good approach. For example:
+
+```java
+class Calculation{  
+ void fact(int  n){  
+  int fact=1;  
+  for(int i=1;i<=n;i++){  
+   fact=fact*i;  
+  }  
+ System.out.println("factorial is "+fact);  
+}  
+public static void main(String args[]){  
+ new Calculation().fact(5);//calling method with anonymous object  
+}  
+}  
+```
+
+Creating multiple objects by one type only
+
+Initialization of primitive variables:
+
+```java
+int a=10, b=20;  
+```
+Initialization of refernce variables:
+
+```java
+Rectangle r1=new Rectangle(), r2=new Rectangle();//creating two objects  
+```
+
+
+In Java, a constructor is a block of codes similar to the method. It is called when an instance of the class is created. At the time of calling constructor, memory for the object is allocated in the memory.
+
+It is a special type of method which is used to initialize the object.
+
+Every time an object is created using the new() keyword, at least one constructor is called.
+
+It calls a default constructor if there is no constructor available in the class. In such case, Java compiler provides a default constructor by default.
+
+There are two types of constructors in Java: no-arg constructor, and parameterized constructor.
+
+
+There are two rules defined for the constructor.
+
+* Constructor name must be the same as its class name
+* A Constructor must have no explicit return type
+* A Java constructor cannot be abstract, static, final, and synchronized
+
+Default constructor
+
+```java
+/Java Program to create and call a default constructor  
+class Bike1{  
+//creating a default constructor  
+Bike1(){System.out.println("Bike is created");}  
+//main method  
+public static void main(String args[]){  
+//calling a default constructor  
+Bike1 b=new Bike1();  
+}  
+}  
+```
+
+Java Parameterized Constructor
+
+A constructor which has a specific number of parameters is called a parameterized constructor.
+
+```java
+//Java Program to demonstrate the use of the parameterized constructor.  
+class Student4{  
+    int id;  
+    String name;  
+    //creating a parameterized constructor  
+    Student4(int i,String n){  
+    id = i;  
+    name = n;  
+    }  
+    //method to display the values  
+    void display(){System.out.println(id+" "+name);}  
+   
+    public static void main(String args[]){  
+    //creating objects and passing values  
+    Student4 s1 = new Student4(111,"Karan");  
+    Student4 s2 = new Student4(222,"Aryan");  
+    //calling method to display the values of object  
+    s1.display();  
+    s2.display();  
+   }  
+}  
+```
+
+Constructor Overloading in Java
+
+In Java, a constructor is just like a method but without return type. It can also be overloaded like Java methods.
+
+Constructor overloading in Java is a technique of having more than one constructor with different parameter lists. They are arranged in a way that each constructor performs a different task.
+
+```java
+//Java program to overload constructors  
+class Student5{  
+    int id;  
+    String name;  
+    int age;  
+    //creating two arg constructor  
+    Student5(int i,String n){  
+    id = i;  
+    name = n;  
+    }  
+    //creating three arg constructor  
+    Student5(int i,String n,int a){  
+    id = i;  
+    name = n;  
+    age=a;  
+    }  
+    void display(){System.out.println(id+" "+name+" "+age);}  
+   
+    public static void main(String args[]){  
+    Student5 s1 = new Student5(111,"Karan");  
+    Student5 s2 = new Student5(222,"Aryan",25);  
+    s1.display();  
+    s2.display();  
+   }  
+}  
+```
+
+java copy constructor
+
+There is no copy constructor in Java. However, we can copy the values from one object to another like copy constructor in C++.
+
+There are many ways to copy the values of one object into another in Java. They are:
+
+* By constructor
+* By assigning the values of one object into another
+* By clone() method of Object class
+
+```java
+//Java program to initialize the values from one object to another object.  
+class Student6{  
+    int id;  
+    String name;  
+    //constructor to initialize integer and string  
+    Student6(int i,String n){  
+    id = i;  
+    name = n;  
+    }  
+    //constructor to initialize another object  
+    Student6(Student6 s){  
+    id = s.id;  
+    name =s.name;  
+    }  
+    void display(){System.out.println(id+" "+name);}  
+   
+    public static void main(String args[]){  
+    Student6 s1 = new Student6(111,"Karan");  
+    Student6 s2 = new Student6(s1);  
+    s1.display();  
+    s2.display();  
+   }  
+}  
+```
+
+We can copy the values of one object into another by assigning the objects values to another object. In this case, there is no need to create the constructor.
+
+```java
+class Student7{  
+    int id;  
+    String name;  
+    Student7(int i,String n){  
+    id = i;  
+    name = n;  
+    }  
+    Student7(){}  
+    void display(){System.out.println(id+" "+name);}  
+   
+    public static void main(String args[]){  
+    Student7 s1 = new Student7(111,"Karan");  
+    Student7 s2 = new Student7();  
+    s2.id=s1.id;  
+    s2.name=s1.name;  
+    s1.display();  
+    s2.display();  
+   }  
+}  
+```
+
+Can constructor perform other tasks instead of initialization?
+
+Yes, like object creation, starting a thread, calling a method, etc. You can perform any operation in the constructor as you perform in the method.
+
+The static keyword in Java is used for memory management mainly. We can apply static keyword with variables, methods, blocks and nested classes.
+
+The static keyword belongs to the class than an instance of the class
+
+The static can be:
+
+* Variable (also known as a class variable)
+* Method (also known as a class method)
+* Block
+* Nested class
+
+If you declare any variable as static, it is known as a static variable
+
+
+The static variable can be used to refer to the common property of all objects (which is not unique for each object), for example, the company name of employees, college name of students, etc.
+
+The static variable gets memory only once in the class area at the time of class loading.
+
+Advantages of static variable
+It makes your program memory efficient (i.e., it saves memory).
+
+```java
+//Java Program to demonstrate the use of static variable  
+class Student{  
+   int rollno;//instance variable  
+   String name;  
+   static String college ="ITS";//static variable  
+   //constructor  
+   Student(int r, String n){  
+   rollno = r;  
+   name = n;  
+   }  
+   //method to display the values  
+   void display (){System.out.println(rollno+" "+name+" "+college);}  
+}  
+//Test class to show the values of objects  
+public class TestStaticVariable1{  
+ public static void main(String args[]){  
+ Student s1 = new Student(111,"Karan");  
+ Student s2 = new Student(222,"Aryan");  
+ //we can change the college of all objects by the single line of code  
+ //Student.college="BBDIT";  
+ s1.display();  
+ s2.display();  
+ }  
+}  
+```
+
+![](2022-04-13-13-58-31.png)
+
+you can use like counter as static variable
+
+```java
+//Java Program to illustrate the use of static variable which  
+//is shared with all objects.  
+class Counter2{  
+static int count=0;//will get memory only once and retain its value  
+  
+Counter2(){  
+count++;//incrementing the value of static variable  
+System.out.println(count);  
+}  
+  
+public static void main(String args[]){  
+//creating objects  
+Counter2 c1=new Counter2();  
+Counter2 c2=new Counter2();  
+Counter2 c3=new Counter2();  
+}  
+}  
+```
+
+java static method
+
+If you apply static keyword with any method, it is known as static method.
+
+* A static method belongs to the class rather than the object of a class.
+* A static method can be invoked without the need for creating an instance of a class.
+* A static method can access static data member and can change the value of it.
+
+```java
+//Java Program to demonstrate the use of a static method.  
+class Student{  
+     int rollno;  
+     String name;  
+     static String college = "ITS";  
+     //static method to change the value of static variable  
+     static void change(){  
+     college = "BBDIT";  
+     }  
+     //constructor to initialize the variable  
+     Student(int r, String n){  
+     rollno = r;  
+     name = n;  
+     }  
+     //method to display values  
+     void display(){System.out.println(rollno+" "+name+" "+college);}  
+}  
+//Test class to create and display the values of object  
+public class TestStaticMethod{  
+    public static void main(String args[]){  
+    Student.change();//calling change method  
+    //creating objects  
+    Student s1 = new Student(111,"Karan");  
+    Student s2 = new Student(222,"Aryan");  
+    Student s3 = new Student(333,"Sonoo");  
+    //calling display method  
+    s1.display();  
+    s2.display();  
+    s3.display();  
+    }  
+}  
+```
+
+There are two main restrictions for the static method. They are:
+
+* The static method can not use non static data member or call non-static method directly.
+* this and super cannot be used in static context.
+
+Java static block
+
+Is used to initialize the static data member.
+
+It is executed before the main method at the time of classloading
+
+```java
+class A2{  
+  static{System.out.println("static block is invoked");}  
+  public static void main(String args[]){  
+   System.out.println("Hello main");  
+  }  
+}  
+
+```
+
+
+There can be a lot of usage of Java this keyword. In Java, this is a reference variable that refers to the current object.
+
+1 - this: to refer current class instance variable
+
+we are using this keyword to distinguish local variable and instance variable.
+
+The this keyword can be used to refer current class instance variable. If there is ambiguity between the instance variables and parameters, this keyword resolves the problem of ambiguity.
+
+```java
+class Student{  
+int rollno;  
+String name;  
+float fee;  
+Student(int rollno,String name,float fee){  
+this.rollno=rollno;  
+this.name=name;  
+this.fee=fee;  
+}  
+void display(){System.out.println(rollno+" "+name+" "+fee);}  
+}  
+```
+
+2) this: to invoke current class method
+
+
+You may invoke the method of the current class by using the this keyword. If you don't use the this keyword, compiler automatically adds this keyword while invoking the method.
+
+```java
+class A{  
+void m(){System.out.println("hello m");}  
+void n(){  
+System.out.println("hello n");  
+//m();//same as this.m()  
+this.m();  
+}  
+}  
+class TestThis4{  
+public static void main(String args[]){  
+A a=new A();  
+a.n();  
+}}  
+```
+
+3) this() : to invoke current class constructor
+
+The this() constructor call can be used to invoke the current class constructor. It is used to reuse the constructor. In other words, it is used for constructor chaining.
+
+```java
+class A{  
+A(){System.out.println("hello a");}  
+A(int x){  
+this();  
+System.out.println(x);  
+}  
+}  
+class TestThis5{  
+public static void main(String args[]){  
+A a=new A(10);  
+}}  
+
+// hello a
+// 10
+
+```
 
 
 
