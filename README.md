@@ -6128,7 +6128,1209 @@ A a=new A(10);
 // hello a
 // 10
 
+class A{  
+A(){  
+this(5);  
+System.out.println("hello a");  
+}  
+A(int x){  
+System.out.println(x);  
+}  
+}  
+class TestThis6{  
+public static void main(String args[]){  
+A a=new A();  
+}}  
+
+
+
+Student(int rollno,String name,String course){  
+this.rollno=rollno;  
+this.name=name;  
+this.course=course;  
+}  
+Student(int rollno,String name,String course,float fee){  
+this(rollno,name,course);//reusing constructor  
+this.fee=fee;  
+}
+
 ```
+
+The this() constructor call should be used to reuse the constructor from the constructor. It maintains the chain between the constructors i.e. it is used for constructor chaining
+
+4) this: to pass as an argument in the method
+
+The this keyword can also be passed as an argument in the method. It is mainly used in the event handling.
+
+```java
+class S2{  
+  void m(S2 obj){  
+  System.out.println("method is invoked");  
+  }  
+  void p(){  
+  m(this);  
+  }  
+  public static void main(String args[]){  
+  S2 s1 = new S2();  
+  s1.p();  
+  }  
+}  
+
+// method is invoked
+```
+
+In event handling (or) in a situation where we have to provide reference of a class to another one. It is used to reuse one object in many methods.
+
+
+5) this: to pass as argument in the constructor call
+
+We can pass the this keyword in the constructor also. It is useful if we have to use one object in multiple classes. Let's see the example:
+
+```java
+class B{  
+  A4 obj;  
+  B(A4 obj){  
+    this.obj=obj;  
+  }  
+  void display(){  
+    System.out.println(obj.data);//using data member of A4 class  
+  }  
+}  
+  
+class A4{  
+  int data=10;  
+  A4(){  
+   B b=new B(this);  
+   b.display();  
+  }  
+  public static void main(String args[]){  
+   A4 a=new A4();  
+  }  
+}  
+
+// Output:10
+
+```
+
+6) this keyword can be used to return current class instance
+
+We can return this keyword as an statement from the method. In such case, return type of the method must be the class type (non-primitive). Let's see the example:
+
+
+```java
+class A{  
+A getA(){  
+return this;  
+}  
+void msg(){System.out.println("Hello java");}  
+}  
+class Test1{  
+public static void main(String args[]){  
+new A().getA().msg();  
+}  
+}  
+
+// Hello java
+```
+
+Inheritance in Java is a mechanism in which one object acquires all the properties and behaviors of a parent object.
+
+The idea behind inheritance in Java is that you can create new classes that are built upon existing classes. When you inherit from an existing class, you can reuse methods and fields of the parent class. Moreover, you can add new methods and fields in your current class also.
+
+Inheritance represents the IS-A relationship which is also known as a parent-child relationship.
+
+The extends keyword indicates that you are making a new class that derives from an existing class. The meaning of "extends" is to increase the functionality.
+
+As displayed in the above figure, Programmer is the subclass and Employee is the superclass. The relationship between the two classes is Programmer IS-A Employee. It means that Programmer is a type of Employee.
+
+
+```java
+class Employee{  
+ float salary=40000;  
+}  
+class Programmer extends Employee{  
+ int bonus=10000;  
+ public static void main(String args[]){  
+   Programmer p=new Programmer();  
+   System.out.println("Programmer salary is:"+p.salary);  
+   System.out.println("Bonus of Programmer is:"+p.bonus);  
+}  
+}  
+```
+
+Types of inheritance in java
+
+On the basis of class, there can be three types of inheritance in java: single, multilevel and hierarchical.
+
+In java programming, multiple and hybrid inheritance is supported through interface only. We will learn about interfaces later.
+
+![](2022-04-13-14-42-35.png)
+
+
+![](2022-04-13-14-43-06.png)
+
+ Why multiple inheritance is not supported in java?
+
+To reduce the complexity and simplify the language, multiple inheritance is not supported in java.
+
+Consider a scenario where A, B, and C are three classes. The C class inherits A and B classes. If A and B classes have the same method and you call it from child class object, there will be ambiguity to call the method of A or B class.
+
+Since compile-time errors are better than runtime errors, Java renders compile-time error if you inherit 2 classes. So whether you have same method or different, there will be compile time error.
+
+
+Aggregation in Java
+
+If a class have an entity reference, it is known as Aggregation. Aggregation represents HAS-A relationship.
+
+Consider a situation, Employee object contains many informations such as id, name, emailId etc. It contains one more object named address, which contains its own informations such as city, state, country, zipcode etc. as given below
+
+```java
+
+class Employee{  
+int id;  
+String name;  
+Address address;//Address is a class  
+
+}  
+
+```
+
+```java
+class Operation{  
+ int square(int n){  
+  return n*n;  
+ }  
+}  
+  
+class Circle{  
+ Operation op;//aggregation  
+ double pi=3.14;  
+    
+ double area(int radius){  
+   op=new Operation();  
+   int rsquare=op.square(radius);//code reusability (i.e. delegates the method call).  
+   return pi*rsquare;  
+ }  
+  
+     
+    
+ public static void main(String args[]){  
+   Circle c=new Circle();  
+   double result=c.area(5);  
+   System.out.println(result);  
+ }  
+}  
+```
+
+When use Aggregation?
+
+Code reuse is also best achieved by aggregation when there is no is-a relationship.
+
+Inheritance should be used only if the relationship is-a is maintained throughout the lifetime of the objects involved; otherwise, aggregation is the best choice.
+
+In this example, Employee has an object of Address, address object contains its own informations such as city, state, country etc. In such case relationship is Employee HAS-A address.
+
+
+```java
+
+public class Address {  
+String city,state,country;  
+  
+public Address(String city, String state, String country) {  
+    this.city = city;  
+    this.state = state;  
+    this.country = country;  
+}  
+  
+}  
+
+public class Emp {  
+int id;  
+String name;  
+Address address;  
+  
+public Emp(int id, String name,Address address) {  
+    this.id = id;  
+    this.name = name;  
+    this.address=address;  
+}  
+  
+void display(){  
+System.out.println(id+" "+name);  
+System.out.println(address.city+" "+address.state+" "+address.country);  
+}  
+  
+public static void main(String[] args) {  
+Address address1=new Address("gzb","UP","india");  
+Address address2=new Address("gno","UP","india");  
+  
+Emp e=new Emp(111,"varun",address1);  
+Emp e2=new Emp(112,"arun",address2);  
+      
+e.display();  
+e2.display();  
+      
+}  
+}  
+
+/*
+Output:111 varun
+       gzb UP india
+       112 arun
+       gno UP india    
+       */
+
+```
+
+
+
+Java Date and Time
+
+The java.time, java.util, java.sql and java.text packages contains classes for representing date and time. Following classes are important for dealing with date in Java.
+
+
+Java 8 Date/Time API
+
+Java has introduced a new Date and Time API since Java 8. The java.time package contains Java 8 Date and Time classes.
+
+* java.time.LocalDate class
+* java.time.LocalTime class
+* java.time.LocalDateTime class
+* java.time.MonthDay class
+* java.time.OffsetTime class
+* java.time.OffsetDateTime class
+* java.time.Clock class
+* java.time.ZonedDateTime class
+* java.time.ZoneId class
+* java.time.ZoneOffset class
+* java.time.Year class
+* java.time.YearMonth class
+* java.time.Period class
+* java.time.Duration class
+* java.time.Instant class
+* java.time.DayOfWeek enum
+* java.time.Month enum
+
+Classical Date/Time API
+
+But classical or old Java Date API is also useful. Let's see the list of classical Date and Time classes.
+
+* java.util.Date class
+* java.sql.Date class
+* java.util.Calendar class
+* java.util.GregorianCalendar class
+* java.util.TimeZone class
+* java.sql.Time class
+* java.sql.Timestamp class
+
+Formatting Date and Time
+
+We can format date and time in Java by using the following classes:
+
+* java.text.DateFormat class
+* java.text.SimpleDateFormat class
+
+The primary classes before Java 8 release were:
+
+* Java.lang.System: The class provides the currentTimeMillis() method that returns the current time in milliseconds. It shows the current date and time in milliseconds from January 1st 1970.
+
+* java.util.Date: It is used to show specific instant of time, with unit of millisecond.
+
+* java.util.Calendar: It is an abstract class that provides methods for converting between instances and manipulating the calendar fields in different ways.
+
+* java.text.SimpleDateFormat: It is a class that is used to format and parse the dates in a predefined manner or user defined pattern.
+
+* java.util.TimeZone: It represents a time zone offset, and also figures out daylight savings.
+
+
+Drawbacks of existing Date/Time API's
+
+* Thread safety: The existing classes such as Date and Calendar does not provide thread safety. Hence it leads to hard-to-debug concurrency issues that are needed to be taken care by developers. The new Date and Time APIs of Java 8 provide thread safety and are immutable, hence avoiding the concurrency issue from developers.
+* Bad API designing: The classic Date and Calendar APIs does not provide methods to perform basic day-to-day functionalities. The Date and Time classes introduced in Java 8 are ISO-centric and provides number of different methods for performing operations regarding date, time, duration and periods.
+* Difficult time zone handling: To handle the time-zone using classic Date and Calendar classes is difficult because the developers were supposed to write the logic for it. With the new APIs, the time-zone handling can be easily done with Local and ZonedDate/Time APIs.
+
+
+New Date Time API in Java 8
+
+
+* java.time.LocalDate: It represents a year-month-day in the ISO calendar and is useful for representing a date without a time. It can be used to represent a date only information such as a birth date or wedding date.
+
+* java.time.LocalTime: It deals in time only. It is useful for representing human-based time of day, such as movie times, or the opening and closing times of the local library.
+
+* java.time.LocalDateTime: It handles both date and time, without a time zone. It is a combination of LocalDate with LocalTime.
+
+* java.time.ZonedDateTime: It combines the LocalDateTime class with the zone information given in ZoneId class. It represent a complete date time stamp along with timezone information.
+
+* java.time.OffsetTime: It handles time with a corresponding time zone offset from Greenwich/UTC, without a time zone ID.
+
+* java.time.OffsetDateTime: It handles a date and time with a corresponding time zone offset from Greenwich/UTC, without a time zone ID.
+
+* java.time.Clock : It provides access to the current instant, date and time in any given time-zone. Although the use of the Clock class is optional, this feature allows us to test your code for other time zones, or by using a fixed clock, where time does not change.
+
+* java.time.Instant : It represents the start of a nanosecond on the timeline (since EPOCH) and useful for generating a timestamp to represent machine time. An instant that occurs before the epoch has a negative value, and an instant that occurs after the epoch has a positive value.
+
+* java.time.Duration : Difference between two instants and measured in seconds or nanoseconds and does not use date-based constructs such as years, months, and days, though the class provides methods that convert to days, hours, and minutes.
+
+* java.time.Period : It is used to define the difference between dates in date-based values (years, months, days).
+
+* java.time.ZoneId : It states a time zone identifier and provides rules for converting between an Instant and a LocalDateTime.
+
+* java.time.ZoneOffset : It describe a time zone offset from Greenwich/UTC time.
+
+* java.time.format.DateTimeFormatter : It comes up with various predefined formatter, or we can define our own. It has parse() or format() method for parsing and formatting the date time values.
+
+There are two ways to overload the method in java
+
+* By changing number of arguments
+
+```java
+class Adder{  
+static int add(int a,int b){return a+b;}  
+static int add(int a,int b,int c){return a+b+c;}  
+}  
+
+```
+
+* By changing the data type
+
+```java
+class Adder{  
+static int add(int a, int b){return a+b;}  
+static double add(double a, double b){return a+b;}  
+}  
+```
+
+Method Overloading and Type Promotion
+
+One type is promoted to another implicitly if no matching datatype is found. Let's understand the concept by the figure given below:
+
+![](2022-04-13-15-04-58.png)
+
+
+As displayed in the above diagram, byte can be promoted to short, int, long, float or double. The short datatype can be promoted to int, long, float or double. The char datatype can be promoted to int,long,float or double and so on.
+
+```java
+class OverloadingCalculation1{  
+  void sum(int a,long b){System.out.println(a+b);}  
+  void sum(int a,int b,int c){System.out.println(a+b+c);}  
+  
+  public static void main(String args[]){  
+  OverloadingCalculation1 obj=new OverloadingCalculation1();  
+  obj.sum(20,20);//now second int literal will be promoted to long  
+  obj.sum(20,20,20);  
+  
+  }  
+}  
+```
+
+If subclass (child class) has the same method as declared in the parent class, it is known as method overriding in Java.
+
+Usage of Java Method Overriding
+
+* Method overriding is used to provide the specific implementation of a method which is already provided by its superclass.
+* Method overriding is used for runtime polymorphism
+
+```java
+//Java Program to illustrate the use of Java Method Overriding  
+//Creating a parent class.  
+class Vehicle{  
+  //defining a method  
+  void run(){System.out.println("Vehicle is running");}  
+}  
+//Creating a child class  
+class Bike2 extends Vehicle{  
+  //defining the same method as in the parent class  
+  void run(){System.out.println("Bike is running safely");}  
+  
+  public static void main(String args[]){  
+  Bike2 obj = new Bike2();//creating object  
+  obj.run();//calling method  
+  }  
+}  
+
+// Bike is running safely
+
+```
+```java
+//Java Program to demonstrate the real scenario of Java Method Overriding  
+//where three classes are overriding the method of a parent class.  
+//Creating a parent class.  
+class Bank{  
+int getRateOfInterest(){return 0;}  
+}  
+//Creating child classes.  
+class SBI extends Bank{  
+int getRateOfInterest(){return 8;}  
+}  
+  
+class ICICI extends Bank{  
+int getRateOfInterest(){return 7;}  
+}  
+class AXIS extends Bank{  
+int getRateOfInterest(){return 9;}  
+}  
+//Test class to create objects and call the methods  
+class Test2{  
+public static void main(String args[]){  
+SBI s=new SBI();  
+ICICI i=new ICICI();  
+AXIS a=new AXIS();  
+System.out.println("SBI Rate of Interest: "+s.getRateOfInterest());  
+System.out.println("ICICI Rate of Interest: "+i.getRateOfInterest());  
+System.out.println("AXIS Rate of Interest: "+a.getRateOfInterest());  
+}  
+}  
+```
+
+Can we override static method?
+
+No, a static method cannot be overridden. It can be proved by runtime polymorphism, so we will learn it later.
+
+Why can we not override static method?
+
+It is because the static method is bound with class whereas instance method is bound with an object. Static belongs to the class area, and an instance belongs to the heap area.
+
+
+Covariant Return Type
+
+The covariant return type specifies that the return type may vary in the same direction as the subclass.
+
+Before Java5, it was not possible to override any method by changing the return type. But now, since Java5, it is possible to override method by changing the return type if subclass overrides any method whose return type is Non-Primitive but it changes its return type to subclass type. Let's take a simple example:
+
+```java
+class A{    
+A get(){return this;}    
+}    
+    
+class B1 extends A{    
+@Override  
+B1 get(){return this;}    
+void message(){System.out.println("welcome to covariant return type");}    
+    
+public static void main(String args[]){    
+new B1().get().message();    
+}    
+}   
+
+// welcome to covariant return type
+```
+
+As you can see in the above example, the return type of the get() method of A class is A but the return type of the get() method of B class is B. Both methods have different return type but it is method overriding. This is known as covariant return type.
+
+Following are the advantages of the covariant return type.
+
+* Covariant return type assists to stay away from the confusing type casts in the class hierarchy and makes the code more usable, readable, and maintainable.
+
+* In the method overriding, the covariant return type provides the liberty to have more to the point return types.
+
+* Covariant return type helps in preventing the run-time ClassCastExceptions on returns.
+
+Let's take an example to understand the advantages of the covariant return type.
+
+without covariant return type we need to do the type casting to make it
+
+```java
+class A1  
+{  
+    A1 foo()  
+    {  
+        return this;  
+    }  
+      
+    void print()  
+    {  
+        System.out.println("Inside the class A1");  
+    }  
+}  
+  
+  
+// A2 is the child class of A1  
+class A2 extends A1  
+{  
+    @Override  
+    A2 foo()  
+    {  
+        return this;  
+    }  
+      
+    void print()  
+    {  
+        System.out.println("Inside the class A2");  
+    }  
+}  
+  
+// A3 is the child class of A2  
+class A3 extends A2  
+{  
+    @Override  
+    A3 foo()  
+    {  
+        return this;  
+    }  
+      
+    @Override  
+    void print()  
+    {  
+        System.out.println("Inside the class A3");  
+    }  
+}  
+  
+public class CovariantExample  
+{  
+    // main method  
+    public static void main(String argvs[])  
+    {  
+       A1 a1 = new A1();  
+         
+       a1.foo().print();  
+         
+       A2 a2 = new A2();  
+         
+       a2.foo().print();  
+         
+       A3 a3 = new A3();  
+         
+       a3.foo().print();  
+         
+    }  
+}  
+
+// Inside the class A1
+// Inside the class A2
+// Inside the class A3
+
+```
+
+Explanation: In the above program, no typecasting is needed as the return type is specific. Hence, there is no confusion about knowing the type of object getting returned from the method foo(). Also, even if we write the code for the 10 - 15 classes, there would be no confusion regarding the return types of the methods. All this is possible because of the covariant return type.
+
+
+Java doesn't allow the return type-based overloading, but JVM always allows return type-based overloading. JVM uses the full signature of a method for lookup/resolution. Full signature means it includes return type in addition to argument types. i.e., a class can have two or more methods differing only by return type. javac uses this fact to implement covariant return types.
+
+The super keyword in Java is a reference variable which is used to refer immediate parent class object.
+
+* super can be used to refer immediate parent class instance variable.
+
+```java
+class Animal{  
+String color="white";  
+}  
+class Dog extends Animal{  
+String color="black";  
+void printColor(){  
+System.out.println(color);//prints color of Dog class  
+System.out.println(super.color);//prints color of Animal class  
+}  
+}  
+```
+
+* super can be used to invoke immediate parent class method.
+
+```java
+class Animal{  
+void eat(){System.out.println("eating...");}  
+}  
+class Dog extends Animal{  
+void eat(){System.out.println("eating bread...");}  
+void bark(){System.out.println("barking...");}  
+void work(){  
+super.eat();  
+bark();  
+}  
+}  
+```
+
+* super() can be used to invoke immediate parent class constructor.
+
+```java
+class Animal{  
+Animal(){System.out.println("animal is created");}  
+}  
+class Dog extends Animal{  
+Dog(){  
+super();  
+System.out.println("dog is created");  
+}  
+}  
+
+// animal is created
+// dog is created
+```
+
+Note: super() is added in each class constructor automatically by compiler if there is no super() or this().
+
+Another example of super keyword where super() is provided by the compiler implicitly.
+
+```java
+class Animal{  
+Animal(){System.out.println("animal is created");}  
+}  
+class Dog extends Animal{  
+Dog(){  
+System.out.println("dog is created");  
+}  
+}  
+class TestSuper4{  
+public static void main(String args[]){  
+Dog d=new Dog();  
+}}  
+
+// animal is created
+// dog is created
+
+```
+
+reusing the parent variables
+
+```java
+class Person{  
+int id;  
+String name;  
+Person(int id,String name){  
+this.id=id;  
+this.name=name;  
+}  
+}  
+class Emp extends Person{  
+float salary;  
+Emp(int id,String name,float salary){  
+super(id,name);//reusing parent constructor  
+this.salary=salary;  
+}  
+void display(){System.out.println(id+" "+name+" "+salary);}  
+}  
+class TestSuper5{  
+public static void main(String[] args){  
+Emp e1=new Emp(1,"ankit",45000f);  
+e1.display();  
+}}  
+```
+
+Instance Initializer block is used to initialize the instance data member. It run each time when object of the class is created.
+
+The initialization of the instance variable can be done directly but there can be performed extra operations while initializing the instance variable in the instance initializer block.
+
+Let's see the simple example of instance initializer block that performs initialization.
+
+```java
+class Bike7{  
+    int speed;  
+      
+    Bike7(){System.out.println("speed is "+speed);}  
+   
+    {speed=100;}  
+       
+    public static void main(String args[]){  
+    Bike7 b1=new Bike7();  
+    Bike7 b2=new Bike7();  
+    }      
+}  
+
+// Output:speed is 100
+//        speed is 100
+
+```
+
+There are three places in java where you can perform operations:
+
+* method
+* constructor
+* block
+
+In the above example, it seems that instance initializer block is firstly invoked but NO. Instance intializer block is invoked at the time of object creation. The java compiler copies the instance initializer block in the constructor after the first statement super(). So firstly, constructor is invoked. 
+
+
+```java
+class A{  
+A(){  
+System.out.println("parent class constructor invoked");  
+}  
+}  
+  
+class B3 extends A{  
+B3(){  
+super();  
+System.out.println("child class constructor invoked");  
+}  
+  
+B3(int a){  
+super();  
+System.out.println("child class constructor invoked "+a);  
+}  
+  
+{System.out.println("instance initializer block is invoked");}  
+  
+public static void main(String args[]){  
+B3 b1=new B3();  
+B3 b2=new B3(10);  
+}  
+}  
+```
+
+The final keyword in java is used to restrict the user. The java final keyword can be used in many context. Final can be:
+
+* variable
+
+If you make any variable as final, you cannot change the value of final variable(It will be constant)
+
+```java
+class Bike9{  
+ final int speedlimit=90;//final variable  
+ void run(){  
+  speedlimit=400;  
+ }  
+ public static void main(String args[]){  
+ Bike9 obj=new  Bike9();  
+ obj.run();  
+ }  
+}//end of class  
+
+// Output:Compile Time Error
+```
+
+* method
+
+If you make any method as final, you cannot override it
+
+final method is inherited but you cannot override it. 
+
+```java
+class Bike{  
+  final void run(){System.out.println("running");}  
+}  
+     
+class Honda extends Bike{  
+   void run(){System.out.println("running safely with 100kmph");}  
+     
+   public static void main(String args[]){  
+   Honda honda= new Honda();  
+   honda.run();  
+   }  
+}  
+
+// Output:Compile Time Error
+```
+
+* class
+
+If you make any class as final, you cannot extend it.
+
+```java
+final class Bike{}  
+  
+class Honda1 extends Bike{  
+  void run(){System.out.println("running safely with 100kmph");}  
+    
+  public static void main(String args[]){  
+  Honda1 honda= new Honda1();  
+  honda.run();  
+  }  
+}  
+
+// Output:Compile Time Error
+```
+
+A final variable that is not initialized at the time of declaration is known as blank final variable.
+
+If you want to create a variable that is initialized at the time of creating object and once initialized may not be changed, it is useful. For example PAN CARD number of an employee.
+
+It can be initialized only in constructor.
+
+Example of blank final variable
+
+```java
+class Student{  
+int id;  
+String name;  
+final String PAN_CARD_NUMBER;  
+...  
+}  
+
+```
+
+Can we initialize blank final variable?
+
+Yes, but only in constructor. For example:
+
+```java
+class Bike10{  
+  final int speedlimit;//blank final variable  
+    
+  Bike10(){  
+  speedlimit=70;  
+  System.out.println(speedlimit);  
+  }  
+  
+  public static void main(String args[]){  
+    new Bike10();  
+ }  
+}  
+
+// Output: 70
+```
+
+
+A static final variable that is not initialized at the time of declaration is known as static blank final variable. It can be initialized only in static block.
+
+Example of static blank final variable
+```java
+class A{  
+  static final int data;//static blank final variable  
+  static{ data=50;}  
+  public static void main(String args[]){  
+    System.out.println(A.data);  
+ }  
+}  
+```
+
+What is final parameter?
+
+
+If you declare any parameter as final, you cannot change the value of it.
+
+```java
+class Bike11{  
+  int cube(final int n){  
+   n=n+2;//can't be changed as n is final  
+   n*n*n;  
+  }  
+  public static void main(String args[]){  
+    Bike11 b=new Bike11();  
+    b.cube(5);  
+ }  
+}  
+
+// Output: Compile Time Error
+```
+
+Can we declare a constructor final?
+
+No, because constructor is never inherited.
+
+Polymorphism in Java is a concept by which we can perform a single action in different ways. Polymorphism is derived from 2 Greek words: poly and morphs. The word "poly" means many and "morphs" means forms. So polymorphism means many forms.
+
+There are two types of polymorphism in Java: compile-time polymorphism and runtime polymorphism. We can perform polymorphism in java by method overloading and method overriding.
+
+If you overload a static method in Java, it is the example of compile time polymorphism. Here, we will focus on runtime polymorphism in java.
+
+Runtime polymorphism or Dynamic Method Dispatch is a process in which a call to an overridden method is resolved at runtime rather than compile-time.
+
+Upcasting
+
+If the reference variable of Parent class refers to the object of Child class, it is known as upcasting. For example
+
+```java
+class A{}  
+class B extends A{}  
+
+A a=new B();//upcasting  
+```
+
+For upcasting, we can use the reference variable of class type or an interface type. For Example:
+
+```java
+interface I{}  
+class A{}  
+class B extends A implements I{}  
+```
+
+B IS-A A
+
+B IS-A I
+
+B IS-A Object
+
+In this example, we are creating two classes Bike and Splendor. Splendor class extends Bike class and overrides its run() method. We are calling the run method by the reference variable of Parent class. Since it refers to the subclass object and subclass method overrides the Parent class method, the subclass method is invoked at runtime.
+
+```java
+class Bike{  
+  void run(){System.out.println("running");}  
+}  
+class Splendor extends Bike{  
+  void run(){System.out.println("running safely with 60km");}  
+  
+  public static void main(String args[]){  
+    Bike b = new Splendor();//upcasting  
+    b.run();  
+  }  
+}  
+
+// running safely with 60km.
+```
+
+```java
+class Bank{  
+float getRateOfInterest(){return 0;}  
+}  
+class SBI extends Bank{  
+float getRateOfInterest(){return 8.4f;}  
+}  
+class ICICI extends Bank{  
+float getRateOfInterest(){return 7.3f;}  
+}  
+class AXIS extends Bank{  
+float getRateOfInterest(){return 9.7f;}  
+}  
+class TestPolymorphism{  
+public static void main(String args[]){  
+Bank b;  
+b=new SBI();  
+System.out.println("SBI Rate of Interest: "+b.getRateOfInterest());  
+b=new ICICI();  
+System.out.println("ICICI Rate of Interest: "+b.getRateOfInterest());  
+b=new AXIS();  
+System.out.println("AXIS Rate of Interest: "+b.getRateOfInterest());  
+}  
+}  
+
+// SBI Rate of Interest: 8.4
+// ICICI Rate of Interest: 7.3
+// AXIS Rate of Interest: 9.7
+
+```
+Java Runtime Polymorphism with Data Member
+
+A method is overridden, not the data members, so runtime polymorphism can't be achieved by data members.
+
+In the example given below, both the classes have a data member speedlimit. We are accessing the data member by the reference variable of Parent class which refers to the subclass object. Since we are accessing the data member which is not overridden, hence it will access the data member of the Parent class always.
+
+Rule: Runtime polymorphism can't be achieved by data members.
+
+```java
+class Bike{  
+ int speedlimit=90;  
+}  
+class Honda3 extends Bike{  
+ int speedlimit=150;  
+  
+ public static void main(String args[]){  
+  Bike obj=new Honda3();  
+  System.out.println(obj.speedlimit);//90  
+}  
+```
+
+Java Runtime Polymorphism with Multilevel Inheritance
+
+```java
+class Animal{  
+void eat(){System.out.println("eating");}  
+}  
+class Dog extends Animal{  
+void eat(){System.out.println("eating fruits");}  
+}  
+class BabyDog extends Dog{  
+void eat(){System.out.println("drinking milk");}  
+public static void main(String args[]){  
+Animal a1,a2,a3;  
+a1=new Animal();  
+a2=new Dog();  
+a3=new BabyDog();  
+a1.eat();  
+a2.eat();  
+a3.eat();  
+}  
+}  
+
+// eating
+// eating fruits
+// drinking Milk
+```
+
+Static Binding and Dynamic Binding
+
+Connecting a method call to the method body is known as binding.
+
+There are two types of binding
+
+* Static Binding (also known as Early Binding).
+* Dynamic Binding (also known as Late Binding).
+
+1) variables have a type
+
+Each variable has a type, it may be primitive and non-primitive.
+
+```java
+int data=30; 
+```
+
+Here data variable is a type of int.
+
+2) References have a type
+
+```java
+class Dog{  
+ public static void main(String args[]){  
+  Dog d1;//Here d1 is a type of Dog  
+ }  
+}  
+```
+
+3) Objects have a type
+
+An object is an instance of particular java class,but it is also an instance of its superclass.
+
+
+```java
+class Animal{}  
+  
+class Dog extends Animal{  
+ public static void main(String args[]){  
+  Dog d1=new Dog();  
+ }  
+}  
+```
+
+Here d1 is an instance of Dog class, but it is also an instance of Animal.
+
+static binding
+When type of the object is determined at compiled time(by the compiler), it is known as static binding.
+
+If there is any private, final or static method in a class, there is static binding.
+
+```java
+class Dog{  
+ private void eat(){System.out.println("dog is eating...");}  
+  
+ public static void main(String args[]){  
+  Dog d1=new Dog();  
+  d1.eat();  
+ }  
+}  
+```
+
+Dynamic binding
+
+When type of the object is determined at run-time, it is known as dynamic binding.
+
+```java
+class Animal{  
+ void eat(){System.out.println("animal is eating...");}  
+}  
+  
+class Dog extends Animal{  
+ void eat(){System.out.println("dog is eating...");}  
+  
+ public static void main(String args[]){  
+  Animal a=new Dog();  
+  a.eat();  
+ }  
+}  
+```
+
+n the above example object type cannot be determined by the compiler, because the instance of Dog is also an instance of Animal.So compiler doesn't know its type, only its base type.
+
+The java instanceof operator is used to test whether the object is an instance of the specified type (class or subclass or interface).
+
+The instanceof in java is also known as type comparison operator because it compares the instance with type. It returns either true or false. If we apply the instanceof operator with any variable that has null value, it returns false.
+
+```java
+class Simple1{  
+ public static void main(String args[]){  
+ Simple1 s=new Simple1();  
+ System.out.println(s instanceof Simple1);//true  
+ }  
+}  
+
+// true
+```
+
+An object of subclass type is also a type of parent class. For example, if Dog extends Animal then object of Dog can be referred by either Dog or Animal class.
+
+```java
+class Animal{}  
+class Dog1 extends Animal{//Dog inherits Animal  
+  
+ public static void main(String args[]){  
+ Dog1 d=new Dog1();  
+ System.out.println(d instanceof Animal);//true  
+ }  
+}  
+```
+
+If we apply instanceof operator with a variable that have null value, it returns false. Let's see the example given below where we apply instanceof operator with the variable that have null value.
+
+```java
+class Dog2{  
+ public static void main(String args[]){  
+  Dog2 d=null;  
+  System.out.println(d instanceof Dog2);//false  
+ }  
+}  
+
+// false
+```
+
+
+Downcasting with java instanceof operator
+
+When Subclass type refers to the object of Parent class, it is known as downcasting. If we perform it directly, compiler gives Compilation error. If you perform it by typecasting, ClassCastException is thrown at runtime. But if we use instanceof operator, downcasting is possible.
+
+```java
+Dog d=new Animal();//Compilation error  
+```
+
+If we perform downcasting by typecasting, ClassCastException is thrown at runtime.
+
+```java
+Dog d=(Dog)new Animal();  
+//Compiles successfully but ClassCastException is thrown at runtime  
+```
+
+Possibility of downcasting with instanceof
+
+Let's see the example, where downcasting is possible by instanceof operator.
+
+```java
+class Animal { }  
+  
+class Dog3 extends Animal {  
+  static void method(Animal a) {  
+    if(a instanceof Dog3){  
+       Dog3 d=(Dog3)a;//downcasting  
+       System.out.println("ok downcasting performed");  
+    }  
+  }  
+   
+  public static void main (String [] args) {  
+    Animal a=new Dog3();  
+    Dog3.method(a);  
+  }  
+    
+ }  
+
+ // Output:ok downcasting performed
+ ```
+
+Downcasting without the use of java instanceof
+
+Downcasting can also be performed without the use of instanceof operator as displayed in the following example:
+
+```java
+class Animal { }  
+class Dog4 extends Animal {  
+  static void method(Animal a) {  
+       Dog4 d=(Dog4)a;//downcasting  
+       System.out.println("ok downcasting performed");  
+  }  
+   public static void main (String [] args) {  
+    Animal a=new Dog4();  
+    Dog4.method(a);  
+  }  
+} 
+
+// Output:ok downcasting performed
+
+``` 
+
+Let's take closer look at this, actual object that is referred by a, is an object of Dog class. So if we downcast it, it is fine. But what will happen if we write:
+
+```java
+Animal a=new Animal();  
+Dog.method(a);  
+//Now ClassCastException but not in case of instanceof operator  
+```
+
+
+
 
 
 
