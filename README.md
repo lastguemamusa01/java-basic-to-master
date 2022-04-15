@@ -7330,7 +7330,2214 @@ Dog.method(a);
 ```
 
 
+A class which is declared with the abstract keyword is known as an abstract class in Java. It can have abstract and non-abstract methods (method with the body).
+
+Abstraction is a process of hiding the implementation details and showing only functionality to the user.
+
+
+There are two ways to achieve abstraction in java
+
+* Abstract class (0 to 100%)
+* Interface (100%)
+
+```java
+abstract class Bike{  
+  abstract void run();  
+}  
+class Honda4 extends Bike{  
+void run(){System.out.println("running safely");}  
+public static void main(String args[]){  
+ Bike obj = new Honda4();  
+ obj.run();  
+}  
+}  
+```
+
+A factory method is a method that returns the instance of the class.
+
+An abstract class can have a data member, abstract method, method body (non-abstract method), constructor, and even main() method.
+
+```java
+//Example of an abstract class that has abstract and non-abstract methods  
+ abstract class Bike{  
+   Bike(){System.out.println("bike is created");}  
+   abstract void run();  
+   void changeGear(){System.out.println("gear changed");}  
+ }  
+//Creating a Child class which inherits Abstract class  
+ class Honda extends Bike{  
+ void run(){System.out.println("running safely..");}  
+ }  
+//Creating a Test class which calls abstract and non-abstract methods  
+ class TestAbstraction2{  
+ public static void main(String args[]){  
+  Bike obj = new Honda();  
+  obj.run();  
+  obj.changeGear();  
+ }  
+}  
+```
+
+```java
+interface A{  
+void a();  
+void b();  
+void c();  
+void d();  
+}  
+  
+abstract class B implements A{  
+public void c(){System.out.println("I am c");}  
+}  
+  
+class M extends B{  
+public void a(){System.out.println("I am a");}  
+public void b(){System.out.println("I am b");}  
+public void d(){System.out.println("I am d");}  
+}  
+  
+class Test5{  
+public static void main(String args[]){  
+A a=new M();  
+a.a();  
+a.b();  
+a.c();  
+a.d();  
+}}  
+```
+
+Java Convert String to int
+
+We can convert String to an int in java using Integer.parseInt() method. To convert String into Integer, we can use Integer.valueOf() method which returns instance of Integer class.
+
+```java
+
+
+String s="200";  
+
+int i=Integer.parseInt(s);  
+//converting String into Integer using Integer.valueOf() method  
+Integer i=Integer.valueOf(s);  
+
+
+Java Convert int to String
+
+We can convert int to String in java using String.valueOf() and Integer.toString() methods. Alternatively, we can use String.format() method, string concatenation operator etc.
+
+```java
+int i=10;  
+
+String s=String.valueOf(i);//Now it will return "10"  
+String s=Integer.toString(i);//Now it will return "10"  
+String s=String.format("%d",i);  
+
+```
+
+Java String to long
+
+We can convert String to long in java using Long.parseLong() method.
+
+```java
+String s="9990449935";  
+long l=Long.parseLong(s);  
+```
+
+Java long to String
+
+We can convert long to String in java using String.valueOf() and Long.toString() methods.
+
+Java String to float
+
+We can convert String to float in java using Float.parseFloat() method.
+
+Java Convert float to String
+
+We can convert float to String in java using String.valueOf() and Float.toString() methods.
+
+Java Convert String to double
+
+We can convert String to double in java using Double.parseDouble() method.
+
+Java Convert double to String
+
+We can convert double to String in java using String.valueOf() and Double.toString() methods.
+
+Java String to Date
+
+We can convert String to Date in java using parse() method of DateFormat and SimpleDateFormat classes.
+
+```java
+String sDate1="31/12/1998";  
+Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);  
+```
+
+Java Convert Date to String
+
+We can convert Date to String in java using format() method of java.text.DateFormat class.
+
+```java
+Date date = Calendar.getInstance().getTime();  
+DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");  
+String strDate = dateFormat.format(date);  
+```
+
+Java Convert String to char
+
+We can convert String to char in java using charAt() method of String class.
+
+```java
+String s="hello";  
+char c=s.charAt(0);//returns h  
+
+String s="hello";    
+for(int i=0; i<s.length();i++){  
+        char c = s.charAt(i);  
+        System.out.println("char at "+i+" index is: "+c);  
+}   
+
+
+String s1="hello";    
+char[] ch=s1.toCharArray();    
+for(int i=0;i<ch.length;i++){    
+System.out.println("char at "+i+" index is: "+ch[i]);   
+}  
+
+
+```
+
+Java Convert char to String
+
+We can convert char to String in java using String.valueOf(char) method of String class and Character.toString(char) method of Character class.
+
+```java
+
+char c='S';  
+String s=String.valueOf(c);  
+```
+
+Java Convert String to Object
+
+We can convert String to Object in java with assignment operator. Each class is internally a child class of Object class. So you can assign string to Object directly.
+
+```java
+String s="hello";  
+Object obj=s;  
+System.out.println(obj);  
+```
+
+Java Convert Object to String
+
+We can convert Object to String in java using toString() method of Object class or String.valueOf(object) method.
+
+```java
+Emp e=new Emp();  
+String s=e.toString();  
+String s2=String.valueOf(e);  
+System.out.println(s);  
+System.out.println(s2);  
+
+// Emp@2a139a55
+// Emp@2a139a55
+
+String s="hello";  
+StringBuilder sb=new StringBuilder(s);  
+sb.reverse();  
+String rev=sb.toString();//converting StringBuilder to String  
+System.out.println("String is: "+s);  
+System.out.println("Reverse String is: "+rev);  
+
+// String is: hello
+// Reverse String is: olleh
+
+```
+
+
+Java Convert int to long
+
+We can convert int to long in java using assignment operator. There is nothing to do extra because lower type can be converted to higher type implicitly.
+
+It is also known as implicit type casting or type promotion.
+
+```java
+int i=200;  
+long l=i;  
+
+int i=100;  
+Long l= new Long(i);//first way  
+Long l2=Long.valueOf(i);//second way  
+
+
+```
+
+Java Convert long to int
+
+We can convert long to int in java using typecasting. To convert higher data type into lower, we need to perform typecasting.
+
+```java
+long l=500;  
+int i=(int)l;  
+
+Long l= new Long(10);  
+int i=l.intValue();  
+
+```
+
+Java Convert int to double
+
+We can convert int to double in java using assignment operator. There is nothing to do extra because lower type can be converted to higher type implicitly.
+
+```java
+int i=200;  
+double d=i;  
+
+int i=100;  
+Double d= new Double(i);//first way  
+Double d2=Double.valueOf(i);//second way  
+```
+
+Java Convert double to int
+
+We can convert double to int in java using typecasting. To convert double data type into int, we need to perform typecasting.
+
+```java
+double d=10.5;  
+int i=(int)d;  
+
+Double d=new Double(10.5);  
+int i=d.intValue();  
+```
+
+Java Convert char to int
+
+We can convert char to int in java using various ways. If we direct assign char variable to int, it will return ASCII value of given character.
+
+Java char to int Example: Get ASCII value
+
+```java
+char c='a';  
+char c2='1';  
+int a=c;  
+int b=c2;  
+System.out.println(a);  
+System.out.println(b);  
+
+// 97
+// 49
+```
+
+Let's see the simple code to convert char to int in java using Character.getNumericValue(char) method which returns an integer value.
+
+```java
+char c='1';  
+int a=Character.getNumericValue(c);  
+
+// 1
+```
+
+Let's see another example which returns integer value of specified char value using String.valueOf(char) method.
+
+```java
+char c='1';  
+int a=Integer.parseInt(String.valueOf(c));  
+System.out.println(a);  
+
+// 1
+```
+
+Java Convert int to char
+
+We can convert int to char in java using typecasting. To convert higher data type into lower, we need to perform typecasting. Here, the ASCII character of integer value will be stored in the char variable.
+
+Java int to char Example: Typecasting
+
+```java
+int a=65;  
+char c=(char)a;  
+
+// A
+```
+
+But if you store 1, it will store ASCII character of given number which is start of heading which is not printable. So it will not print anything on the console.
+
+If you add '0' with int variable, it will return actual value in the char variable. The ASCII value of '0' is 48. So, if you add 1 with 48, it becomes 49 which is equal to 1. The ASCII character of 49 is 1.
+
+```java
+int a=1;    
+char c=(char)(a+'0');    
+System.out.println(c);   
+
+// 1
+```
+
+If you store integer value in a single quote, it will store actual character in char variable.
+
+```java
+int a='1';    
+char c=(char)a;    
+System.out.println(c);  
+
+// 1
+```
+Java int to char Example: Character.forDigit()
+
+To get the actual value, you can also use Character.forDigit() method.
+
+```java
+int REDIX=10;//redix 10 is for decimal number, for hexa use redix 16  
+int a=1;    
+char c=Character.forDigit(a,REDIX);    
+
+// 1
+```
+
+To get the hexa value, use redix 16 in Character.forDigit() method.
+
+
+```java
+int REDIX=16;//redix 16 is for Hexadecimal value  
+int a=10;    
+char c=Character.forDigit(a,REDIX);       
+
+// a
+```
+
+Java Convert String to boolean
+
+We can convert String to boolean in java using Boolean.parseBoolean(string) method.
+
+To convert String into Boolean object, we can use Boolean.valueOf(string) method which returns instance of Boolean class.
+
+```java
+String s1="true";  
+String s2="TRue";  
+String s3="ok";  
+
+boolean b1=Boolean.parseBoolean(s1);  
+boolean b2=Boolean.parseBoolean(s2);  
+boolean b3=Boolean.parseBoolean(s3);  
+
+Boolean b1=Boolean.valueOf(s1);    
+Boolean b2=Boolean.valueOf(s2);    
+Boolean b3=Boolean.valueOf(s3);    
+
+// true
+// true
+// false
+```
+
+Java Convert boolean to String
+
+We can convert boolean to String in java using String.valueOf(boolean) method.
+
+Alternatively, we can use Boolean.toString(boolean) method which also converts boolean into String.
+
+```java
+boolean b1=true;  
+boolean b2=false;  
+String s1=String.valueOf(b1);  
+String s2=String.valueOf(b2);  
+String s1=Boolean.toString(b1);  
+String s2=Boolean.toString(b2);  
+
+// true
+// false
+```
+
+Java Convert Date to Timestamp
+
+We can convert Date to Timestamp in java using constructor of java.sql.Timestamp class
+
+The constructor of Timestamp class receives long value as an argument. So you need to convert date into long value using getTime() method of java.util.Date class.
+
+You can also format the output of Timestamp using java.text.SimpleDateFormat class.
+
+```java
+Date date = new Date();  
+Timestamp ts=new Timestamp(date.getTime());  
+System.out.println(ts);                     
+
+Date date = new Date();  
+Timestamp ts=new Timestamp(date.getTime());  
+SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+System.out.println(formatter.format(ts));                     
+
+```
+
+Java Convert Timestamp to Date
+
+We can convert Timestamp to Date in java using constructor of java.util.Date class.
+
+The constructor of Date class receives long value as an argument. So, you need to convert Timestamp object into long value using getTime() method of java.sql.Timestamp class.
+
+```java
+Timestamp ts=new Timestamp(System.currentTimeMillis());  
+Date date=new Date(ts.getTime());  
+System.out.println(date);                     
+```
+
+Java Convert Binary to Decimal
+
+We can convert binary to decimal in java using Integer.parseInt() method or custom logic.
+
+```java
+String binaryString="1010";  
+int decimal=Integer.parseInt(binaryString,2);  
+System.out.println(decimal);  
+
+```
+
+Java Convert Decimal to Binary
+
+We can convert decimal to binary in java using Integer.toBinaryString() method or custom logic.
+
+```java
+System.out.println(Integer.toBinaryString(10));  
+System.out.println(Integer.toBinaryString(21));  
+System.out.println(Integer.toBinaryString(31));  
+```
+
+Java Convert Hexadecimal to Decimal
+
+We can convert hexadecimal to decimal in java using Integer.parseInt() method or custom logic.
+
+```java
+String hex="a";  
+int decimal=Integer.parseInt(hex,16);  
+System.out.println(decimal);  
+
+//10
+```
+
+
+Java Convert Decimal to Hexadecimal
+
+We can convert decimal to hexadecimal in java using Integer.toHexString() method or custom logic.
+
+```java
+System.out.println(Integer.toHexString(10));  
+System.out.println(Integer.toHexString(15));  
+System.out.println(Integer.toHexString(289)); 
+```
+
+Java Convert Octal to Decimal
+
+We can convert octal to decimal in java using Integer.parseInt() method or custom logic.
+
+
+```java
+//Declaring an octal number  
+String octalString="121";  
+//Converting octal number into decimal  
+int decimal=Integer.parseInt(octalString,8);  
+
+//81
+```
+
+Java Convert Decimal to Octal
+
+We can convert decimal to octal in java using Integer.toOctalString() method or custom logic.
+
+```java
+System.out.println(Integer.toOctalString(8));  
+System.out.println(Integer.toOctalString(19));  
+System.out.println(Integer.toOctalString(81));  
+```
+
+An interface in Java is a blueprint of a class. It has static constants and abstract methods.
+
+The interface in Java is a mechanism to achieve abstraction. There can be only abstract methods in the Java interface, not method body. It is used to achieve abstraction and multiple inheritance in Java.
+
+Java Interface also represents the IS-A relationship.
+
+It cannot be instantiated just like the abstract class.
+
+Since Java 8, we can have default and static methods in an interface.
+
+Since Java 9, we can have private methods in an interface.
+
+In other words, Interface fields are public, static and final by default, and the methods are public and abstract.
+
+
+![](2022-04-14-21-36-32.png)
+
+```java
+interface printable{  
+void print();  
+}  
+class A6 implements printable{  
+public void print(){System.out.println("Hello");}  
+  
+public static void main(String args[]){  
+A6 obj = new A6();  
+obj.print();  
+ }  
+}  
+```
+
+```java
+interface Printable{  
+void print();  
+}  
+interface Showable{  
+void show();  
+}  
+class A7 implements Printable,Showable{  
+public void print(){System.out.println("Hello");}  
+public void show(){System.out.println("Welcome");}  
+  
+public static void main(String args[]){  
+A7 obj = new A7();  
+obj.print();  
+obj.show();  
+ }  
+}  
+```
+multiple inheritance is not supported in the case of class because of ambiguity. However, it is supported in case of an interface because there is no ambiguity. It is because its implementation is provided by the implementation class.
+
+```java
+interface Printable{  
+void print();  
+}  
+interface Showable{  
+void print();  
+}  
+  
+class TestInterface3 implements Printable, Showable{  
+public void print(){System.out.println("Hello");}  
+public static void main(String args[]){  
+TestInterface3 obj = new TestInterface3();  
+obj.print();  
+ }  
+}  
+Test it Now
+```
+
+As you can see in the above example, Printable and Showable interface have same methods but its implementation is provided by class TestTnterface1, so there is no ambiguity.
+
+```java
+interface Printable{  
+void print();  
+}  
+interface Showable extends Printable{  
+void show();  
+}  
+class TestInterface4 implements Showable{  
+public void print(){System.out.println("Hello");}  
+public void show(){System.out.println("Welcome");}  
+  
+public static void main(String args[]){  
+TestInterface4 obj = new TestInterface4();  
+obj.print();  
+obj.show();  
+ }  
+}  
+```
+
+Java 8 Default Method in Interface
+
+Since Java 8, we can have method body in interface. But we need to make it default method. Let's see an example:
+
+```java
+interface Drawable{  
+void draw();  
+default void msg(){System.out.println("default method");}  
+}  
+class Rectangle implements Drawable{  
+public void draw(){System.out.println("drawing rectangle");}  
+}  
+class TestInterfaceDefault{  
+public static void main(String args[]){  
+Drawable d=new Rectangle();  
+d.draw();  
+d.msg();  
+}}  
+```
+Java 8 Static Method in Interface
+
+Since Java 8, we can have static method in interface. Let's see an example:
+
+```java
+interface Drawable{  
+void draw();  
+static int cube(int x){return x*x*x;}  
+}  
+class Rectangle implements Drawable{  
+public void draw(){System.out.println("drawing rectangle");}  
+}  
+  
+class TestInterfaceStatic{  
+public static void main(String args[]){  
+Drawable d=new Rectangle();  
+d.draw();  
+System.out.println(Drawable.cube(3));  
+}}  
+```
+
+What is marker or tagged interface?
+
+An interface which has no member is known as a marker or tagged interface, for example, Serializable, Cloneable, Remote, etc. They are used to provide some essential information to the JVM so that JVM may perform some useful operation.
+
+```java
+//How Serializable interface is written?  
+public interface Serializable{  
+}  
+```
+
+Nested Interface in Java
+Note: An interface can have another interface which is known as a nested interface. We will learn it in detail in the nested classes chapter. For example:
+
+```java
+interface printable{  
+ void print();  
+ interface MessagePrintable{  
+   void msg();  
+ }  
+}  
+```
+
+![](2022-04-14-21-46-31.png)
+
+java package
+
+A java package is a group of similar types of classes, interfaces and sub-packages.
+
+Package in java can be categorized in two form, built-in package and user-defined package.
+
+There are many built-in packages such as java, lang, awt, javax, swing, net, io, util, sql etc
+
+* Java package is used to categorize the classes and interfaces so that they can be easily maintained.
+
+* Java package provides access protection.
+
+* Java package removes naming collision.
+
+
+![](2022-04-14-21-47-30.png)
+
+Subpackage in java
+
+Package inside the package is called the subpackage. It should be created to categorize the package further.
+
+Java Static Import
+
+The static import feature of Java 5 facilitate the java programmer to access any static member of a class directly. There is no need to qualify it by the class name.
+
+pros
+
+Less coding is required if you have access any static member of a class oftenly.
+
+cons 
+
+If you overuse the static import feature, it makes the program unreadable and unmaintainable.
+
+```java
+import static java.lang.System.*;    
+class StaticImportExample{  
+  public static void main(String args[]){  
+     
+   out.println("Hello");//Now no need of System.out  
+   out.println("Java");  
+  
+ }   
+}      
+```
+
+Access Modifiers in Java
+
+There are two types of modifiers in Java: access modifiers and non-access modifiers.
+
+The access modifiers in Java specifies the accessibility or scope of a field, method, constructor, or class. We can change the access level of fields, constructors, methods, and class by applying the access modifier on it.
+
+
+four types of java access modifiers : 
+
+* Private: The access level of a private modifier is only within the class. It cannot be accessed from outside the class.
+* Default: The access level of a default modifier is only within the package. It cannot be accessed from outside the package. If you do not specify any access level, it will be the default.
+* Protected: The access level of a protected modifier is within the package and outside the package through child class. If you do not make the child class, it cannot be accessed from outside the package.
+* Public: The access level of a public modifier is everywhere. It can be accessed from within the class, outside the class, within the package and outside the package.
+
+
+The default modifier is more restrictive than protected. That is why, there is a compile-time error.
+
+```java
+class A{  
+protected void msg(){System.out.println("Hello java");}  
+}  
+  
+public class Simple extends A{  
+void msg(){System.out.println("Hello java");}//C.T.Error  
+ public static void main(String args[]){  
+   Simple obj=new Simple();  
+   obj.msg();  
+   }  
+}  
+
+```
+
+Encapsulation in Java is a process of wrapping code and data together into a single unit, for example, a capsule which is mixed of several medicines.
+
+We can create a fully encapsulated class in Java by making all the data members of the class private. Now we can use setter and getter methods to set and get the data in it.
+
+The Java Bean class is the example of a fully encapsulated class.
+
+By providing only a setter or getter method, you can make the class read-only or write-only. In other words, you can skip the getter or setter methods.
+
+It provides you the control over the data. Suppose you want to set the value of id which should be greater than 100 only, you can write the logic inside the setter method. You can write the logic not to store the negative numbers in the setter methods.
+
+It is a way to achieve data hiding in Java because other class will not be able to access the data through the private data members.
+
+```java
+//A Java class which is a fully encapsulated class.  
+//It has a private data member and getter and setter methods.  
+package com.javatpoint;  
+public class Student{  
+//private data member  
+private String name;  
+//getter method for name  
+public String getName(){  
+return name;  
+}  
+//setter method for name  
+public void setName(String name){  
+this.name=name  
+}  
+}  
+```
+
+Object class in Java
+The Object class is the parent class of all the classes in java by default. In other words, it is the topmost class of java.
+
+The Object class is beneficial if you want to refer any object whose type you don't know. Notice that parent class reference variable can refer the child class object, know as upcasting.
+
+![](2022-04-14-21-58-33.png)
+
+Let's take an example, there is getObject() method that returns an object but it can be of any type like Employee,Student etc, we can use Object class reference to refer that object. For example:
+
+```java
+Object obj=getObject();//we don't know what object will be returned from this method  
+```
+
+![](2022-04-14-22-00-03.png)
+
+The object cloning is a way to create exact copy of an object. The clone() method of Object class is used to clone an object.
+
+The java.lang.Cloneable interface must be implemented by the class whose object clone we want to create. If we don't implement Cloneable interface, clone() method generates CloneNotSupportedException.
+
+Although Object.clone() has some design issues but it is still a popular and easy way of copying objects. Following is a list of advantages of using clone() method:
+
+* You don't need to write lengthy and repetitive codes. Just use an abstract class with a 4- or 5-line long clone() method.
+* It is the easiest and most efficient way for copying objects, especially if we are applying it to an already developed or an old project. Just define a parent class, implement Cloneable in it, provide the definition of the clone() method and the task will be done.
+*  Clone() is the fastest way to copy array.
+
+Disadvantage of Object cloning
+
+Following is a list of some disadvantages of clone() method:
+
+* To use the Object.clone() method, we have to change a lot of syntaxes to our code, like implementing a Cloneable interface, defining the clone() method and handling CloneNotSupportedException, and finally, calling Object.clone() etc.
+*  We have to implement cloneable interface while it doesn't have any methods in it. We just have to use it to tell the JVM that we can perform clone() on our object.
+* Object.clone() is protected, so we have to provide our own clone() and indirectly call Object.clone() from it.
+* Object.clone() doesn't invoke any constructor so we don't have any control over object construction.
+* If you want to write a clone method in a child class then all of its superclasses should define the clone() method in them or inherit it from another parent class. Otherwise, the super.clone() chain will fail.
+* Object.clone() supports only shallow copying but we will need to override it if we need deep cloning.
+
+```java
+class Student18 implements Cloneable{  
+int rollno;  
+String name;  
+  
+Student18(int rollno,String name){  
+this.rollno=rollno;  
+this.name=name;  
+}  
+  
+public Object clone()throws CloneNotSupportedException{  
+return super.clone();  
+}  
+  
+public static void main(String args[]){  
+try{  
+Student18 s1=new Student18(101,"amit");  
+  
+Student18 s2=(Student18)s1.clone();  
+  
+System.out.println(s1.rollno+" "+s1.name);  
+System.out.println(s2.rollno+" "+s2.name);  
+  
+}catch(CloneNotSupportedException c){}  
+  
+}  
+}  
+```
+Java Math class provides several methods to work on math calculations like min(), max(), avg(), sin(), cos(), tan(), round(), ceil(), floor(), abs() etc.
+
+If the size is int or long and the results overflow the range of value, the methods addExact(), subtractExact(), multiplyExact(), and toIntExact() throw an ArithmeticException.
+
+```java
+double x = 28;    
+double y = 4;    
+   
+// return the maximum of two numbers  
+System.out.println("Maximum number of x and y is: " +Math.max(x, y));   
+   
+// return the square root of y   
+System.out.println("Square root of y is: " + Math.sqrt(y));   
+   
+//returns 28 power of 4 i.e. 28*28*28*28    
+System.out.println("Power of x and y is: " + Math.pow(x, y));      
+
+// return the logarithm of given value       
+System.out.println("Logarithm of x is: " + Math.log(x));   
+System.out.println("Logarithm of y is: " + Math.log(y));  
+   
+// return the logarithm of given value when base is 10      
+System.out.println("log10 of x is: " + Math.log10(x));   
+System.out.println("log10 of y is: " + Math.log10(y));    
+   
+// return the log of x + 1  
+System.out.println("log1p of x is: " +Math.log1p(x));    
+
+// return a power of 2    
+System.out.println("exp of a is: " +Math.exp(x));    
+   
+// return (a power of 2)-1  
+System.out.println("expm1 of a is: " +Math.expm1(x));  
 
 
 
+
+double a = 30;    
+          
+// converting values to radian    
+double b = Math.toRadians(a);   
+   
+// return the trigonometric sine of a      
+System.out.println("Sine value of a is: " +Math.sin(a));    
+   
+// return the trigonometric cosine value of a  
+System.out.println("Cosine value of a is: " +Math.cos(a));  
+   
+// return the trigonometric tangent value of a  
+System.out.println("Tangent value of a is: " +Math.tan(a));  
+   
+// return the trigonometric arc sine of a      
+System.out.println("Sine value of a is: " +Math.asin(a));    
+   
+// return the trigonometric arc cosine value of a  
+System.out.println("Cosine value of a is: " +Math.acos(a));  
+   
+// return the trigonometric arc tangent value of a  
+System.out.println("Tangent value of a is: " +Math.atan(a));  
+
+// return the hyperbolic sine of a      
+System.out.println("Sine value of a is: " +Math.sinh(a));    
+   
+// return the hyperbolic cosine value of a  
+System.out.println("Cosine value of a is: " +Math.cosh(a));  
+   
+// return the hyperbolic tangent value of a  
+System.out.println("Tangent value of a is: " +Math.tanh(a));  
+
+
+```
+
+![](2022-04-14-22-07-49.png)
+
+![](2022-04-14-22-08-44.png)
+
+![](2022-04-14-22-09-10.png)
+
+Java strictfp
+
+Java strictfp keyword ensures that you will get the same result on every platform if you perform operations in the floating-point variable. The precision may differ from platform to platform that is why java programming language have provided the strictfp keyword, so that you get same result on every platform. So, now you have better control over the floating-point arithmetic.
+
+```java
+strictfp class A{}//strictfp applied on class  
+strictfp interface M{}//strictfp applied on interface  
+class A{  
+strictfp void m(){}//strictfp applied on method  
+}  
+```
+
+java docs
+
+We can create document api in java by the help of javadoc tool. In the java file, we must use the documentation comment /**... */ to post information for the class, method, constructor, fields etc.
+
+
+Let's see the simple class that contains documentation comment.
+
+```java
+package com.abc;  
+/** This class is a user-defined class that contains one methods cube.*/  
+public class M{  
+  
+/** The cube method prints cube of the given number */  
+public static void  cube(int n){System.out.println(n*n*n);}  
+}  
+```
+
+java command line arguments
+
+The java command-line argument is an argument i.e. passed at the time of running the java program.
+
+```java
+class CommandLineExample{  
+public static void main(String args[]){  
+System.out.println("Your first argument is: "+args[0]);  
+}  
+}  
+```
+
+```terminal
+compile by > javac CommandLineExample.java  
+run by > java CommandLineExample sonoo  
+Output: Your first argument is: sonoo
+```
+
+Difference between object and class
+
+![](2022-04-14-22-13-47.png)
+
+Difference between method overloading and method overriding in java
+
+![](2022-04-14-22-13-55.png)
+
+Call by Value and Call by Reference in Java
+
+
+There is only call by value in java, not call by reference. If we call a method passing a value, it is known as call by value. The changes being done in the called method, is not affected in the calling method.
+
+Example of call by value in java
+
+In case of call by value original value is not changed. Let's take a simple example:
+
+```java
+class Operation{  
+ int data=50;  
+  
+ void change(int data){  
+ data=data+100;//changes will be in the local variable only  
+ }  
+     
+ public static void main(String args[]){  
+   Operation op=new Operation();  
+  
+   System.out.println("before change "+op.data);  
+   op.change(500);  
+   System.out.println("after change "+op.data);  
+  
+ }  
+}  
+
+// Output:before change 50
+//        after change 50
+
+```
+
+Another Example of call by value in java
+
+In case of call by reference original value is changed if we made changes in the called method. If we pass object in place of any primitive value, original value will be changed. In this example we are passing object as a value. Let's take a simple example:
+
+```java
+class Operation2{  
+ int data=50;  
+  
+ void change(Operation2 op){  
+ op.data=op.data+100;//changes will be in the instance variable  
+ }  
+     
+    
+ public static void main(String args[]){  
+   Operation2 op=new Operation2();  
+  
+   System.out.println("before change "+op.data);  
+   op.change(op);//passing object  
+   System.out.println("after change "+op.data);  
+  
+ }  
+}  
+
+// Output:before change 50
+//        after change 150	
+```
+
+Recursion in Java
+
+Recursion in java is a process in which a method calls itself continuously. A method in java that calls itself is called recursive method.
+
+It makes the code compact but complex to understand.
+
+```java
+public class RecursionExample2 {  
+static int count=0;  
+static void p(){  
+count++;  
+if(count<=5){  
+System.out.println("hello "+count);  
+p();  
+}  
+}  
+public static void main(String[] args) {  
+p();  
+}  
+}  
+
+// hello 1
+// hello 2
+// hello 3
+// hello 4
+// hello 5
+
+```
+
+Factorial Number 
+
+```java
+public class RecursionExample3 {  
+    static int factorial(int n){      
+          if (n == 1)      
+            return 1;      
+          else      
+            return(n * factorial(n-1));      
+    }      
+  
+public static void main(String[] args) {  
+System.out.println("Factorial of 5 is: "+factorial(5));  
+}  
+}  
+```
+
+and Fibonacci Series
+
+```java
+public class RecursionExample4 {  
+    static int n1=0,n2=1,n3=0;      
+     static void printFibo(int count){      
+        if(count>0){      
+             n3 = n1 + n2;      
+             n1 = n2;      
+             n2 = n3;      
+             System.out.print(" "+n3);     
+             printFibo(count-1);      
+         }      
+     }        
+  
+public static void main(String[] args) {  
+    int count=15;      
+      System.out.print(n1+" "+n2);//printing 0 and 1      
+      printFibo(count-2);//n-2 because 2 numbers are already printed     
+}  
+}  
+```
+
+wrapper classes in java
+
+The wrapper class in Java provides the mechanism to convert primitive into object and object into primitive.
+
+Since J2SE 5.0, autoboxing and unboxing feature convert primitives into objects and objects into primitives automatically. The automatic conversion of primitive into an object is known as autoboxing and vice-versa unboxing.
+
+
+Use of Wrapper classes in Java
+
+Java is an object-oriented programming language, so we need to deal with objects many times like in Collections, Serialization, Synchronization, etc. Let us see the different scenarios, where we need to use the wrapper classes.
+
+* Change the value in Method: Java supports only call by value. So, if we pass a primitive value, it will not change the original value. But, if we convert the primitive value in an object, it will change the original value.
+* Serialization: We need to convert the objects into streams to perform the serialization. If we have a primitive value, we can convert it in objects through the wrapper classes.
+* Synchronization: Java synchronization works with objects in Multithreading.
+* java.util package: The java.util package provides the utility classes to deal with objects.
+* Collection Framework: Java collection framework works with objects only. All classes of the collection framework (ArrayList, LinkedList, Vector, HashSet, LinkedHashSet, TreeSet, PriorityQueue, ArrayDeque, etc.) deal with objects only.
+
+The eight classes of the java.lang package are known as wrapper classes in Java. The list of eight wrapper classes are given below:
+
+![](2022-04-14-22-27-29.png)
+
+Autoboxing
+
+The automatic conversion of primitive data type into its corresponding wrapper class is known as autoboxing, for example, byte to Byte, char to Character, int to Integer, long to Long, float to Float, boolean to Boolean, double to Double, and short to Short.
+
+Since Java 5, we do not need to use the valueOf() method of wrapper classes to convert the primitive into objects.
+
+```java
+//Java program to convert primitive into objects  
+//Autoboxing example of int to Integer  
+public class WrapperExample1{  
+public static void main(String args[]){  
+//Converting int into Integer  
+int a=20;  
+Integer i=Integer.valueOf(a);//converting int into Integer explicitly  
+Integer j=a;//autoboxing, now compiler will write Integer.valueOf(a) internally  
+  
+System.out.println(a+" "+i+" "+j);  
+}}  
+
+// 20 20 20
+```
+
+Unboxing
+
+The automatic conversion of wrapper type into its corresponding primitive type is known as unboxing. It is the reverse process of autoboxing. Since Java 5, we do not need to use the intValue() method of wrapper classes to convert the wrapper type into primitives.
+
+```java
+//Java program to convert object into primitives  
+//Unboxing example of Integer to int  
+public class WrapperExample2{    
+public static void main(String args[]){    
+//Converting Integer to int    
+Integer a=new Integer(3);    
+int i=a.intValue();//converting Integer to int explicitly  
+int j=a;//unboxing, now compiler will write a.intValue() internally    
+    
+System.out.println(a+" "+i+" "+j);    
+}}    
+
+// 3 3 3 
+```
+
+
+Custom Wrapper class in Java
+
+Java Wrapper classes wrap the primitive data types, that is why it is known as wrapper classes. We can also create a class which wraps a primitive data type. So, we can create a custom wrapper class in Java.
+
+```java
+//Creating the custom wrapper class  
+class Javatpoint{  
+private int i;  
+Javatpoint(){}  
+Javatpoint(int i){  
+this.i=i;  
+}  
+public int getValue(){  
+return i;  
+}  
+public void setValue(int i){  
+this.i=i;  
+}  
+@Override  
+public String toString() {  
+  return Integer.toString(i);  
+}  
+}  
+//Testing the custom wrapper class  
+public class TestJavatpoint{  
+public static void main(String[] args){  
+Javatpoint j=new Javatpoint(10);  
+System.out.println(j);  
+}}  
+```
+
+Java Inner Classes (Nested Classes)
+
+Java inner class or nested class is a class that is declared inside the class or interface.
+
+We use inner classes to logically group classes and interfaces in one place to be more readable and maintainable.
+
+Additionally, it can access all the members of the outer class, including private data members and methods.
+
+
+
+There are three advantages of inner classes in Java. They are as follows:
+
+* Nested classes represent a particular type of relationship that is it can access all the members (data members and methods) of the outer class, including private.
+* Nested classes are used to develop more readable and maintainable code because it logically group classes and interfaces in one place only.
+* Code Optimization: It requires less code to write.
+
+Sometimes users need to program a class in such a way so that no other class can access it. Therefore, it would be better if you include it within other classes.
+
+If all the class objects are a part of the outer object then it is easier to nest that class inside the outer class. That way all the outer class can access all the objects of the inner class
+
+An inner class is a part of a nested class. Non-static nested classes are known as inner classes.
+
+There are two types of nested classes non-static and static nested classes. The non-static nested classes are also known as inner classes.
+
+* Non-static nested class (inner class)
+   * Member inner class
+   * Anonymous inner class
+   * Local inner class
+* Static nested class
+
+* Member Inner Class	A class created within class and outside method.
+* Anonymous Inner Class	A class created for implementing an interface or extending class. The java compiler decides its name.
+* Local Inner Class	A class was created within the method.
+* Static Nested Class	A static class was created within the class.
+* Nested Interface	An interface created within class or interface.
+
+
+A non-static class that is created inside a class but outside a method is called member inner class. It is also known as a regular inner class. It can be declared with access modifiers like public, default, private, and protected.
+
+In this example, we are creating a msg() method in the member inner class that is accessing the private data member of the outer class.
+
+```java
+class TestMemberOuter1{  
+ private int data=30;  
+ class Inner{  
+  void msg(){System.out.println("data is "+data);}  
+ }  
+ public static void main(String args[]){  
+  TestMemberOuter1 obj=new TestMemberOuter1();  
+  TestMemberOuter1.Inner in=obj.new Inner();  
+  in.msg();  
+ }  
+}  
+
+// data is 30
+```
+
+Java anonymous inner class is an inner class without a name and for which only a single object is created. An anonymous inner class can be useful when making an instance of an object with certain "extras" such as overloading methods of a class or interface, without having to actually subclass a class.
+
+In simple words, a class that has no name is known as an anonymous inner class in Java. It should be used if you have to override a method of class or interface. Java Anonymous inner class can be created in two ways:
+
+* Class (may be abstract or concrete).
+* Interface
+
+```java
+abstract class Person{  
+  abstract void eat();  
+}  
+class TestAnonymousInner{  
+ public static void main(String args[]){  
+  Person p=new Person(){  
+  void eat(){System.out.println("nice fruits");}  
+  };  
+  p.eat();  
+ }  
+}  
+
+// nice fruits
+```
+
+```java
+interface Eatable{  
+ void eat();  
+}  
+class TestAnnonymousInner1{  
+ public static void main(String args[]){  
+ Eatable e=new Eatable(){  
+  public void eat(){System.out.println("nice fruits");}  
+ };  
+ e.eat();  
+ }  
+}  
+
+/// nice fruits
+```
+
+A class i.e., created inside a method, is called local inner class in java. Local Inner Classes are the inner classes that are defined inside a block. Generally, this block is a method body. Sometimes this block can be a for loop, or an if clause. Local Inner classes are not a member of any enclosing classes. They belong to the block they are defined within, due to which local inner classes cannot have any access modifiers associated with them. However, they can be marked as final or abstract. These classes have access to the fields of the class enclosing it.
+
+```java
+public class localInner1{  
+ private int data=30;//instance variable  
+ void display(){  
+  class Local{  
+   void msg(){System.out.println(data);}  
+  }  
+  Local l=new Local();  
+  l.msg();  
+ }  
+ public static void main(String args[]){  
+  localInner1 obj=new localInner1();  
+  obj.display();  
+ }  
+}  
+
+//30 
+```
+
+Rule: Local variables can't be private, public, or protected
+
+
+1) Local inner class cannot be invoked from outside the method.
+
+2) Local inner class cannot access non-final local variable till JDK 1.7. Since JDK 1.8, it is possible to access the non-final local variable in the local inner class.
+
+```java
+class localInner2{  
+ private int data=30;//instance variable  
+ void display(){  
+  int value=50;//local variable must be final till jdk 1.7 only  
+  class Local{  
+   void msg(){System.out.println(value);}  
+  }  
+  Local l=new Local();  
+  l.msg();  
+ }  
+ public static void main(String args[]){  
+  localInner2 obj=new localInner2();  
+  obj.display();  
+ }  
+}  
+
+// 50
+```
+
+A static class is a class that is created inside a class, is called a static nested class in Java. It cannot access non-static data members and methods. It can be accessed by outer class name.
+
+* It can access static data members of the outer class, including private.
+* The static nested class cannot access non-static (instance) data members or
+
+```java
+class TestOuter1{  
+  static int data=30;  
+  static class Inner{  
+   void msg(){System.out.println("data is "+data);}  
+  }  
+  public static void main(String args[]){  
+  TestOuter1.Inner obj=new TestOuter1.Inner();  
+  obj.msg();  
+  }  
+}  
+
+// data is 30
+```
+
+If you have the static member inside the static nested class, you don't need to create an instance of the static nested class.
+
+```java
+public class TestOuter2{  
+  static int data=30;  
+  static class Inner{  
+   static void msg(){System.out.println("data is "+data);}  
+  }  
+  public static void main(String args[]){  
+  TestOuter2.Inner.msg();//no need to create the instance of static nested class  
+  }  
+}  
+// data is 30
+```
+
+Java Nested Interface
+
+An interface, i.e., declared within another interface or class, is known as a nested interface. The nested interfaces are used to group related interfaces so that they can be easy to maintain. The nested interface must be referred to by the outer interface or class. It can't be accessed directly.
+
+* The nested interface must be public if it is declared inside the interface, but it can have any access modifier if declared within the class.
+* Nested interfaces are declared static
+
+```java
+interface Showable{  
+  void show();  
+  interface Message{  
+   void msg();  
+  }  
+}  
+class TestNestedInterface1 implements Showable.Message{  
+ public void msg(){System.out.println("Hello nested interface");}  
+  
+ public static void main(String args[]){  
+  Showable.Message message=new TestNestedInterface1();//upcasting here  
+  message.msg();  
+ }  
+}  
+```
+
+As you can see in the above example, we are accessing the Message interface by its outer interface Showable because it cannot be accessed directly. It is just like the almirah inside the room; we cannot access the almirah directly because we must enter the room first. In the collection framework, the sun microsystem has provided a nested interface Entry. Entry is the subinterface of Map, i.e., accessed by Map.Entry.
+
+```java
+class A{  
+  interface Message{  
+   void msg();  
+  }  
+}  
+  
+class TestNestedInterface2 implements A.Message{  
+ public void msg(){System.out.println("Hello nested interface");}  
+  
+ public static void main(String args[]){  
+  A.Message message=new TestNestedInterface2();//upcasting here  
+  message.msg();  
+ }  
+}  
+```
+
+Can we define a class inside the interface?
+
+Yes, if we define a class inside the interface, the Java compiler creates a static nested class. Let's see how can we define a class within the interface:
+
+```java
+interface M{  
+  class A{}  
+}  
+```
+
+
+The Exception Handling in Java is one of the powerful mechanism to handle the runtime errors so that the normal flow of the application can be maintained.
+
+ Exception is an abnormal condition.
+
+ Exception Handling is a mechanism to handle runtime errors such as ClassNotFoundException, IOException, SQLException, RemoteException, etc.
+
+ Suppose there are 10 statements in a Java program and an exception occurs at statement 5; the rest of the code will not be executed, i.e., statements 6 to 10 will not be executed. However, when we perform exception handling, the rest of the statements will be executed. That is why we use exception handling in Java.
+
+ The java.lang.Throwable class is the root class of Java Exception hierarchy inherited by two subclasses: Exception and Error
+
+ ![](2022-04-15-00-39-36.png)
+
+ There are mainly two types of exceptions: checked and unchecked. An error is considered as the unchecked exception. However, according to Oracle, there are three types of exceptions namely:
+
+Checked Exception
+Unchecked Exception
+Error
+
+
+1) Checked Exception
+
+The classes that directly inherit the Throwable class except RuntimeException and Error are known as checked exceptions. For example, IOException, SQLException, etc. Checked exceptions are checked at compile-time.
+
+2) Unchecked Exception
+
+The classes that inherit the RuntimeException are known as unchecked exceptions. For example, ArithmeticException, NullPointerException, ArrayIndexOutOfBoundsException, etc. Unchecked exceptions are not checked at compile-time, but they are checked at runtime.
+
+3) Error
+
+Error is irrecoverable. Some example of errors are OutOfMemoryError, VirtualMachineError, AssertionError etc.
+
+![](2022-04-15-00-42-08.png)
+
+
+try-catch
+
+```java
+public class JavaExceptionExample{  
+  public static void main(String args[]){  
+   try{  
+      //code that may raise exception  
+      int data=100/0;  
+   }catch(ArithmeticException e){System.out.println(e);}  
+   //rest code of the program   
+   System.out.println("rest of the code...");  
+  }  
+}  
+```
+
+```java
+int a=50/0;//ArithmeticException  
+
+String s=null;  
+System.out.println(s.length());//NullPointerException  
+
+String s="abc";  
+int i=Integer.parseInt(s);//NumberFormatException  
+
+int a[]=new int[5];  
+a[10]=50; //ArrayIndexOutOfBoundsException  
+```
+
+Java try block
+
+Java try block is used to enclose the code that might throw an exception. It must be used within the method.
+
+If an exception occurs at the particular statement in the try block, the rest of the block code will not execute. So, it is recommended not to keep the code in try block that will not throw an exception.
+
+Java try block must be followed by either catch or finally block.
+
+ava catch block is used to handle the Exception by declaring the type of exception within the parameter. The declared exception must be the parent class exception ( i.e., Exception) or the generated exception type. However, the good approach is to declare the generated type of exception.
+
+```java
+public class TryCatchExample2 {  
+  
+    public static void main(String[] args) {  
+        try  
+        {  
+        int data=50/0; //may throw exception   
+        }  
+            //handling the exception  
+        catch(ArithmeticException e)  
+        {  
+            System.out.println(e);  
+               // displaying the custom message  
+            System.out.println("Can't divided by zero");  
+        }  
+        System.out.println("rest of the code");  
+    }  
+      
+}  
+```
+
+
+Let's see an example to handle checked exception.
+
+```java
+import java.io.FileNotFoundException;  
+import java.io.PrintWriter;  
+  
+public class TryCatchExample10 {  
+  
+    public static void main(String[] args) {  
+          
+          
+        PrintWriter pw;  
+        try {  
+            pw = new PrintWriter("jtp.txt"); //may throw exception   
+            pw.println("saved");  
+        }  
+// providing the checked exception handler  
+ catch (FileNotFoundException e) {  
+              
+            System.out.println(e);  
+        }         
+    System.out.println("File saved successfully");  
+    }  
+}  
+
+```
+
+Java Multi-catch block
+A try block can be followed by one or more catch blocks. Each catch block must contain a different exception handler. So, if you have to perform different tasks at the occurrence of different exceptions, use java multi-catch block.
+
+* At a time only one exception occurs and at a time only one catch block is executed.
+* All catch blocks must be ordered from most specific to most general, i.e. catch for ArithmeticException must come before catch for Exception.
+
+```java
+   try{    
+                int a[]=new int[5];    
+                a[5]=30/0;    
+               }    
+               catch(ArithmeticException e)  
+                  {  
+                   System.out.println("Arithmetic Exception occurs");  
+                  }    
+               catch(ArrayIndexOutOfBoundsException e)  
+                  {  
+                   System.out.println("ArrayIndexOutOfBounds Exception occurs");  
+                  }    
+               catch(Exception e)  
+                  {  
+                   System.out.println("Parent Exception occurs");  
+                  }             
+               System.out.println("rest of the code");    
+
+               ```
+
+Java Nested try block
+
+In Java, using a try block inside another try block is permitted. It is called as nested try block. Every statement that we enter a statement in try block, context of that exception is pushed onto the stack.
+
+For example, the inner try block can be used to handle ArrayIndexOutOfBoundsException while the outer try block can handle the ArithemeticException (division by zero).
+
+Why use nested try block
+
+Sometimes a situation may arise where a part of a block may cause one error and the entire block itself may cause another error. In such cases, exception handlers have to be nested.
+
+```java
+public class NestedTryBlock{    
+ public static void main(String args[]){   
+ //outer try block   
+  try{    
+  //inner try block 1  
+    try{    
+     System.out.println("going to divide by 0");    
+     int b =39/0;    
+   }  
+    //catch block of inner try block 1  
+    catch(ArithmeticException e)  
+    {  
+      System.out.println(e);  
+    }    
+       
+    
+    //inner try block 2  
+    try{    
+    int a[]=new int[5];    
+  
+    //assigning the value out of array bounds  
+     a[5]=4;    
+     }  
+  
+    //catch block of inner try block 2  
+    catch(ArrayIndexOutOfBoundsException e)  
+    {  
+       System.out.println(e);  
+    }    
+  
+      
+    System.out.println("other statement");    
+  }  
+  //catch block of outer try block  
+  catch(Exception e)  
+  {  
+    System.out.println("handled the exception (outer catch)");  
+  }    
+    
+  System.out.println("normal flow..");    
+ }    
+}  
+
+```
+
+Why use Java finally block?
+
+* finally block in Java can be used to put "cleanup" code such as closing a file, closing connection, etc.
+* The important statements to be printed can be placed in the finally block.
+
+For each try block there can be zero or more catch blocks, but only one finally block.
+
+The finally block will not be executed if the program exits (either by calling System.exit() or by causing a fatal error that causes the process to abort).
+
+```java
+class TestFinallyBlock {    
+  public static void main(String args[]){    
+  try{    
+//below code do not throw any exception  
+   int data=25/5;    
+   System.out.println(data);    
+  }    
+//catch won't be executed  
+  catch(NullPointerException e){  
+System.out.println(e);  
+}    
+//executed regardless of exception occurred or not  
+ finally {  
+System.out.println("finally block is always executed");  
+}    
+    
+System.out.println("rest of phe code...");    
+  }    
+}    
+```
+
+Java throw Exception
+
+In Java, exceptions allows us to write good quality codes where the errors are checked at the compile time instead of runtime and we can create custom exceptions making the code recovery and debugging easier.
+
+The Java throw keyword is used to throw an exception explicitly.
+
+We specify the exception object which is to be thrown. The Exception has some message with it that provides the error description. These exceptions may be related to user inputs, server, etc.
+
+We can throw either checked or unchecked exceptions in Java by throw keyword. It is mainly used to throw a custom exception
+
+Throwing Unchecked Exception
+
+```java
+public class TestThrow1 {   
+    //function to check if person is eligible to vote or not   
+    public static void validate(int age) {  
+        if(age<18) {  
+            //throw Arithmetic exception if not eligible to vote  
+            throw new ArithmeticException("Person is not eligible to vote");    
+        }  
+        else {  
+            System.out.println("Person is eligible to vote!!");  
+        }  
+    }  
+    //main method  
+    public static void main(String args[]){  
+        //calling the function  
+        validate(13);  
+        System.out.println("rest of the code...");    
+  }    
+}    
+```
+
+If we throw unchecked exception from a method, it is must to handle the exception or declare in throws clause.
+
+If we throw a checked exception using throw keyword, it is must to handle the exception using catch block or the method must declare it using throws declaration.
+
+very subclass of Error and RuntimeException is an unchecked exception in Java. A checked exception is everything else under the Throwable class.
+
+
+Throwing Checked Exception
+
+```java
+import java.io.*;  
+  
+public class TestThrow2 {   
+  
+    //function to check if person is eligible to vote or not   
+    public static void method() throws FileNotFoundException {  
+  
+        FileReader file = new FileReader("C:\\Users\\Anurati\\Desktop\\abc.txt");  
+        BufferedReader fileInput = new BufferedReader(file);  
+  
+      
+        throw new FileNotFoundException();  
+      
+    }  
+    //main method  
+    public static void main(String args[]){  
+        try  
+        {  
+            method();  
+        }   
+        catch (FileNotFoundException e)   
+        {  
+            e.printStackTrace();  
+        }  
+        System.out.println("rest of the code...");    
+  }    
+}    
+```
+
+Throwing User-defined Exception
+exception is everything else under the Throwable class.
+
+```java
+// class represents user-defined exception  
+class UserDefinedException extends Exception  
+{  
+    public UserDefinedException(String str)  
+    {  
+        // Calling constructor of parent Exception  
+        super(str);  
+    }  
+}  
+// Class that uses above MyException  
+public class TestThrow3  
+{  
+    public static void main(String args[])  
+    {  
+        try  
+        {  
+            // throw an object of user defined exception  
+            throw new UserDefinedException("This is user-defined exception");  
+        }  
+        catch (UserDefinedException ude)  
+        {  
+            System.out.println("Caught the exception");  
+            // Print the message from MyException object  
+            System.out.println(ude.getMessage());  
+        }  
+    }  
+}   
+```
+
+Java Exception Propagation
+
+An exception is first thrown from the top of the stack and if it is not caught, it drops down the call stack to the previous method. If not caught there, the exception again drops down to the previous method, and so on until they are caught or until they reach the very bottom of the call stack. This is called exception propagation.
+
+Note: By default Unchecked Exceptions are forwarded in calling chain (propagated).
+
+```java
+class TestExceptionPropagation1{  
+  void m(){  
+    int data=50/0;  
+  }  
+  void n(){  
+    m();  
+  }  
+  void p(){  
+   try{  
+    n();  
+   }catch(Exception e){System.out.println("exception handled");}  
+  }  
+  public static void main(String args[]){  
+   TestExceptionPropagation1 obj=new TestExceptionPropagation1();  
+   obj.p();  
+   System.out.println("normal flow...");  
+  }  
+
+```
+
+In the above example exception occurs in the m() method where it is not handled, so it is propagated to the previous n() method where it is not handled, again it is propagated to the p() method where exception is handled.
+
+Exception can be handled in any method in call stack either in the main() method, p() method, n() method or m() method.
+
+![](2022-04-15-01-08-24.png)
+
+checked expection is not working(exception propagation)
+
+```java
+class TestExceptionPropagation2{  
+  void m(){  
+    throw new java.io.IOException("device error");//checked exception  
+  }  
+  void n(){  
+    m();  
+  }  
+  void p(){  
+   try{  
+    n();  
+   }catch(Exception e){System.out.println("exception handeled");}  
+  }  
+  public static void main(String args[]){  
+   TestExceptionPropagation2 obj=new TestExceptionPropagation2();  
+   obj.p();  
+   System.out.println("normal flow");  
+  }  
+}  
+
+//Compile Time Error
+```
+
+Java throws keyword
+The Java throws keyword is used to declare an exception. It gives an information to the programmer that there may occur an exception. So, it is better for the programmer to provide the exception handling code so that the normal flow of the program can be maintained.
+
+Exception Handling is mainly used to handle the checked exceptions. If there occurs any unchecked exception such as NullPointerException, it is programmers' fault that he is not checking the code before it being used.
+
+
+Which exception should be declared?
+
+Ans: Checked exception only, because:
+
+* unchecked exception: under our control so we can correct our code.
+* error: beyond our control. For example, we are unable to do anything if there occurs VirtualMachineError or StackOverflowError
+
+
+Let's see the example of Java throws clause which describes that checked exceptions can be propagated by throws keyword.
+
+```java
+import java.io.IOException;  
+class Testthrows1{  
+  void m()throws IOException{  
+    throw new IOException("device error");//checked exception  
+  }  
+  void n()throws IOException{  
+    m();  
+  }  
+  void p(){  
+   try{  
+    n();  
+   }catch(Exception e){System.out.println("exception handled");}  
+  }  
+  public static void main(String args[]){  
+   Testthrows1 obj=new Testthrows1();  
+   obj.p();  
+   System.out.println("normal flow...");  
+  }  
+}
+
+// exception handled
+//normal flow...
+
+```
+
+There are two cases:
+
+Case 1: We have caught the exception i.e. we have handled the exception using try/catch block.
+
+ case we handle the exception, the code will be executed fine whether exception occurs during the program or not.
+
+```java
+import java.io.*;  
+class M{  
+ void method()throws IOException{  
+  throw new IOException("device error");  
+ }  
+}  
+public class Testthrows2{  
+   public static void main(String args[]){  
+    try{  
+     M m=new M();  
+     m.method();  
+    }catch(Exception e){System.out.println("exception handled");}     
+  
+    System.out.println("normal flow...");  
+  }  
+}  
+```
+
+Case 2: We have declared the exception i.e. specified throws keyword with the method.
+
+In case we declare the exception, if exception does not occur, the code will be executed fine.
+
+```java
+mport java.io.*;  
+class M{  
+ void method()throws IOException{  
+  System.out.println("device operation performed");  
+ }  
+}  
+class Testthrows3{  
+   public static void main(String args[])throws IOException{//declare exception  
+     M m=new M();  
+     m.method();  
+  
+    System.out.println("normal flow...");  
+  }  
+}  
+```
+
+
+In case we declare the exception and the exception occurs, it will be thrown at runtime because throws does not handle the exception.
+
+```java
+import java.io.*;  
+class M{  
+ void method()throws IOException{  
+  throw new IOException("device error");  
+ }  
+}  
+class Testthrows4{  
+   public static void main(String args[])throws IOException{//declare exception  
+     M m=new M();  
+     m.method();  
+  
+    System.out.println("normal flow...");  
+  }  
+}  
+```
+![](2022-04-15-01-16-24.png)
+
+
+Difference between throw and throws in Java
+
+The throw and throws is the concept of exception handling where the throw keyword throw the exception explicitly from a method or a block of code whereas the throws keyword is used in signature of the method.
+
+![](2022-04-15-01-20-05.png)
+
+Difference between final, finally and finalize
+
+The final, finally, and finalize are keywords in Java that are used in exception handling. Each of these keywords has a different functionality. The basic difference between final, finally and finalize is that the final is an access modifier, finally is the block in Exception Handling and finalize is the method of object class.
+
+![](2022-04-15-01-21-16.png)
+
+Exception Handling with Method Overriding in Java
+
+There are many rules if we talk about method overriding with exception handling.
+
+Some of the rules are listed below:
+
+* If the superclass method does not declare an exception
+   * If the superclass method does not declare an exception, subclass overridden method cannot declare the checked exception but it can declare unchecked exception.
+* If the superclass method declares an exception
+   * If the superclass method declares an exception, subclass overridden method can declare same, subclass exception or no exception but cannot declare parent exception.
+
+
+
+If the superclass method does not declare an exception
+
+Rule 1: If the superclass method does not declare an exception, subclass overridden method cannot declare the checked exception.
+
+```java
+import java.io.*;    
+class Parent{   
+  
+  // defining the method   
+  void msg() {  
+    System.out.println("parent method");  
+    }    
+}    
+    
+public class TestExceptionChild extends Parent{    
+  
+  // overriding the method in child class  
+  // gives compile time error  
+  void msg() throws IOException {    
+    System.out.println("TestExceptionChild");    
+  }  
+  
+  public static void main(String args[]) {    
+   Parent p = new TestExceptionChild();    
+   p.msg();    
+  }    
+}    
+```
+
+![](2022-04-15-01-23-21.png)
+
+Rule 2: If the superclass method does not declare an exception, subclass overridden method cannot declare the checked exception but can declare unchecked exception.
+
+```java
+import java.io.*;    
+class Parent{    
+  void msg() {  
+    System.out.println("parent method");  
+  }    
+}    
+    
+class TestExceptionChild1 extends Parent{    
+  void msg()throws ArithmeticException {    
+    System.out.println("child method");    
+  }    
+  
+  public static void main(String args[]) {    
+   Parent p = new TestExceptionChild1();    
+   p.msg();    
+  }    
+}   
+```
+![](2022-04-15-01-24-08.png)
+
+If the superclass method declares an exception
+
+Rule 1: If the superclass method declares an exception, subclass overridden method can declare the same subclass exception or no exception but cannot declare parent exception.
+
+```java
+import java.io.*;    
+class Parent{    
+  void msg()throws ArithmeticException {  
+    System.out.println("parent method");  
+  }    
+}    
+    
+public class TestExceptionChild2 extends Parent{    
+  void msg()throws Exception {  
+    System.out.println("child method");  
+  }    
+    
+  public static void main(String args[]) {    
+   Parent p = new TestExceptionChild2();    
+     
+   try {    
+   p.msg();    
+   }  
+   catch (Exception e){}   
+  
+  }    
+}     
+
+```
+
+
+Example in case subclass overridden method declares same exception
+
+```java
+import java.io.*;    
+class Parent{    
+  void msg() throws Exception {  
+    System.out.println("parent method");  
+  }    
+}    
+    
+public class TestExceptionChild3 extends Parent {    
+  void msg()throws Exception {  
+    System.out.println("child method");  
+  }    
+    
+  public static void main(String args[]){    
+   Parent p = new TestExceptionChild3();    
+     
+   try {    
+   p.msg();    
+   }  
+   catch(Exception e) {}    
+  }    
+}    
+```
+
+![](2022-04-15-01-26-08.png)
+
+
+Example in case subclass overridden method declares subclass exception
+
+```java
+import java.io.*;    
+class Parent{    
+  void msg()throws Exception {  
+    System.out.println("parent method");  
+  }    
+}    
+    
+class TestExceptionChild4 extends Parent{    
+  void msg()throws ArithmeticException {  
+    System.out.println("child method");  
+  }    
+    
+  public static void main(String args[]){    
+   Parent p = new TestExceptionChild4();    
+     
+   try {    
+   p.msg();    
+   }  
+   catch(Exception e) {}    
+  }    
+}    
+```
+
+![](2022-04-15-01-26-37.png)
+
+Example in case subclass overridden method declares no exception
+
+```java
+import java.io.*;    
+class Parent {    
+  void msg()throws Exception{  
+    System.out.println("parent method");  
+  }    
+}    
+    
+class TestExceptionChild5 extends Parent{    
+  void msg() {  
+    System.out.println("child method");  
+  }    
+    
+  public static void main(String args[]){    
+   Parent p = new TestExceptionChild5();    
+     
+   try {    
+   p.msg();    
+   }  
+   catch(Exception e) {}  
+       
+  }    
+}     
+```
+
+![](2022-04-15-01-27-28.png)
+
+
+Java Custom Exception
+
+In Java, we can create our own exceptions that are derived classes of the Exception class. Creating our own Exception is known as custom exception or user-defined exception. Basically, Java custom exceptions are used to customize the exception according to user need.
+
+Using the custom exception, we can have your own exception and message. Here, we have passed a string to the constructor of superclass i.e. Exception class that can be obtained using getMessage() method on the object we have created.
+
+In this section, we will learn how custom exceptions are implemented and used in Java programs.
+
+Java exceptions cover almost all the general type of exceptions that may occur in the programming. However, we sometimes need to create custom exceptions.
+
+Following are few of the reasons to use custom exceptions:
+
+* To catch and provide specific treatment to a subset of existing Java exceptions.
+* Business logic exceptions: These are the exceptions related to business logic and workflow. It is useful for the application users or the developers to understand the exact problem.
+
+In order to create custom exception, we need to extend Exception class that belongs to java.lang package.
+
+Consider the following example, where we create a custom exception named WrongFileNameException:
+
+```java
+public class WrongFileNameException extends Exception {  
+    public WrongFileNameException(String errorMessage) {  
+    super(errorMessage);  
+    }  
+}  
+```
+
+Note: We need to write the constructor that takes the String as the error message and it is called parent class constructor.
+
+```java
+/ class representing custom exception  
+class InvalidAgeException  extends Exception  
+{  
+    public InvalidAgeException (String str)  
+    {  
+        // calling the constructor of parent Exception  
+        super(str);  
+    }  
+}  
+    
+// class that uses custom exception InvalidAgeException  
+public class TestCustomException1  
+{  
+  
+    // method to check the age  
+    static void validate (int age) throws InvalidAgeException{    
+       if(age < 18){  
+  
+        // throw an object of user defined exception  
+        throw new InvalidAgeException("age is not valid to vote");    
+    }  
+       else {   
+        System.out.println("welcome to vote");   
+        }   
+     }    
+  
+    // main method  
+    public static void main(String args[])  
+    {  
+        try  
+        {  
+            // calling the method   
+            validate(13);  
+        }  
+        catch (InvalidAgeException ex)  
+        {  
+            System.out.println("Caught the exception");  
+    
+            // printing the message from InvalidAgeException object  
+            System.out.println("Exception occured: " + ex);  
+        }  
+  
+        System.out.println("rest of the code...");    
+    }  
+}  
+```
+
+![](2022-04-15-01-34-01.png)
 
